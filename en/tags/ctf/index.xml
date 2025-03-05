@@ -4,7 +4,7 @@
     <title>Ctf on faultint</title>
     <link>/en/tags/ctf/index.xml</link>
     <description>Recent content in Ctf on faultint</description>
-    <generator>Hugo -- 0.126.3</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Fri, 31 Jan 2025 18:16:37 +0700</lastBuildDate>
     <atom:link href="/en/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
@@ -13,10 +13,14 @@
       <link>/en/posts/ctf-hacker101-1/</link>
       <pubDate>Fri, 31 Jan 2025 18:16:37 +0700</pubDate>
       <guid>/en/posts/ctf-hacker101-1/</guid>
-      <description>Another challange I do while learning programming, this is episode 1 by the way.
-You can visit hacker101 if you want to play it too.
-I start the level and it redirected me to a website with white background and a paragraph which said:
-Welcome to level 0. Enjoy your stay. Nothing out of ordinary here. So, I inspect the page and look at the source code. Seems normal. Until I take a look at the &amp;lt;style&amp;gt; tag and saw the following lines:</description>
+      <description>&lt;p&gt;Another challange I do while learning programming, this is episode 1 by the way.&lt;/p&gt;
+&lt;p&gt;You can visit &lt;a href=&#34;https://ctf.hacker101.com/&#34;&gt;hacker101&lt;/a&gt; if you want to play it too.&lt;/p&gt;
+&lt;p&gt;I start the level and it redirected me to a website with white background
+and a paragraph which said:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Welcome to level 0. Enjoy your stay.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nothing out of ordinary here. So, I inspect the page and look at the source
+code. Seems normal. Until I take a look at the &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; tag and saw the
+following lines:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

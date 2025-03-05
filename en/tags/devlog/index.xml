@@ -4,7 +4,7 @@
     <title>Devlog on faultint</title>
     <link>/en/tags/devlog/index.xml</link>
     <description>Recent content in Devlog on faultint</description>
-    <generator>Hugo -- 0.126.3</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Wed, 19 Jun 2024 13:01:22 +0700</lastBuildDate>
     <atom:link href="/en/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,13 @@
       <link>/en/posts/documenting-programming-journey-with-web-development/</link>
       <pubDate>Wed, 19 Jun 2024 13:01:22 +0700</pubDate>
       <guid>/en/posts/documenting-programming-journey-with-web-development/</guid>
-      <description>Learning is a tiresome activity, you need to put a lot of effort and time when learning something, this is even true when learning something by yourself, like programming, since nobody is going to remind you when to study, when to review your note, when to exercise, what to study after you finished the current topic, in other word, you need to put extra effort because nobody is going to guide you whatsoever.</description>
+      <description>&lt;p&gt;Learning is a tiresome activity, you need to put a lot of effort and time when learning something,
+this is even true when learning something by yourself, like programming, since nobody is going to
+remind you when to study, when to review your note, when to exercise, what to study after you
+finished the current topic, in other word, you need to put extra effort because nobody is going
+to guide you whatsoever. Which is why keeping record of your learning journey is very important
+so you can know how far have you progressed, how far are you from your goals, what need to be
+evaluated from your previous experience and so forth.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

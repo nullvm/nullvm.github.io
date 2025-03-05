@@ -8,9 +8,9 @@
 <title>C&#43;&#43; | faultint</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<meta name="author" content="deniandriancode">
+<meta name="author" content="nullvm">
 <link rel="canonical" href="/en/tags/c&#43;&#43;/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.bbd5169647ac76df5fc8b02a61135fc9af65e89f3ef3573b434aa16ff9a8f2c5.css" integrity="sha256-u9UWlkesdt9fyLAqYRNfya9l6J8&#43;81c7Q0qhb/mo8sU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -56,30 +56,15 @@
         }
 
     </style>
-</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+</noscript><meta property="og:url" content="/en/tags/c&#43;&#43;/">
+  <meta property="og:site_name" content="faultint">
+  <meta property="og:title" content="C&#43;&#43;">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#43;&#43;">
+<meta name="twitter:description" content="">
 
-  
-
-<meta property="og:title" content="C&#43;&#43;" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/en/tags/c&#43;&#43;/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="C&#43;&#43;"/>
-<meta name="twitter:description" content=""/>
-
-  
 </head>
 
 <body class="list" id="top">
@@ -99,7 +84,7 @@
         <div class="logo">
             <a href="/en/" accesskey="h" title="faultint (Alt + H)">faultint</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -131,21 +116,6 @@
             <li>
                 <a href="/en/posts" title="Posts">
                     <span>Posts</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/archives/" title="Archives">
-                    <span>Archives</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/bookmark/" title="Bookmark">
-                    <span>Bookmark</span>
                 </a>
             </li>
             <li>
@@ -181,9 +151,10 @@
   <div class="entry-content">
     <p>The following paragraphs are the summary of pointer and const in C&#43;&#43;, I always forget about this topic so I decided to create a post about it.
 Regular Pointers Regular pointers are pointers the we usually use when working with pointers in C&#43;&#43;.
-int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = &amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won’t explain what is it and the rest of the it since it is easier to explain it using code rather than using words....</p>
+int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = &amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won’t explain what is it and the rest of the it since it is easier to explain it using code rather than using words. (The definitions are still confusing to me💀)
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-15 20:59:34 +0700 WIB'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;393 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-15 20:59:34 +0700 WIB'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;393 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to Pointer and Const in C&#43;&#43;" href="/en/posts/cpp-pointer-const/"></a>
 </article>
 
@@ -194,9 +165,10 @@ int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *pt
   </header>
   <div class="entry-content">
     <p>Creating a comprehensive curriculum for C&#43;&#43; with a focus on Data Structures and Algorithms (DSA) involves structuring the content in a way that builds on the students’ existing knowledge of C&#43;&#43; and progressively introduces them to more complex topics. Here’s a detailed curriculum outline that covers foundational concepts, advanced topics, and integrates online resources for a well-rounded learning experience.
-Curriculum Overview: C&#43;&#43; for Data Structures and Algorithms Module 1: Introduction and Review of C&#43;&#43; Basics Objective: Refresh fundamental C&#43;&#43; concepts and introduce best practices for coding....</p>
+Curriculum Overview: C&#43;&#43; for Data Structures and Algorithms Module 1: Introduction and Review of C&#43;&#43; Basics Objective: Refresh fundamental C&#43;&#43; concepts and introduce best practices for coding. Topics: Basic syntax and structure of C&#43;&#43; Data types, variables, and operators Control flow (if statements, loops) Functions and recursion Pointers and references Object-oriented programming (classes, inheritance, polymorphism) Resources: LearnCpp.com: Basic C&#43;&#43; Topics C&#43;&#43; Primer (Book) Module 2: Advanced C&#43;&#43; Concepts Objective: Delve deeper into advanced C&#43;&#43; features critical for efficient algorithm implementation. Topics: Templates and generic programming Standard Template Library (STL) Smart pointers and memory management Move semantics and resource management (RAII) Lambda functions and functional programming paradigms in C&#43;&#43; Multithreading and concurrency Resources: C&#43;&#43;11/14/17/20: The Complete Guide (Book) cppreference.com: Advanced Topics Effective Modern C&#43;&#43; (Book) Module 3: Data Structures Basics Objective: Understand and implement fundamental data structures. Topics: Arrays and linked lists (singly, doubly) Stacks and queues Strings and dynamic arrays Trees (binary trees, AVL trees, heaps) Graphs (representation, traversal techniques) Resources: GeeksforGeeks: Data Structures Coursera: Data Structures and Algorithms Specialization Data Structures and Algorithm Analysis in C&#43;&#43; (Book) Module 4: Algorithms Basics Objective: Learn fundamental algorithms and their applications. Topics: Sorting algorithms (bubble sort, merge sort, quicksort, heap sort) Searching algorithms (linear search, binary search) Hashing and hash tables Basic graph algorithms (BFS, DFS, Dijkstra’s algorithm) Recursion and backtracking Resources: Khan Academy: Algorithms Introduction to Algorithms (Book) HackerRank: Algorithm Practice Module 5: Advanced Data Structures Objective: Explore more complex data structures and their use cases. Topics: Advanced trees (B-trees, red-black trees, segment trees) Graphs (Kruskal’s and Prim’s algorithms for MST, Floyd-Warshall, Bellman-Ford) Trie and suffix trees Union-find data structure Spatial data structures (KD-trees, Quadtrees) Resources: GeeksforGeeks: Advanced Data Structures Coursera: Advanced Data Structures in C&#43;&#43; MIT OpenCourseWare: Advanced Data Structures Module 6: Advanced Algorithms Objective: Master advanced algorithmic concepts and techniques. Topics: Dynamic programming (knapsack problem, longest common subsequence) Greedy algorithms Divide and conquer strategies Network flow algorithms Approximation algorithms Randomized algorithms Resources: Coursera: Advanced Algorithms and Complexity Competitive Programming 3 (Book) Codeforces: Competitive Programming Module 7: Performance Optimization and Best Practices Objective: Learn how to optimize code for performance and understand best practices in C&#43;&#43;. Topics: Algorithm complexity and Big O notation Profiling and optimizing C&#43;&#43; code Memory management and cache optimization Using tools like Valgrind and gprof Writing efficient and clean code Resources: The Art of Computer Programming (Book) High Performance C&#43;&#43; (Udemy Course) CppCon Videos: Best Practices Module 8: Projects and Case Studies Objective: Apply knowledge to real-world problems and projects. Projects: Implement a file system simulation Design and optimize a web crawler Create a recommendation system using graph algorithms Build a real-time chat application with concurrent data structures Case Studies: Explore algorithmic solutions used in industry (e.g., Google’s PageRank) Analyze performance and scalability of data structures in modern applications Resources: Project Euler LeetCode: Projects and Case Studies MIT OpenCourseWare: Case Studies in Algorithms Module 9: Preparing for Coding Interviews Objective: Equip students with the skills and techniques needed to excel in technical interviews. Topics: Common interview questions on data structures and algorithms Problem-solving strategies and time management Mock interview sessions and coding challenges Behavioral interview preparation Resources: Cracking the Coding Interview (Book) LeetCode: Coding Interview Prep InterviewBit: Programming Interview Questions Online Resources for Continuous Learning MOOCs and Online Courses:
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-12 16:30:54 +0700 WIB'>June 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;701 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-12 16:30:54 +0700 WIB'>June 12, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;701 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to C&#43;&#43; for Data Structures and Algorithms Curriculum" href="/en/posts/cpp-for-dsa-curriculum/"></a>
 </article>
 
@@ -208,9 +180,10 @@ Curriculum Overview: C&#43;&#43; for Data Structures and Algorithms Module 1: In
   <div class="entry-content">
     <p>Creating a comprehensive curriculum for learning C&#43;&#43; tailored for competitive programming, especially for students with a basic understanding of C&#43;&#43; and Data Structures and Algorithms (DSA), involves diving into advanced topics, optimizing techniques, and mastering problem-solving skills. Here’s a structured plan to guide through the advanced concepts and practices necessary for excelling in competitive programming.
 Curriculum Outline: C&#43;&#43; Advanced Language Features
-Templates and STL Mastery Advanced Data Structures Dynamic Programming Graph Algorithms Mathematical Algorithms Geometry String Algorithms Bit Manipulation Advanced Search Techniques Game Theory Number Theory and Combinatorics Concurrency in C&#43;&#43; Problem-Solving Strategies...</p>
+Templates and STL Mastery Advanced Data Structures Dynamic Programming Graph Algorithms Mathematical Algorithms Geometry String Algorithms Bit Manipulation Advanced Search Techniques Game Theory Number Theory and Combinatorics Concurrency in C&#43;&#43; Problem-Solving Strategies
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-12 16:30:46 +0700 WIB'>June 12, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;873 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-12 16:30:46 +0700 WIB'>June 12, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;873 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to C&#43;&#43; for Competitive Programming Curriculum" href="/en/posts/cpp-for-competitive-programming-curriculum/"></a>
 </article>
 
@@ -222,9 +195,10 @@ Templates and STL Mastery Advanced Data Structures Dynamic Programming Graph Alg
   <div class="entry-content">
     <p>Creating a detailed curriculum for System Programming in Linux with C/C&#43;&#43; from scratch involves structuring the course to build foundational knowledge in both Linux and C/C&#43;&#43; before diving into more advanced system programming concepts. Here’s a comprehensive outline for a semester-long course, assuming it meets once or twice a week for about 12-15 weeks:
 Week 1-2: Introduction to Linux and Programming Basics Lecture Topics:
-Overview of Linux and its history. Introduction to the Linux file system, command line interface (CLI), and basic commands....</p>
+Overview of Linux and its history. Introduction to the Linux file system, command line interface (CLI), and basic commands. Introduction to programming languages, compilers, and interpreters. Installing and setting up a Linux environment (Ubuntu or Fedora recommended). Practical Sessions:
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-11 13:43:47 +0700 WIB'>June 11, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;801 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-11 13:43:47 +0700 WIB'>June 11, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;801 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to System Programming with C/C&#43;&#43; Curriculum" href="/en/posts/system-programming-with-c-cpp-curriculum/"></a>
 </article>
     </main>
@@ -278,7 +252,7 @@ Overview of Linux and its history. Introduction to the Linux file system, comman
     window.onscroll = function () {
         if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             mybutton.style.visibility = "visible";
-            mybutton.style.opacity = ".63";
+            mybutton.style.opacity = "1";
         } else {
             mybutton.style.visibility = "hidden";
             mybutton.style.opacity = "0";

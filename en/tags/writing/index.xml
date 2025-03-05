@@ -4,7 +4,7 @@
     <title>Writing on faultint</title>
     <link>/en/tags/writing/index.xml</link>
     <description>Recent content in Writing on faultint</description>
-    <generator>Hugo -- 0.126.3</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Mon, 24 Jun 2024 20:23:33 +0700</lastBuildDate>
     <atom:link href="/en/tags/writing/index.xml" rel="self" type="application/rss+xml" />
@@ -13,8 +13,16 @@
       <link>/en/posts/start-coding-small/</link>
       <pubDate>Mon, 24 Jun 2024 20:23:33 +0700</pubDate>
       <guid>/en/posts/start-coding-small/</guid>
-      <description>If you are learning programming or computer science related stuff, chances are you will write some code. Coding and programming are two different things, in a nutshell, programming is applying some logic while coding is actually typing the applied logic into machine-readable instruction, read this awesome article from freeCodeCamp.
-You can do programming wherever you are, you don&amp;rsquo;t have to sit in front of your computer since applying some logic don&amp;rsquo;t necessarily need a computer.</description>
+      <description>&lt;p&gt;If you are learning programming or computer science related stuff,
+chances are you will write some code. Coding and programming are two
+different things, in a nutshell, programming is applying some logic
+while coding is actually typing the applied logic into machine-readable
+instruction, read &lt;a href=&#34;https://www.freecodecamp.org/news/difference-between-coding-and-programming/&#34;&gt;this awesome article&lt;/a&gt;
+from freeCodeCamp.&lt;/p&gt;
+&lt;p&gt;You can do programming wherever you are, you don&amp;rsquo;t have to sit in
+front of your computer since applying some logic don&amp;rsquo;t necessarily
+need a computer.Think about how you study math, that&amp;rsquo;s how you study
+programming, more or less.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

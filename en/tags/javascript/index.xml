@@ -4,7 +4,7 @@
     <title>Javascript on faultint</title>
     <link>/en/tags/javascript/index.xml</link>
     <description>Recent content in Javascript on faultint</description>
-    <generator>Hugo -- 0.126.3</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Oct 2024 20:25:23 +0700</lastBuildDate>
     <atom:link href="/en/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
@@ -13,33 +13,53 @@
       <link>/en/posts/randint-js/</link>
       <pubDate>Sat, 26 Oct 2024 20:25:23 +0700</pubDate>
       <guid>/en/posts/randint-js/</guid>
-      <description>Here I will show you a simple way to generate a ranged random integer number in javascript. Since javascript doesn&amp;rsquo;t have built in function to generate ranged integer number, we will create one.
-function randInt(left, right) { return Math.floor(Math.random() * (right - left + 1)) + left; } And that&amp;rsquo;s it, this is just me passing by and dropping some code snippets.
-See you later.
-Stay safe!</description>
+      <description>&lt;p&gt;Here I will show you a simple way to generate a ranged random
+integer number in javascript. Since javascript doesn&amp;rsquo;t have built in
+function to generate ranged integer number, we will create one.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#c678dd&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;randInt&lt;/span&gt;(&lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt;, &lt;span style=&#34;color:#e06c75&#34;&gt;right&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#c678dd&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e5c07b&#34;&gt;Math&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;floor&lt;/span&gt;(&lt;span style=&#34;color:#e5c07b&#34;&gt;Math&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;random&lt;/span&gt;() &lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#e06c75&#34;&gt;right&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;1&lt;/span&gt;)) &lt;span style=&#34;color:#56b6c2&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And that&amp;rsquo;s it, this is just me passing by and dropping some code snippets.&lt;/p&gt;
+&lt;p&gt;See you later.&lt;/p&gt;
+&lt;p&gt;Stay safe!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Replicating Right Click Behavior using Vanilla Javascript</title>
       <link>/en/posts/replicating-right-click-behavior-using-vanilla-javascript/</link>
       <pubDate>Thu, 24 Oct 2024 19:36:18 +0700</pubDate>
       <guid>/en/posts/replicating-right-click-behavior-using-vanilla-javascript/</guid>
-      <description>The idea is simple.
-First, disable the default event handler for right click in the browser.
-Second, create a custom event handler for right click event.
-Implementing the first idea, we can do something like the following.
-window.addEventListener(&amp;#34;contextmenu&amp;#34;, (event) =&amp;gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log &amp;ldquo;Right Click detected!&amp;rdquo; into the console.
-window.addEventListener(&amp;#34;contextmenu&amp;#34;, (event) =&amp;gt; { event.</description>
+      <description>&lt;p&gt;The idea is simple.&lt;/p&gt;
+&lt;p&gt;First, disable the default event handler for right click in the browser.&lt;/p&gt;
+&lt;p&gt;Second, create a custom event handler for right click event.&lt;/p&gt;
+&lt;p&gt;Implementing the first idea, we can do something like the following.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;window&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;contextmenu&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;preventDefault&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;from here we can easily add any custom code for event handler
+to our liking, here I will just log &amp;ldquo;Right Click detected!&amp;rdquo; into
+the console.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;window&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;contextmenu&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;preventDefault&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;Right Click detected!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Javascript Promise Simplified</title>
       <link>/en/posts/promise-simplified-js/</link>
       <pubDate>Mon, 21 Oct 2024 20:08:35 +0700</pubDate>
       <guid>/en/posts/promise-simplified-js/</guid>
-      <description>Promise has three different states: pending, resolve, and reject.
-When you first create a promise, it will be in pending state. This promise can be either &amp;ldquo;fulfilled&amp;rdquo; thus it will be resolved or it can be &amp;ldquo;rejected&amp;rdquo; thus it will be rejected.
-In other word, if promise resulted in success it resolve, else it reject.
-To create a promise in javascript is really simple.
-const myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.</description>
+      <description>&lt;p&gt;Promise has three different states: pending, resolve, and reject.&lt;/p&gt;
+&lt;p&gt;When you first create a promise, it will be in pending state. This
+promise can be either &amp;ldquo;fulfilled&amp;rdquo; thus it will be resolved or it can
+be &amp;ldquo;rejected&amp;rdquo; thus it will be rejected.&lt;/p&gt;
+&lt;p&gt;In other word, if promise resulted in success it resolve, else it reject.&lt;/p&gt;
+&lt;p&gt;To create a promise in javascript is really simple.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#c678dd&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;myPromise&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#c678dd&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#e5c07b&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#c678dd&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#e06c75&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#e06c75&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#7f848e&#34;&gt;// do something
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What you do inside the promise will decide whether it will resolve or reject.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

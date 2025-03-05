@@ -8,13 +8,16 @@
 <title>OverTheWire Bandit 2 | faultint</title>
 <meta name="keywords" content="programming, cybersecurity">
 <meta name="description" content="Continue to Level 2. Here is the level goal:
+
 The password for the next level is stored in a file called - located in the home directory
-I connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:
-cat ./- And the content get printed.
-If I typed cat - the content inside - file won&rsquo;t be printed since typing cat - means the cat command will read from standard input.">
-<meta name="author" content="deniandriancode">
+I connected to the game server using the password from the previous level.
+The file needed to get the password for the next level is located at the
+home directory, so I just typed in:
+cat ./-
+And the content get printed.">
+<meta name="author" content="nullvm">
 <link rel="canonical" href="/en/posts/bandit-overthewire-2/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.bbd5169647ac76df5fc8b02a61135fc9af65e89f3ef3573b434aa16ff9a8f2c5.css" integrity="sha256-u9UWlkesdt9fyLAqYRNfya9l6J8&#43;81c7Q0qhb/mo8sU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -59,38 +62,30 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
         }
 
     </style>
-</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
-
-  
-
-<meta property="og:title" content="OverTheWire Bandit 2" />
-<meta property="og:description" content="Continue to Level 2. Here is the level goal:
+</noscript><meta property="og:url" content="/en/posts/bandit-overthewire-2/">
+  <meta property="og:site_name" content="faultint">
+  <meta property="og:title" content="OverTheWire Bandit 2">
+  <meta property="og:description" content="Continue to Level 2. Here is the level goal:
 The password for the next level is stored in a file called - located in the home directory
 I connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:
-cat ./- And the content get printed.
-If I typed cat - the content inside - file won&rsquo;t be printed since typing cat - means the cat command will read from standard input." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/en/posts/bandit-overthewire-2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-01-31T18:03:42+07:00" />
-<meta property="article:modified_time" content="2025-01-31T18:03:42+07:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="OverTheWire Bandit 2"/>
+cat ./- And the content get printed.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-31T18:03:42+07:00">
+    <meta property="article:modified_time" content="2025-01-31T18:03:42+07:00">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Cybersecurity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OverTheWire Bandit 2">
 <meta name="twitter:description" content="Continue to Level 2. Here is the level goal:
+
 The password for the next level is stored in a file called - located in the home directory
-I connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:
-cat ./- And the content get printed.
-If I typed cat - the content inside - file won&rsquo;t be printed since typing cat - means the cat command will read from standard input."/>
+I connected to the game server using the password from the previous level.
+The file needed to get the password for the next level is located at the
+home directory, so I just typed in:
+cat ./-
+And the content get printed.">
 
 
 <script type="application/ld+json">
@@ -119,7 +114,7 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
   "@type": "BlogPosting",
   "headline": "OverTheWire Bandit 2",
   "name": "OverTheWire Bandit 2",
-  "description": "Continue to Level 2. Here is the level goal:\nThe password for the next level is stored in a file called - located in the home directory\nI connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:\ncat ./- And the content get printed.\nIf I typed cat - the content inside - file won\u0026rsquo;t be printed since typing cat - means the cat command will read from standard input.",
+  "description": "Continue to Level 2. Here is the level goal:\nThe password for the next level is stored in a file called - located in the home directory\nI connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:\ncat ./- And the content get printed.\n",
   "keywords": [
     "programming", "cybersecurity"
   ],
@@ -130,7 +125,7 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
   "dateModified": "2025-01-31T18:03:42+07:00",
   "author":[{
     "@type": "Person",
-    "name": "deniandriancode"
+    "name": "nullvm"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -146,7 +141,6 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
   }
 }
 </script>
-  
 </head>
 
 <body class="" id="top">
@@ -166,7 +160,7 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
         <div class="logo">
             <a href="/en/" accesskey="h" title="faultint (Alt + H)">faultint</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -201,21 +195,6 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
                 </a>
             </li>
             <li>
-                <a href="/en/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/archives/" title="Archives">
-                    <span>Archives</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/bookmark/" title="Bookmark">
-                    <span>Bookmark</span>
-                </a>
-            </li>
-            <li>
                 <a href="/en/about/" title="About">
                     <span>About</span>
                 </a>
@@ -231,14 +210,13 @@ If I typed cat - the content inside - file won&rsquo;t be printed since typing c
     <h1 class="post-title entry-hint-parent">
       OverTheWire Bandit 2
     </h1>
-    <div class="post-meta"><span title='2025-01-31 18:03:42 +0700 WIB'>January 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;144 words&nbsp;·&nbsp;deniandriancode&nbsp;|&nbsp;<a href="https://github.com/deniandriancode/deniandriancode.github.io-precompiled/tree/main/content/en/posts/bandit-overthewire-2.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2025-01-31 18:03:42 +0700 WIB'>January 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;144 words&nbsp;·&nbsp;nullvm&nbsp;|&nbsp;<a href="https://github.com/deniandriancode/deniandriancode.github.io-precompiled/tree/main/content/en/posts/bandit-overthewire-2.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
   <div class="post-content"><p>Continue to Level 2. Here is the level goal:</p>
 <blockquote>
-<p>The password for the next level is stored in a file called - located in the home directory</p>
-</blockquote>
+<p>The password for the next level is stored in a file called - located in the home directory</p></blockquote>
 <p>I connected to the game server using the password from the previous level.
 The file needed to get the password for the next level is located at the
 home directory, so I just typed in:</p>
@@ -416,7 +394,7 @@ home directory, so I just typed in:</p>
     window.onscroll = function () {
         if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             mybutton.style.visibility = "visible";
-            mybutton.style.opacity = ".63";
+            mybutton.style.opacity = "1";
         } else {
             mybutton.style.visibility = "hidden";
             mybutton.style.opacity = "0";

@@ -8,9 +8,9 @@
 <title>C | faultint</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-<meta name="author" content="deniandriancode">
+<meta name="author" content="nullvm">
 <link rel="canonical" href="/en/tags/c/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.bbd5169647ac76df5fc8b02a61135fc9af65e89f3ef3573b434aa16ff9a8f2c5.css" integrity="sha256-u9UWlkesdt9fyLAqYRNfya9l6J8&#43;81c7Q0qhb/mo8sU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -56,30 +56,15 @@
         }
 
     </style>
-</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+</noscript><meta property="og:url" content="/en/tags/c/">
+  <meta property="og:site_name" content="faultint">
+  <meta property="og:title" content="C">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C">
+<meta name="twitter:description" content="">
 
-  
-
-<meta property="og:title" content="C" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/en/tags/c/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="C"/>
-<meta name="twitter:description" content=""/>
-
-  
 </head>
 
 <body class="list" id="top">
@@ -99,7 +84,7 @@
         <div class="logo">
             <a href="/en/" accesskey="h" title="faultint (Alt + H)">faultint</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -134,21 +119,6 @@
                 </a>
             </li>
             <li>
-                <a href="/en/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/archives/" title="Archives">
-                    <span>Archives</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/bookmark/" title="Bookmark">
-                    <span>Bookmark</span>
-                </a>
-            </li>
-            <li>
                 <a href="/en/about/" title="About">
                     <span>About</span>
                 </a>
@@ -180,9 +150,10 @@
     <p>In this article we will build a dummy file watcher using C programming language.
 We say dummy file watcher because to build a proper file watcher, we need to utilize os internal features which is a bit more complex.
 Instead, we will create an infinite loop that checks a given directory every 0.5 second and see if something has changed.
-First thing we need to do is to create a function that tells if something has changed in a given directory....</p>
+First thing we need to do is to create a function that tells if something has changed in a given directory.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-06 18:59:44 +0700 WIB'>July 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;373 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-07-06 18:59:44 +0700 WIB'>July 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;373 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to Dummy File Watcher in C" href="/en/posts/dummy-file-watcher-c/"></a>
 </article>
 
@@ -196,9 +167,11 @@ First thing we need to do is to create a function that tells if something has ch
   <div class="entry-content">
     <p>In this short article we will review pointers in C programming language, if you are new to this kind of topic please read the tutorial of pointers for beginners first, try this tutorial for example.
 Defining Pointer There are several ways to define a pointer in C.
-int* p; int x = 5; p = &amp;x; // p pointer to address x we can assign the address right away like so...</p>
+int* p; int x = 5; p = &amp;x; // p pointer to address x we can assign the address right away like so
+int x = 5; int* p = &amp;x; Dereferencing Pointer Use * to dereference a pointer, this will return the value that the address of pointer is pointing at holds.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-03 15:07:47 +0700 WIB'>July 3, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;307 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-07-03 15:07:47 +0700 WIB'>July 3, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;307 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to Review of Pointer in C" href="/en/posts/pointer-of-c-review/"></a>
 </article>
 
@@ -211,9 +184,10 @@ int* p; int x = 5; p = &amp;x; // p pointer to address x we can assign the addre
   </header>
   <div class="entry-content">
     <p>Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.
-But what is greater that array? Yup, dynamic array....</p>
+But what is greater that array? Yup, dynamic array.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-02 13:30:14 +0700 WIB'>July 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;644 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-07-02 13:30:14 +0700 WIB'>July 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;644 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to Dynamic Array in C Simplified" href="/en/posts/dynamic-array-in-c-simplified/"></a>
 </article>
 
@@ -224,9 +198,10 @@ But what is greater that array? Yup, dynamic array....</p>
   </header>
   <div class="entry-content">
     <p>Creating a curriculum for kernel development using C is an exciting and challenging endeavor. The following curriculum is designed to take students from a basic understanding of C programming and Linux systems to advanced kernel development. This structured approach covers essential topics and provides recommended resources for each section.
-Curriculum Outline for Kernel Development Using C 1. Introduction to Kernel Development Objective: Understand what a kernel is, its role in the operating system, and the basics of kernel development....</p>
+Curriculum Outline for Kernel Development Using C 1. Introduction to Kernel Development Objective: Understand what a kernel is, its role in the operating system, and the basics of kernel development. Topics: What is a Kernel? Types of Kernels (Monolithic, Microkernel, etc.) Kernel vs. User Space Basic Overview of the Linux Kernel Kernel Development Environment Setup Resources: The Linux Kernel Module Programming Guide Linux Kernel Newbies Setting Up Kernel Development Environment The Linux Kernel Handbook 2. Basic Concepts of the Linux Kernel Objective: Learn the core concepts and components of the Linux kernel. Topics: Linux Kernel Architecture Kernel Initialization Kernel Space and User Space Process Management Memory Management Filesystems and VFS (Virtual File System) Resources: Understanding the Linux Kernel Linux Kernel Development by Robert Love The Linux Kernel: A Comprehensive Guide 3. Kernel Modules and Programming Objective: Learn how to write, compile, and load kernel modules. Topics: Introduction to Kernel Modules Writing Simple Kernel Modules Compiling Kernel Modules Loading and Unloading Kernel Modules Handling Parameters in Modules Resources: Linux Device Drivers, 3rd Edition Linux Kernel Module Programming Guide Linux Device Drivers Course 4. Kernel Debugging Techniques Objective: Learn how to debug the Linux kernel and kernel modules. Topics: Kernel Debugging Tools and Techniques Using printk for Debugging Kernel Debugger (KGDB) Using GDB with the Kernel Tracing with ftrace Resources: Kernel Debugging with GDB Kernel Debugging Techniques Ftrace Documentation 5. Process Management and Scheduling Objective: Understand how the Linux kernel manages processes and schedules them. Topics: Process Descriptor and Task Structure Process States and Transitions Scheduling Concepts Linux Scheduler Implementing Custom Schedulers Resources: Linux Process Management Understanding the Linux Kernel - Chapter on Process Management CFS Scheduler 6. Memory Management Objective: Learn about the Linux kernel’s approach to managing memory. Topics: Memory Addressing Physical and Virtual Memory Memory Allocation Paging and Swapping Kernel Slab Allocator Resources: Linux Memory Management Linux Kernel Memory Management Guide Understanding the Linux Kernel - Memory Management 7. Device Drivers Objective: Learn how to develop device drivers for Linux. Topics: Introduction to Device Drivers Character Device Drivers Block Device Drivers Network Device Drivers PCI and USB Drivers Resources: Linux Device Drivers, 3rd Edition Writing Linux Device Drivers Writing Network Device Drivers 8. Filesystems and VFS Objective: Understand how filesystems are implemented in the Linux kernel. Topics: Filesystem Basics VFS (Virtual File System) Layer Implementing a Simple Filesystem Filesystem Caches Advanced Filesystem Concepts (ext4, Btrfs, etc.) Resources: Understanding the Linux Kernel - Filesystems Linux Filesystem Hierarchy Linux VFS Documentation 9. Networking in the Kernel Objective: Learn how the Linux kernel handles networking and how to develop network-related features. Topics: Networking Stack Overview Sockets and Network Protocols Implementing Network Protocols Netfilter and IP Tables Network Device Drivers Resources: Understanding Linux Network Internals Linux Networking Documentation Netfilter and IP Tables 10. Kernel Synchronization and Concurrency Objective: Learn how the Linux kernel handles synchronization and concurrency. Topics: Basic Synchronization Techniques Spinlocks, Mutexes, and Semaphores Read-Copy-Update (RCU) Atomic Operations Deadlock Detection and Avoidance Resources: Linux Kernel Synchronization Concurrency in the Linux Kernel Read-Copy-Update (RCU) 11. Kernel Security Objective: Understand the security mechanisms in the Linux kernel and how to implement secure code. Topics: Security Models and Modules Capabilities and Security Contexts SELinux and AppArmor Secure Coding Practices Kernel Vulnerabilities and Patching Resources: Linux Kernel Security SELinux Documentation AppArmor Documentation 12. Advanced Topics in Kernel Development Objective: Explore advanced topics and the latest developments in kernel development. Topics: Real-Time Linux Kernel Modules vs. Built-in Code Kernel Build System and Configuration Kernel Hacking and Contributions Latest Features in Kernel Development Resources: Real-Time Linux Kernel Development Contribution Guide Kernel Build System Latest Linux Kernel Releases 13. Project Work Objective: Apply the knowledge gained by working on a real kernel development project. Project Ideas: Develop a custom kernel module. Implement a new scheduling algorithm. Write a simple character or block device driver. Contribute to an open-source kernel project. Design and implement a minimal filesystem. Resources: Kernel Newbies Contribution Guide Open Source Contribution Guides 14. Further Reading and Continuous Learning Objective: Keep up with the latest trends and continue learning beyond the curriculum. Resources: Linux Kernel Mailing List (LKML) Linux Weekly News (LWN) Linux Foundation Training Kernel.org Documentation Advanced Linux Programming Learning Strategy and Tips Hands-On Practice: Kernel development is best learned by doing. Regularly write and test code, work on real projects, and contribute to open-source. Reading Source Code: Study the Linux kernel source code to understand how various components are implemented. Community Involvement: Join forums, mailing lists, and groups related to kernel development. This helps in networking and staying updated with the latest trends. Documentation: Refer to official kernel documentation frequently. It’s an invaluable resource for understanding in-depth kernel operations. This curriculum provides a comprehensive pathway for students to transition from C programming basics to advanced kernel development. By following this structured approach and utilizing the suggested resources, students can gain deep expertise in Linux kernel development.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-14 23:10:43 +0700 WIB'>June 14, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;860 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-14 23:10:43 +0700 WIB'>June 14, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;860 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to Kernel Development Curriculum" href="/en/posts/kernel-development-curriculum/"></a>
 </article>
 
@@ -238,9 +213,10 @@ Curriculum Outline for Kernel Development Using C 1. Introduction to Kernel Deve
   <div class="entry-content">
     <p>Creating a detailed curriculum for System Programming in Linux with C/C&#43;&#43; from scratch involves structuring the course to build foundational knowledge in both Linux and C/C&#43;&#43; before diving into more advanced system programming concepts. Here’s a comprehensive outline for a semester-long course, assuming it meets once or twice a week for about 12-15 weeks:
 Week 1-2: Introduction to Linux and Programming Basics Lecture Topics:
-Overview of Linux and its history. Introduction to the Linux file system, command line interface (CLI), and basic commands....</p>
+Overview of Linux and its history. Introduction to the Linux file system, command line interface (CLI), and basic commands. Introduction to programming languages, compilers, and interpreters. Installing and setting up a Linux environment (Ubuntu or Fedora recommended). Practical Sessions:
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-06-11 13:43:47 +0700 WIB'>June 11, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;801 words&nbsp;·&nbsp;deniandriancode</footer>
+  <footer class="entry-footer"><span title='2024-06-11 13:43:47 +0700 WIB'>June 11, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;801 words&nbsp;·&nbsp;nullvm</footer>
   <a class="entry-link" aria-label="post link to System Programming with C/C&#43;&#43; Curriculum" href="/en/posts/system-programming-with-c-cpp-curriculum/"></a>
 </article>
     </main>
@@ -294,7 +270,7 @@ Overview of Linux and its history. Introduction to the Linux file system, comman
     window.onscroll = function () {
         if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             mybutton.style.visibility = "visible";
-            mybutton.style.opacity = ".63";
+            mybutton.style.opacity = "1";
         } else {
             mybutton.style.visibility = "hidden";
             mybutton.style.opacity = "0";

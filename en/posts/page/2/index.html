@@ -8,9 +8,9 @@
 <title>Posts | faultint</title>
 <meta name="keywords" content="">
 <meta name="description" content="Posts - faultint">
-<meta name="author" content="deniandriancode">
+<meta name="author" content="nullvm">
 <link rel="canonical" href="/en/posts/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.bbd5169647ac76df5fc8b02a61135fc9af65e89f3ef3573b434aa16ff9a8f2c5.css" integrity="sha256-u9UWlkesdt9fyLAqYRNfya9l6J8&#43;81c7Q0qhb/mo8sU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -57,28 +57,14 @@
         }
 
     </style>
-</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
-
-  
-
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/en/posts/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+</noscript><meta property="og:url" content="/en/posts/">
+  <meta property="og:site_name" content="faultint">
+  <meta property="og:title" content="Posts">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Posts">
+<meta name="twitter:description" content="">
 
 
 <script type="application/ld+json">
@@ -95,7 +81,6 @@
   ]
 }
 </script>
-  
 </head>
 
 <body class="list" id="top">
@@ -115,7 +100,7 @@
         <div class="logo">
             <a href="/en/" accesskey="h" title="faultint (Alt + H)">faultint</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -150,21 +135,6 @@
                 </a>
             </li>
             <li>
-                <a href="/en/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/archives/" title="Archives">
-                    <span>Archives</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/bookmark/" title="Bookmark">
-                    <span>Bookmark</span>
-                </a>
-            </li>
-            <li>
                 <a href="/en/about/" title="About">
                     <span>About</span>
                 </a>
@@ -189,97 +159,174 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Kotoba Record - Episode 2
+    <h2 class="entry-hint-parent">OverTheWire Bandit 0
     </h2>
   </header>
   <div class="entry-content">
-    <p>1. 排除 (はいじょ) exclusion, removal
-警察は暴徒を大通りから排除した
-→ The police removed the rioters from the main street.
-2. 柔軟 (じゅうなん) flexible
-私は働き方を柔軟に支える社会の仕組みを作ります
-→ I will create a social system that flexibly supports various ways of working.
-3. 膠着 (こうちゃく) deadlock, stalemate
-交渉が膠着状態に陥り、進展がなくなった。
-→ The negotiations have reached a deadlock, and there is no progress.
-4. 清める (きよめる) to purify
-彼は心を清めるために神社を訪れた。
-→ He visited the shrine to purify his mind.
-5. 敢えて (あえて) purposely...</p>
+    <p>I’m currently doing Bandit wargames in overthewire website, while doing so I want to share my journey here.
+First level, it’s Level 0. The goal is to connect to the game server using ssh. This one is pretty straightforward, the only obstacle here is knowing how to use ssh.
+Since I’m in a linux machine, I can easily read the manpage for ssh command.
+The instruction for Level 0 is the following:
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-01-31 18:42:44 +0700 WIB'>January 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;154 words&nbsp;·&nbsp;deniandriancode</footer>
-  <a class="entry-link" aria-label="post link to Kotoba Record - Episode 2" href="/en/posts/kotoba-record-2/"></a>
+  <footer class="entry-footer"><span title='2025-01-29 17:29:28 +0700 WIB'>January 29, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;165 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to OverTheWire Bandit 0" href="/en/posts/bandit-overthewire-0/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">CTF Hacker101 Flag 1 - A Little Something to Get You Started
+    <h2 class="entry-hint-parent">Generate Ranged Random Integer in Javascript
     </h2>
   </header>
   <div class="entry-content">
-    <p>Another challange I do while learning programming, this is episode 1 by the way.
-You can visit hacker101 if you want to play it too.
-I start the level and it redirected me to a website with white background and a paragraph which said:
-Welcome to level 0. Enjoy your stay. Nothing out of ordinary here. So, I inspect the page and look at the source code. Seems normal. Until I take a look at the &lt;style&gt; tag and saw the following lines:...</p>
+    <p>Here I will show you a simple way to generate a ranged random integer number in javascript. Since javascript doesn’t have built in function to generate ranged integer number, we will create one.
+function randInt(left, right) { return Math.floor(Math.random() * (right - left &#43; 1)) &#43; left; } And that’s it, this is just me passing by and dropping some code snippets.
+See you later.
+Stay safe!
+</p>
   </div>
-  <footer class="entry-footer"><span title='2025-01-31 18:16:37 +0700 WIB'>January 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;153 words&nbsp;·&nbsp;deniandriancode</footer>
-  <a class="entry-link" aria-label="post link to CTF Hacker101 Flag 1 - A Little Something to Get You Started" href="/en/posts/ctf-hacker101-1/"></a>
+  <footer class="entry-footer"><span title='2024-10-26 20:25:23 +0700 WIB'>October 26, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;67 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Generate Ranged Random Integer in Javascript" href="/en/posts/randint-js/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">OverTheWire Bandit 2
+    <h2 class="entry-hint-parent">Merge Pdf in Linux using pdfunite
     </h2>
   </header>
   <div class="entry-content">
-    <p>Continue to Level 2. Here is the level goal:
-The password for the next level is stored in a file called - located in the home directory
-I connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:
-cat ./- And the content get printed.
-If I typed cat - the content inside - file won’t be printed since typing cat - means the cat command will read from standard input....</p>
+    <p>Merging pdf files in Linux is really simple, you can use a command line called pdfunite.
+Open a terminal and type the following
+pdfunite --help in my system, it prints
+pdfunite version 24.06.0 Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org Copyright 1996-2011, 2022 Glyph &amp; Cog, LLC Usage: pdfunite [options] &lt;PDF-sourcefile-1&gt;..&lt;PDF-sourcefile-n&gt; &lt;PDF-destfile&gt; -v : print copyright and version info -h : print usage information -help : print usage information --help : print usage information -? : print usage information Let’s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf files like so
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-01-31 18:03:42 +0700 WIB'>January 31, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;144 words&nbsp;·&nbsp;deniandriancode</footer>
-  <a class="entry-link" aria-label="post link to OverTheWire Bandit 2" href="/en/posts/bandit-overthewire-2/"></a>
+  <footer class="entry-footer"><span title='2024-10-24 20:22:38 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;166 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Merge Pdf in Linux using pdfunite" href="/en/posts/merge-pdf-in-linux-pdfunite/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">OverTheWire Bandit 1
+    <h2 class="entry-hint-parent">Replicating Right Click Behavior using Vanilla Javascript
     </h2>
   </header>
   <div class="entry-content">
-    <p>After getting the password from Level 0, I connected to Level 1.
-Here is the level goal by the way.
-The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
-This one is pretty straightforward....</p>
+    <p>The idea is simple.
+First, disable the default event handler for right click in the browser.
+Second, create a custom event handler for right click event.
+Implementing the first idea, we can do something like the following.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); console.log(&#34;Right Click detected!&#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-01-30 19:23:27 +0700 WIB'>January 30, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;131 words&nbsp;·&nbsp;deniandriancode</footer>
-  <a class="entry-link" aria-label="post link to OverTheWire Bandit 1" href="/en/posts/bandit-overthewire-1/"></a>
+  <footer class="entry-footer"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;107 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Replicating Right Click Behavior using Vanilla Javascript" href="/en/posts/replicating-right-click-behavior-using-vanilla-javascript/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Kotoba Record - Episode 1
+    <h2 class="entry-hint-parent">Javascript Promise Simplified
     </h2>
   </header>
   <div class="entry-content">
-    <p>Learning a language is a long and boring process, especially if there is no visible reward. A record of what I have learned is something visually rewarding for me, so here are 10 japanese vocabularies that I learned.
-1. 木陰 (こかげ) shade
-とても大きい木なので多くの人が木陰で涼んだりして、のんびり過ごしていました。
-→ Since the tree was very large, many people took shelter and rested in its shade.
-2. 排泄物 (はいせつぶつ) excrement, waste
-排泄物が活発に排出されるさま。
-→ Active excretion of waste....</p>
+    <p>Promise has three different states: pending, resolve, and reject.
+When you first create a promise, it will be in pending state. This promise can be either “fulfilled” thus it will be resolved or it can be “rejected” thus it will be rejected.
+In other word, if promise resulted in success it resolve, else it reject.
+To create a promise in javascript is really simple.
+const myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-01-30 19:05:43 +0700 WIB'>January 30, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;204 words&nbsp;·&nbsp;deniandriancode</footer>
-  <a class="entry-link" aria-label="post link to Kotoba Record - Episode 1" href="/en/posts/kotoba-record-1/"></a>
+  <footer class="entry-footer"><span title='2024-10-21 20:08:35 +0700 WIB'>October 21, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;221 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Javascript Promise Simplified" href="/en/posts/promise-simplified-js/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Dummy File Watcher in C
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In this article we will build a dummy file watcher using C programming language.
+We say dummy file watcher because to build a proper file watcher, we need to utilize os internal features which is a bit more complex.
+Instead, we will create an infinite loop that checks a given directory every 0.5 second and see if something has changed.
+First thing we need to do is to create a function that tells if something has changed in a given directory.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-06 18:59:44 +0700 WIB'>July 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;373 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Dummy File Watcher in C" href="/en/posts/dummy-file-watcher-c/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://raw.githubusercontent.com/deniandriancode/website-assets/main/images/github-page/OIG1.Ae1bF6jUwFBOJBWiq48q.jpg" alt="Source: DALL-E">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Review of Pointer in C
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In this short article we will review pointers in C programming language, if you are new to this kind of topic please read the tutorial of pointers for beginners first, try this tutorial for example.
+Defining Pointer There are several ways to define a pointer in C.
+int* p; int x = 5; p = &amp;x; // p pointer to address x we can assign the address right away like so
+int x = 5; int* p = &amp;x; Dereferencing Pointer Use * to dereference a pointer, this will return the value that the address of pointer is pointing at holds.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-03 15:07:47 +0700 WIB'>July 3, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;307 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Review of Pointer in C" href="/en/posts/pointer-of-c-review/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://images.unsplash.com/photo-1644357655176-69d3fe7f2fcc?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/a-building-with-a-clock-on-the-side-of-it-YWR9NKDHnls)">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Dynamic Array in C Simplified
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.
+But what is greater that array? Yup, dynamic array.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-02 13:30:14 +0700 WIB'>July 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;644 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Dynamic Array in C Simplified" href="/en/posts/dynamic-array-in-c-simplified/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/black-computer-keyboard-DuHKoV44prg)">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Linux Hard Link and Soft Link in a Nutshell
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what’s the difference between the two.
+What is inode? Your computer needs a way to ’labelize’ files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that’s used to identify an inode. The inode is a data structure that describe a file-system object.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-24 20:47:46 +0700 WIB'>June 24, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;901 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Linux Hard Link and Soft Link in a Nutshell" href="/en/posts/hard-link-soft-link-in-a-nutshell-linux/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/black-and-silver-laptop-computer-on-table-95YRwf6CNw8)">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Keep Writing Code Until It Becomes Meaningless
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>If you are learning programming or computer science related stuff, chances are you will write some code. Coding and programming are two different things, in a nutshell, programming is applying some logic while coding is actually typing the applied logic into machine-readable instruction, read this awesome article from freeCodeCamp.
+You can do programming wherever you are, you don’t have to sit in front of your computer since applying some logic don’t necessarily need a computer.Think about how you study math, that’s how you study programming, more or less.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-06-24 20:23:33 +0700 WIB'>June 24, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;1343 words&nbsp;·&nbsp;nullvm</footer>
+  <a class="entry-link" aria-label="post link to Keep Writing Code Until It Becomes Meaningless" href="/en/posts/start-coding-small/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="/en/posts/">
-      «&nbsp;Prev&nbsp;1/9
+      «&nbsp;Prev&nbsp;1/5
     </a>
-    <a class="next" href="/en/posts/page/3/">Next&nbsp;3/9&nbsp;»
+    <a class="next" href="/en/posts/page/3/">Next&nbsp;3/5&nbsp;»
     </a>
   </nav>
 </footer>
@@ -334,7 +381,7 @@ This one is pretty straightforward....</p>
     window.onscroll = function () {
         if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             mybutton.style.visibility = "visible";
-            mybutton.style.opacity = ".63";
+            mybutton.style.opacity = "1";
         } else {
             mybutton.style.visibility = "hidden";
             mybutton.style.opacity = "0";

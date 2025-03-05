@@ -11,11 +11,21 @@
 First, disable the default event handler for right click in the browser.
 Second, create a custom event handler for right click event.
 Implementing the first idea, we can do something like the following.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into the console.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.">
-<meta name="author" content="deniandriancode">
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+});
+from here we can easily add any custom code for event handler
+to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
+the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+  console.log(&#34;Right Click detected!&#34;);
+});
+You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.">
+<meta name="author" content="nullvm">
 <link rel="canonical" href="/en/posts/replicating-right-click-behavior-using-vanilla-javascript/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.bbd5169647ac76df5fc8b02a61135fc9af65e89f3ef3573b434aa16ff9a8f2c5.css" integrity="sha256-u9UWlkesdt9fyLAqYRNfya9l6J8&#43;81c7Q0qhb/mo8sU=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -60,40 +70,40 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.">
         }
 
     </style>
-</noscript><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
-
-  
-
-<meta property="og:title" content="Replicating Right Click Behavior using Vanilla Javascript" />
-<meta property="og:description" content="The idea is simple.
+</noscript><meta property="og:url" content="/en/posts/replicating-right-click-behavior-using-vanilla-javascript/">
+  <meta property="og:site_name" content="faultint">
+  <meta property="og:title" content="Replicating Right Click Behavior using Vanilla Javascript">
+  <meta property="og:description" content="The idea is simple.
 First, disable the default event handler for right click in the browser.
 Second, create a custom event handler for right click event.
 Implementing the first idea, we can do something like the following.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into the console.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/en/posts/replicating-right-click-behavior-using-vanilla-javascript/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-10-24T19:36:18+07:00" />
-<meta property="article:modified_time" content="2024-10-24T19:36:18+07:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Replicating Right Click Behavior using Vanilla Javascript"/>
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); console.log(&#34;Right Click detected!&#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-24T19:36:18+07:00">
+    <meta property="article:modified_time" content="2024-10-24T19:36:18+07:00">
+    <meta property="article:tag" content="Javascript">
+    <meta property="article:tag" content="Programming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Replicating Right Click Behavior using Vanilla Javascript">
 <meta name="twitter:description" content="The idea is simple.
 First, disable the default event handler for right click in the browser.
 Second, create a custom event handler for right click event.
 Implementing the first idea, we can do something like the following.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into the console.
-window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+});
+from here we can easily add any custom code for event handler
+to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
+the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+  console.log(&#34;Right Click detected!&#34;);
+});
+You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.">
 
 
 <script type="application/ld+json">
@@ -122,7 +132,7 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
   "@type": "BlogPosting",
   "headline": "Replicating Right Click Behavior using Vanilla Javascript",
   "name": "Replicating Right Click Behavior using Vanilla Javascript",
-  "description": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log \u0026ldquo;Right Click detected!\u0026rdquo; into the console.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.",
+  "description": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log \u0026ldquo;Right Click detected!\u0026rdquo; into the console.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); console.log(\u0026#34;Right Click detected!\u0026#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.\n",
   "keywords": [
     "javascript", "programming"
   ],
@@ -133,7 +143,7 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
   "dateModified": "2024-10-24T19:36:18+07:00",
   "author":[{
     "@type": "Person",
-    "name": "deniandriancode"
+    "name": "nullvm"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -149,7 +159,6 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
   }
 }
 </script>
-  
 </head>
 
 <body class="" id="top">
@@ -169,7 +178,7 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
         <div class="logo">
             <a href="/en/" accesskey="h" title="faultint (Alt + H)">faultint</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -204,21 +213,6 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
                 </a>
             </li>
             <li>
-                <a href="/en/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/archives/" title="Archives">
-                    <span>Archives</span>
-                </a>
-            </li>
-            <li>
-                <a href="/en/bookmark/" title="Bookmark">
-                    <span>Bookmark</span>
-                </a>
-            </li>
-            <li>
                 <a href="/en/about/" title="About">
                     <span>About</span>
                 </a>
@@ -234,7 +228,7 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event."/>
     <h1 class="post-title entry-hint-parent">
       Replicating Right Click Behavior using Vanilla Javascript
     </h1>
-    <div class="post-meta"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;107 words&nbsp;·&nbsp;deniandriancode&nbsp;|&nbsp;<a href="https://github.com/deniandriancode/deniandriancode.github.io-precompiled/tree/main/content/en/posts/replicating-right-click-behavior-using-vanilla-javascript.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;107 words&nbsp;·&nbsp;nullvm&nbsp;|&nbsp;<a href="https://github.com/deniandriancode/deniandriancode.github.io-precompiled/tree/main/content/en/posts/replicating-right-click-behavior-using-vanilla-javascript.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -419,7 +413,7 @@ to act as the replacement for the default context menu.</p>
     window.onscroll = function () {
         if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
             mybutton.style.visibility = "visible";
-            mybutton.style.opacity = ".63";
+            mybutton.style.opacity = "1";
         } else {
             mybutton.style.visibility = "hidden";
             mybutton.style.opacity = "0";

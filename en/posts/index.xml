@@ -4,7 +4,7 @@
     <title>Posts on faultint</title>
     <link>/en/posts/</link>
     <description>Recent content in Posts on faultint</description>
-    <generator>Hugo -- 0.126.3</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Wed, 05 Feb 2025 18:42:50 +0700</lastBuildDate>
     <atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -13,236 +13,382 @@
       <link>/en/posts/bandit-overthewire-5/</link>
       <pubDate>Wed, 05 Feb 2025 18:42:50 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-5/</guid>
-      <description>This is level 4 -&amp;gt; level 5 of bandit wargame from overthewire.
-Password stored in a file somewhere on the server. Here is the goal level.
-The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
-So logged in to the game server. Change directory to inhere. You will find a lot of files with similar names that has increasing number at the end of its name.</description>
+      <description>&lt;p&gt;This is level 4 -&amp;gt; level 5 of bandit wargame from overthewire.&lt;/p&gt;
+&lt;p&gt;Password stored in a file somewhere on the server. Here is the goal
+level.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The password for the next level is stored in the only human-readable
+file in the &lt;strong&gt;inhere&lt;/strong&gt; directory. Tip: if your terminal is messed up,
+try the “reset” command.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;So logged in to the game server. Change directory to &lt;strong&gt;inhere&lt;/strong&gt;.
+You will find a lot of files with similar names that has increasing number
+at the end of its name.&lt;/p&gt;</description>
     </item>
     <item>
       <title>OverTheWire Bandit 4</title>
       <link>/en/posts/bandit-overthewire-4/</link>
       <pubDate>Wed, 05 Feb 2025 18:33:27 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-4/</guid>
-      <description>Continuing with level 3 -&amp;gt; level 4. The password is stored in a file, somewhere on the server.
-Here is the level goal.
-The password for the next level is stored in a hidden file in the inhere directory.
-Hidden file is a file named beginning with dot. It won&amp;rsquo;t be displayed using ls command. You need to add -a flag to display hidden file. Naming directory beginning with dot will also makes it hidden.</description>
+      <description>&lt;p&gt;Continuing with level 3 -&amp;gt; level 4. The password is
+stored in a file, somewhere on the server.&lt;/p&gt;
+&lt;p&gt;Here is the level goal.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The password for the next level is stored in a hidden file in the &lt;strong&gt;inhere&lt;/strong&gt; directory.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Hidden file is a file named beginning with dot. It won&amp;rsquo;t be displayed using
+&lt;code&gt;ls&lt;/code&gt; command. You need to add &lt;code&gt;-a&lt;/code&gt; flag to display hidden file. Naming directory
+beginning with dot will also makes it hidden.&lt;/p&gt;</description>
     </item>
     <item>
       <title>OverTheWire Bandit 3</title>
       <link>/en/posts/bandit-overthewire-3/</link>
       <pubDate>Tue, 04 Feb 2025 19:04:51 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-3/</guid>
-      <description>This is level 2 -&amp;gt; level 3 in the bandit wargame from overthewire.org.
-Not so much different from the previous level, the password for the next level is stored inside a file.
-Let&amp;rsquo;s see the level goal:
-The password for the next level is stored in a file called spaces in this filename located in the home directory
-You notice that the filename contains space, so to view the content of the file we need to surround it with double quote or single quote, or we can escape the space character using backslash.</description>
+      <description>&lt;p&gt;This is level 2 -&amp;gt; level 3 in the bandit wargame from &lt;a href=&#34;https://overthewire.org&#34;&gt;overthewire.org&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Not so much different from the &lt;a href=&#34;/en/posts/bandit-overthewire-2/&#34;&gt;previous level&lt;/a&gt;, the
+password for the next level is stored inside a file.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s see the level goal:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The password for the next level is stored in a file called &lt;strong&gt;spaces in this filename&lt;/strong&gt; located in the home directory&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;You notice that the filename contains space, so to view the content of
+the file we need to surround it with double quote or single quote, or we
+can escape the space character using backslash.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kotoba Record - Episode 3</title>
       <link>/en/posts/kotoba-record-3/</link>
       <pubDate>Sun, 02 Feb 2025 09:47:23 +0700</pubDate>
       <guid>/en/posts/kotoba-record-3/</guid>
-      <description>1. 処分 (しょぶん) dispose
-新車を買う前に古い車を処分したい
-→ I want to dispose of my old car before buying a new one.
-2. 脅威 (きょうい) threat
-環境問題は人類にとって大きな脅威だ。
-→ Environmental issues are a major threat to humanity.
-3. 根拠 (こんきょ) basis / evidence
-彼の主張には科学的な根拠がない。
-→ His claim lacks scientific evidence.
-4. 努める (つとめる) strive / make an effort
-彼は毎日勉強に努めている。
-→ He strives to study every day.
-5. 漠然 (ばくぜん) vague / ambiguous
-彼の説明は漠然としていて理解しにくい。
-→ His explanation is vague and hard to understand.</description>
+      <description>&lt;h3 id=&#34;1-処分-しょぶん&#34;&gt;1. 処分 (しょぶん)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;dispose&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新車を買う前に古い車を処分したい&lt;/p&gt;
+&lt;p&gt;→ I want to dispose of my old car before buying a new one.&lt;/p&gt;
+&lt;h3 id=&#34;2-脅威-きょうい&#34;&gt;2. 脅威 (きょうい)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;threat&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;環境問題は人類にとって大きな脅威だ。&lt;/p&gt;
+&lt;p&gt;→ Environmental issues are a major threat to humanity.&lt;/p&gt;
+&lt;h3 id=&#34;3-根拠-こんきょ&#34;&gt;3. 根拠 (こんきょ)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;basis / evidence&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;彼の主張には科学的な根拠がない。&lt;/p&gt;
+&lt;p&gt;→ His claim lacks scientific evidence.&lt;/p&gt;
+&lt;h3 id=&#34;4-努める-つとめる&#34;&gt;4. 努める (つとめる)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;strive / make an effort&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;彼は毎日勉強に努めている。&lt;/p&gt;
+&lt;p&gt;→ He strives to study every day.&lt;/p&gt;
+&lt;h3 id=&#34;5-漠然-ばくぜん&#34;&gt;5. 漠然 (ばくぜん)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;vague / ambiguous&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;彼の説明は漠然としていて理解しにくい。&lt;/p&gt;
+&lt;p&gt;→ His explanation is vague and hard to understand.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Checksum Made Easy using Script</title>
       <link>/en/posts/checksum-script/</link>
       <pubDate>Sat, 01 Feb 2025 09:33:38 +0700</pubDate>
       <guid>/en/posts/checksum-script/</guid>
-      <description>Script below is one of a simple way to checksum of a file and get the report immediately.
-#!/usr/bin/bash # syntax: ./checksum.sh &amp;lt;algorithm&amp;gt; &amp;lt;file&amp;gt; &amp;lt;cert&amp;gt; diff &amp;lt;(echo -n $($1 $2 | cut -d &amp;#39; &amp;#39; -f 1)) $3 -s Here I named the script checksum.sh but you can name it however you want.
-It&amp;rsquo;s pretty straightforward script, if you want to learn more about the command used in the script, you can copy the content and paste it in explainshell.</description>
+      <description>&lt;p&gt;Script below is one of a simple way to checksum of a file and get the report
+immediately.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;#!/usr/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;# syntax: ./checksum.sh &amp;lt;algorithm&amp;gt; &amp;lt;file&amp;gt; &amp;lt;cert&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;diff &amp;lt;&lt;span style=&#34;color:#56b6c2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;echo&lt;/span&gt; -n &lt;span style=&#34;color:#c678dd&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;$1&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;$2&lt;/span&gt; | cut -d &lt;span style=&#34;color:#98c379&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt; -f 1&lt;span style=&#34;color:#c678dd&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;$3&lt;/span&gt; -s
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here I named the script &lt;code&gt;checksum.sh&lt;/code&gt; but you can name it however you want.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s pretty straightforward script, if you want to learn more about the command
+used in the script, you can copy the content and paste it in &lt;a href=&#34;https://explainshell.com/&#34;&gt;explainshell.com&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kotoba Record - Episode 2</title>
       <link>/en/posts/kotoba-record-2/</link>
       <pubDate>Fri, 31 Jan 2025 18:42:44 +0700</pubDate>
       <guid>/en/posts/kotoba-record-2/</guid>
-      <description>1. 排除 (はいじょ) exclusion, removal
-警察は暴徒を大通りから排除した
-→ The police removed the rioters from the main street.
-2. 柔軟 (じゅうなん) flexible
-私は働き方を柔軟に支える社会の仕組みを作ります
-→ I will create a social system that flexibly supports various ways of working.
-3. 膠着 (こうちゃく) deadlock, stalemate
-交渉が膠着状態に陥り、進展がなくなった。
-→ The negotiations have reached a deadlock, and there is no progress.
-4. 清める (きよめる) to purify
-彼は心を清めるために神社を訪れた。
-→ He visited the shrine to purify his mind.
-5. 敢えて (あえて) purposely</description>
+      <description>&lt;h3 id=&#34;1-排除-はいじょ&#34;&gt;1. 排除 (はいじょ)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;exclusion, removal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;警察は暴徒を大通りから排除した&lt;/p&gt;
+&lt;p&gt;→ The police removed the rioters from the main street.&lt;/p&gt;
+&lt;h3 id=&#34;2-柔軟-じゅうなん&#34;&gt;2. 柔軟 (じゅうなん)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;flexible&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;私は働き方を柔軟に支える社会の仕組みを作ります&lt;/p&gt;
+&lt;p&gt;→ I will create a social system that flexibly supports various ways of working.&lt;/p&gt;
+&lt;h3 id=&#34;3-膠着-こうちゃく&#34;&gt;3. 膠着 (こうちゃく)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;deadlock, stalemate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;交渉が膠着状態に陥り、進展がなくなった。&lt;/p&gt;
+&lt;p&gt;→ The negotiations have reached a deadlock, and there is no progress.&lt;/p&gt;
+&lt;h3 id=&#34;4-清める-きよめる&#34;&gt;4. 清める (きよめる)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;to purify&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;彼は心を清めるために神社を訪れた。&lt;/p&gt;
+&lt;p&gt;→ He visited the shrine to purify his mind.&lt;/p&gt;
+&lt;h3 id=&#34;5-敢えて-あえて&#34;&gt;5. 敢えて (あえて)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;purposely&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>CTF Hacker101 Flag 1 - A Little Something to Get You Started</title>
       <link>/en/posts/ctf-hacker101-1/</link>
       <pubDate>Fri, 31 Jan 2025 18:16:37 +0700</pubDate>
       <guid>/en/posts/ctf-hacker101-1/</guid>
-      <description>Another challange I do while learning programming, this is episode 1 by the way.
-You can visit hacker101 if you want to play it too.
-I start the level and it redirected me to a website with white background and a paragraph which said:
-Welcome to level 0. Enjoy your stay. Nothing out of ordinary here. So, I inspect the page and look at the source code. Seems normal. Until I take a look at the &amp;lt;style&amp;gt; tag and saw the following lines:</description>
+      <description>&lt;p&gt;Another challange I do while learning programming, this is episode 1 by the way.&lt;/p&gt;
+&lt;p&gt;You can visit &lt;a href=&#34;https://ctf.hacker101.com/&#34;&gt;hacker101&lt;/a&gt; if you want to play it too.&lt;/p&gt;
+&lt;p&gt;I start the level and it redirected me to a website with white background
+and a paragraph which said:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Welcome to level 0. Enjoy your stay.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nothing out of ordinary here. So, I inspect the page and look at the source
+code. Seems normal. Until I take a look at the &lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt; tag and saw the
+following lines:&lt;/p&gt;</description>
     </item>
     <item>
       <title>OverTheWire Bandit 2</title>
       <link>/en/posts/bandit-overthewire-2/</link>
       <pubDate>Fri, 31 Jan 2025 18:03:42 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-2/</guid>
-      <description>Continue to Level 2. Here is the level goal:
-The password for the next level is stored in a file called - located in the home directory
-I connected to the game server using the password from the previous level. The file needed to get the password for the next level is located at the home directory, so I just typed in:
-cat ./- And the content get printed.
-If I typed cat - the content inside - file won&amp;rsquo;t be printed since typing cat - means the cat command will read from standard input.</description>
+      <description>&lt;p&gt;Continue to Level 2. Here is the level goal:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The password for the next level is stored in a file called - located in the home directory&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;I connected to the game server using the password from the previous level.
+The file needed to get the password for the next level is located at the
+home directory, so I just typed in:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat ./-
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And the content get printed.&lt;/p&gt;</description>
     </item>
     <item>
       <title>OverTheWire Bandit 1</title>
       <link>/en/posts/bandit-overthewire-1/</link>
       <pubDate>Thu, 30 Jan 2025 19:23:27 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-1/</guid>
-      <description>After getting the password from Level 0, I connected to Level 1.
-Here is the level goal by the way.
-The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
-This one is pretty straightforward.</description>
+      <description>&lt;p&gt;After getting the password from Level 0, I connected to Level 1.&lt;/p&gt;
+&lt;p&gt;Here is the level goal by the way.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;This one is pretty straightforward.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kotoba Record - Episode 1</title>
       <link>/en/posts/kotoba-record-1/</link>
       <pubDate>Thu, 30 Jan 2025 19:05:43 +0700</pubDate>
       <guid>/en/posts/kotoba-record-1/</guid>
-      <description>Learning a language is a long and boring process, especially if there is no visible reward. A record of what I have learned is something visually rewarding for me, so here are 10 japanese vocabularies that I learned.
-1. 木陰 (こかげ) shade
-とても大きい木なので多くの人が木陰で涼んだりして、のんびり過ごしていました。
-→ Since the tree was very large, many people took shelter and rested in its shade.
-2. 排泄物 (はいせつぶつ) excrement, waste
-排泄物が活発に排出されるさま。
-→ Active excretion of waste.</description>
+      <description>&lt;p&gt;Learning a language is a long and boring process, especially if there is no
+visible reward. A record of what I have learned is something visually
+rewarding for me, so here are 10 japanese vocabularies that I learned.&lt;/p&gt;
+&lt;h3 id=&#34;1-木陰-こかげ&#34;&gt;1. 木陰 (こかげ)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;shade&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;とても大きい木なので多くの人が木陰で涼んだりして、のんびり過ごしていました。&lt;/p&gt;
+&lt;p&gt;→ &lt;em&gt;Since the tree was very large, many people took shelter and rested in its shade.&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-排泄物-はいせつぶつ&#34;&gt;2. 排泄物 (はいせつぶつ)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;excrement, waste&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;排泄物が活発に排出されるさま。&lt;/p&gt;
+&lt;p&gt;→ &lt;em&gt;Active excretion of waste.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>OverTheWire Bandit 0</title>
       <link>/en/posts/bandit-overthewire-0/</link>
       <pubDate>Wed, 29 Jan 2025 17:29:28 +0700</pubDate>
       <guid>/en/posts/bandit-overthewire-0/</guid>
-      <description>I&amp;rsquo;m currently doing Bandit wargames in overthewire website, while doing so I want to share my journey here.
-First level, it&amp;rsquo;s Level 0. The goal is to connect to the game server using ssh. This one is pretty straightforward, the only obstacle here is knowing how to use ssh.
-Since I&amp;rsquo;m in a linux machine, I can easily read the manpage for ssh command.
-The instruction for Level 0 is the following:</description>
+      <description>&lt;p&gt;I&amp;rsquo;m currently doing Bandit wargames in &lt;a href=&#34;https://overthewire.org/&#34;&gt;overthewire&lt;/a&gt; website,
+while doing so I want to share my journey here.&lt;/p&gt;
+&lt;p&gt;First level, it&amp;rsquo;s Level 0. The goal is to connect to the game server using
+ssh. This one is pretty straightforward, the only obstacle here is knowing
+how to use ssh.&lt;/p&gt;
+&lt;p&gt;Since I&amp;rsquo;m in a linux machine, I can easily read the manpage for &lt;code&gt;ssh&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;The instruction for Level 0 is the following:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Generate Ranged Random Integer in Javascript</title>
       <link>/en/posts/randint-js/</link>
       <pubDate>Sat, 26 Oct 2024 20:25:23 +0700</pubDate>
       <guid>/en/posts/randint-js/</guid>
-      <description>Here I will show you a simple way to generate a ranged random integer number in javascript. Since javascript doesn&amp;rsquo;t have built in function to generate ranged integer number, we will create one.
-function randInt(left, right) { return Math.floor(Math.random() * (right - left + 1)) + left; } And that&amp;rsquo;s it, this is just me passing by and dropping some code snippets.
-See you later.
-Stay safe!</description>
+      <description>&lt;p&gt;Here I will show you a simple way to generate a ranged random
+integer number in javascript. Since javascript doesn&amp;rsquo;t have built in
+function to generate ranged integer number, we will create one.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#c678dd&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;randInt&lt;/span&gt;(&lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt;, &lt;span style=&#34;color:#e06c75&#34;&gt;right&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#c678dd&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e5c07b&#34;&gt;Math&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;floor&lt;/span&gt;(&lt;span style=&#34;color:#e5c07b&#34;&gt;Math&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;random&lt;/span&gt;() &lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#e06c75&#34;&gt;right&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;1&lt;/span&gt;)) &lt;span style=&#34;color:#56b6c2&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;left&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And that&amp;rsquo;s it, this is just me passing by and dropping some code snippets.&lt;/p&gt;
+&lt;p&gt;See you later.&lt;/p&gt;
+&lt;p&gt;Stay safe!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Merge Pdf in Linux using pdfunite</title>
       <link>/en/posts/merge-pdf-in-linux-pdfunite/</link>
       <pubDate>Thu, 24 Oct 2024 20:22:38 +0700</pubDate>
       <guid>/en/posts/merge-pdf-in-linux-pdfunite/</guid>
-      <description>Merging pdf files in Linux is really simple, you can use a command line called pdfunite.
-Open a terminal and type the following
-pdfunite --help in my system, it prints
-pdfunite version 24.06.0 Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org Copyright 1996-2011, 2022 Glyph &amp;amp; Cog, LLC Usage: pdfunite [options] &amp;lt;PDF-sourcefile-1&amp;gt;..&amp;lt;PDF-sourcefile-n&amp;gt; &amp;lt;PDF-destfile&amp;gt; -v : print copyright and version info -h : print usage information -help : print usage information --help : print usage information -?</description>
+      <description>&lt;p&gt;Merging pdf files in Linux is really simple, you can use a
+command line called &lt;code&gt;pdfunite&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Open a terminal and type the following&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pdfunite --help
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;in my system, it prints&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pdfunite version 24.06.0
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Copyright 1996-2011, &lt;span style=&#34;color:#d19a66&#34;&gt;2022&lt;/span&gt; Glyph &amp;amp; Cog, LLC
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Usage: pdfunite &lt;span style=&#34;color:#56b6c2&#34;&gt;[&lt;/span&gt;options&lt;span style=&#34;color:#56b6c2&#34;&gt;]&lt;/span&gt; &amp;lt;PDF-sourcefile-1&amp;gt;..&amp;lt;PDF-sourcefile-n&amp;gt; &amp;lt;PDF-destfile&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -v             : print copyright and version info
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -h             : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -help          : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  --help         : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -?             : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s say we want to merge three pdf files &lt;code&gt;head.pdf&lt;/code&gt;, &lt;code&gt;body.pdf&lt;/code&gt;, and &lt;code&gt;foot.pdf&lt;/code&gt; into
+one file named &lt;code&gt;all.pdf&lt;/code&gt;. Using &lt;code&gt;pdfunite&lt;/code&gt; we can effortlessly merge all those pdf
+files like so&lt;/p&gt;</description>
     </item>
     <item>
       <title>Replicating Right Click Behavior using Vanilla Javascript</title>
       <link>/en/posts/replicating-right-click-behavior-using-vanilla-javascript/</link>
       <pubDate>Thu, 24 Oct 2024 19:36:18 +0700</pubDate>
       <guid>/en/posts/replicating-right-click-behavior-using-vanilla-javascript/</guid>
-      <description>The idea is simple.
-First, disable the default event handler for right click in the browser.
-Second, create a custom event handler for right click event.
-Implementing the first idea, we can do something like the following.
-window.addEventListener(&amp;#34;contextmenu&amp;#34;, (event) =&amp;gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log &amp;ldquo;Right Click detected!&amp;rdquo; into the console.
-window.addEventListener(&amp;#34;contextmenu&amp;#34;, (event) =&amp;gt; { event.</description>
+      <description>&lt;p&gt;The idea is simple.&lt;/p&gt;
+&lt;p&gt;First, disable the default event handler for right click in the browser.&lt;/p&gt;
+&lt;p&gt;Second, create a custom event handler for right click event.&lt;/p&gt;
+&lt;p&gt;Implementing the first idea, we can do something like the following.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;window&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;contextmenu&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;preventDefault&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;from here we can easily add any custom code for event handler
+to our liking, here I will just log &amp;ldquo;Right Click detected!&amp;rdquo; into
+the console.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;window&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;contextmenu&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;preventDefault&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#98c379&#34;&gt;&amp;#34;Right Click detected!&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Javascript Promise Simplified</title>
       <link>/en/posts/promise-simplified-js/</link>
       <pubDate>Mon, 21 Oct 2024 20:08:35 +0700</pubDate>
       <guid>/en/posts/promise-simplified-js/</guid>
-      <description>Promise has three different states: pending, resolve, and reject.
-When you first create a promise, it will be in pending state. This promise can be either &amp;ldquo;fulfilled&amp;rdquo; thus it will be resolved or it can be &amp;ldquo;rejected&amp;rdquo; thus it will be rejected.
-In other word, if promise resulted in success it resolve, else it reject.
-To create a promise in javascript is really simple.
-const myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.</description>
+      <description>&lt;p&gt;Promise has three different states: pending, resolve, and reject.&lt;/p&gt;
+&lt;p&gt;When you first create a promise, it will be in pending state. This
+promise can be either &amp;ldquo;fulfilled&amp;rdquo; thus it will be resolved or it can
+be &amp;ldquo;rejected&amp;rdquo; thus it will be rejected.&lt;/p&gt;
+&lt;p&gt;In other word, if promise resulted in success it resolve, else it reject.&lt;/p&gt;
+&lt;p&gt;To create a promise in javascript is really simple.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#c678dd&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;myPromise&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#c678dd&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#e5c07b&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#c678dd&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#e06c75&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#e06c75&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#7f848e&#34;&gt;// do something
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What you do inside the promise will decide whether it will resolve or reject.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dummy File Watcher in C</title>
       <link>/en/posts/dummy-file-watcher-c/</link>
       <pubDate>Sat, 06 Jul 2024 18:59:44 +0700</pubDate>
       <guid>/en/posts/dummy-file-watcher-c/</guid>
-      <description>In this article we will build a dummy file watcher using C programming language.
-We say dummy file watcher because to build a proper file watcher, we need to utilize os internal features which is a bit more complex.
-Instead, we will create an infinite loop that checks a given directory every 0.5 second and see if something has changed.
-First thing we need to do is to create a function that tells if something has changed in a given directory.</description>
+      <description>&lt;p&gt;In this article we will build a dummy file watcher using C programming
+language.&lt;/p&gt;
+&lt;p&gt;We say dummy file watcher because to build a proper file watcher, we
+need to utilize os internal features which is a bit more complex.&lt;/p&gt;
+&lt;p&gt;Instead, we will create an infinite loop that checks a given directory
+every 0.5 second and see if something has changed.&lt;/p&gt;
+&lt;p&gt;First thing we need to do is to create a function that tells if something
+has changed in a given directory.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Review of Pointer in C</title>
       <link>/en/posts/pointer-of-c-review/</link>
       <pubDate>Wed, 03 Jul 2024 15:07:47 +0700</pubDate>
       <guid>/en/posts/pointer-of-c-review/</guid>
-      <description>In this short article we will review pointers in C programming language, if you are new to this kind of topic please read the tutorial of pointers for beginners first, try this tutorial for example.
-Defining Pointer There are several ways to define a pointer in C.
-int* p; int x = 5; p = &amp;amp;x; // p pointer to address x we can assign the address right away like so</description>
+      <description>&lt;p&gt;In this short article we will review pointers
+in C programming language, if you are new to this
+kind of topic please read the tutorial of pointers
+for beginners first, try &lt;a href=&#34;https://www.geeksforgeeks.org/c-pointers/&#34;&gt;this tutorial&lt;/a&gt; for example.&lt;/p&gt;
+&lt;h3 id=&#34;defining-pointer&#34;&gt;Defining Pointer&lt;/h3&gt;
+&lt;p&gt;There are several ways to define a pointer in C.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;p&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;5&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt;; &lt;span style=&#34;color:#7f848e&#34;&gt;// p pointer to address x
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;we can assign the address right away like so&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;5&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;dereferencing-pointer&#34;&gt;Dereferencing Pointer&lt;/h3&gt;
+&lt;p&gt;Use &lt;code&gt;*&lt;/code&gt; to dereference a pointer, this will
+return the value that the address of pointer is
+pointing at holds.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Dynamic Array in C Simplified</title>
       <link>/en/posts/dynamic-array-in-c-simplified/</link>
       <pubDate>Tue, 02 Jul 2024 13:30:14 +0700</pubDate>
       <guid>/en/posts/dynamic-array-in-c-simplified/</guid>
-      <description>Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.
-But what is greater that array? Yup, dynamic array.</description>
+      <description>&lt;p&gt;Array data structure is really useful, it can used to to store value
+with same data types, we can access it really easy, updating the value
+of array is also a trivial thing to do. One of the most important use
+of array is that is it used to implement other more complex data structures
+such as linked list, binary tree and hash tables.&lt;/p&gt;
+&lt;p&gt;But what is greater that array? Yup, dynamic array.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux Hard Link and Soft Link in a Nutshell</title>
       <link>/en/posts/hard-link-soft-link-in-a-nutshell-linux/</link>
       <pubDate>Mon, 24 Jun 2024 20:47:46 +0700</pubDate>
       <guid>/en/posts/hard-link-soft-link-in-a-nutshell-linux/</guid>
-      <description>Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what&amp;rsquo;s the difference between the two.
-What is inode? Your computer needs a way to &amp;rsquo;labelize&amp;rsquo; files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that&amp;rsquo;s used to identify an inode.</description>
+      <description>&lt;h2 id=&#34;definition&#34;&gt;Definition&lt;/h2&gt;
+&lt;p&gt;Before we talk about hardlink and softlink in linux, we must
+first know what is inode and filename, and what&amp;rsquo;s the difference
+between the two.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-inode&#34;&gt;What is inode?&lt;/h3&gt;
+&lt;p&gt;Your computer needs a way to &amp;rsquo;labelize&amp;rsquo; files in its filesystem.
+Remember, &lt;a href=&#34;https://en.wikipedia.org/wiki/Everything_is_a_file&#34;&gt;everything is a file&lt;/a&gt; in linux.
+One way to do this is to put a unique integer value to the file.
+This unique integer value is what we called the &lt;em&gt;inode number&lt;/em&gt;, which
+is a number that&amp;rsquo;s used to identify an &lt;em&gt;inode&lt;/em&gt;. The &lt;a href=&#34;https://en.wikipedia.org/wiki/Inode&#34;&gt;inode&lt;/a&gt; is a data structure
+that describe a file-system object.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Keep Writing Code Until It Becomes Meaningless</title>
       <link>/en/posts/start-coding-small/</link>
       <pubDate>Mon, 24 Jun 2024 20:23:33 +0700</pubDate>
       <guid>/en/posts/start-coding-small/</guid>
-      <description>If you are learning programming or computer science related stuff, chances are you will write some code. Coding and programming are two different things, in a nutshell, programming is applying some logic while coding is actually typing the applied logic into machine-readable instruction, read this awesome article from freeCodeCamp.
-You can do programming wherever you are, you don&amp;rsquo;t have to sit in front of your computer since applying some logic don&amp;rsquo;t necessarily need a computer.</description>
+      <description>&lt;p&gt;If you are learning programming or computer science related stuff,
+chances are you will write some code. Coding and programming are two
+different things, in a nutshell, programming is applying some logic
+while coding is actually typing the applied logic into machine-readable
+instruction, read &lt;a href=&#34;https://www.freecodecamp.org/news/difference-between-coding-and-programming/&#34;&gt;this awesome article&lt;/a&gt;
+from freeCodeCamp.&lt;/p&gt;
+&lt;p&gt;You can do programming wherever you are, you don&amp;rsquo;t have to sit in
+front of your computer since applying some logic don&amp;rsquo;t necessarily
+need a computer.Think about how you study math, that&amp;rsquo;s how you study
+programming, more or less.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Documenting Programming Journey with Web Development</title>
       <link>/en/posts/documenting-programming-journey-with-web-development/</link>
       <pubDate>Wed, 19 Jun 2024 13:01:22 +0700</pubDate>
       <guid>/en/posts/documenting-programming-journey-with-web-development/</guid>
-      <description>Learning is a tiresome activity, you need to put a lot of effort and time when learning something, this is even true when learning something by yourself, like programming, since nobody is going to remind you when to study, when to review your note, when to exercise, what to study after you finished the current topic, in other word, you need to put extra effort because nobody is going to guide you whatsoever.</description>
+      <description>&lt;p&gt;Learning is a tiresome activity, you need to put a lot of effort and time when learning something,
+this is even true when learning something by yourself, like programming, since nobody is going to
+remind you when to study, when to review your note, when to exercise, what to study after you
+finished the current topic, in other word, you need to put extra effort because nobody is going
+to guide you whatsoever. Which is why keeping record of your learning journey is very important
+so you can know how far have you progressed, how far are you from your goals, what need to be
+evaluated from your previous experience and so forth.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pointer and Const in C&#43;&#43;</title>
       <link>/en/posts/cpp-pointer-const/</link>
       <pubDate>Sat, 15 Jun 2024 20:59:34 +0700</pubDate>
       <guid>/en/posts/cpp-pointer-const/</guid>
-      <description>The following paragraphs are the summary of pointer and const in C++, I always forget about this topic so I decided to create a post about it.
-Regular Pointers Regular pointers are pointers the we usually use when working with pointers in C++.
-int main() { int x = 5; int* ptr = &amp;amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = &amp;amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won&amp;rsquo;t explain what is it and the rest of the it since it is easier to explain it using code rather than using words.</description>
+      <description>&lt;p&gt;The following paragraphs are the summary of pointer
+and const in C++, I always forget about this topic
+so I decided to create a post about it.&lt;/p&gt;
+&lt;h2 id=&#34;regular-pointers&#34;&gt;Regular Pointers&lt;/h2&gt;
+&lt;p&gt;Regular pointers are pointers the we usually use when
+working with pointers in C++.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#61afef;font-weight:bold&#34;&gt;main&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;5&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;ptr&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt;; &lt;span style=&#34;color:#7f848e&#34;&gt;// regular pointer to x
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;6&lt;/span&gt;; &lt;span style=&#34;color:#7f848e&#34;&gt;// *ptr would be 6
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#7f848e&#34;&gt;// we can change the value at the address being held
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#56b6c2&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;ptr&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#7f848e&#34;&gt;// x and *ptr would be 1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e5c07b&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;y&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;88&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e06c75&#34;&gt;ptr&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;y&lt;/span&gt;; &lt;span style=&#34;color:#7f848e&#34;&gt;// changing the address that ptr is pointing at
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#c678dd&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pointer-to-a-const-value&#34;&gt;Pointer to a const value&lt;/h2&gt;
+&lt;p&gt;I won&amp;rsquo;t explain what is it and the rest of the it since it
+is easier to explain it using code rather than using words.
+(The definitions are still confusing to me💀)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kernel Development Curriculum</title>
