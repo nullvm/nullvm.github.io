@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Web on faultint</title>
+    <title>Web on nullvm</title>
     <link>/en/tags/web/index.xml</link>
-    <description>Recent content in Web on faultint</description>
+    <description>Recent content in Web on nullvm</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <lastBuildDate>Wed, 19 Jun 2024 13:01:22 +0700</lastBuildDate>
