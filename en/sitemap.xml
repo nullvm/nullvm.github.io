@@ -2,11 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/en/tags/cybersecurity/</loc>
-    <lastmod>2025-02-05T18:42:50+07:00</lastmod>
-  </url><url>
     <loc>/en/</loc>
-    <lastmod>2025-02-05T18:42:50+07:00</lastmod>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="id"
@@ -18,11 +15,8 @@
                 href="/en/"
                 />
   </url><url>
-    <loc>/en/posts/bandit-overthewire-5/</loc>
-    <lastmod>2025-02-05T18:42:50+07:00</lastmod>
-  </url><url>
     <loc>/en/posts/</loc>
-    <lastmod>2025-02-05T18:42:50+07:00</lastmod>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="id"
@@ -34,10 +28,22 @@
                 href="/en/posts/"
                 />
   </url><url>
-    <loc>/en/tags/programming/</loc>
+    <loc>/en/tags/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/en/tags/vim/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/en/posts/vim-backupcopy/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/en/tags/cybersecurity/</loc>
     <lastmod>2025-02-05T18:42:50+07:00</lastmod>
   </url><url>
-    <loc>/en/tags/</loc>
+    <loc>/en/posts/bandit-overthewire-5/</loc>
+    <lastmod>2025-02-05T18:42:50+07:00</lastmod>
+  </url><url>
+    <loc>/en/tags/programming/</loc>
     <lastmod>2025-02-05T18:42:50+07:00</lastmod>
   </url><url>
     <loc>/en/posts/bandit-overthewire-4/</loc>

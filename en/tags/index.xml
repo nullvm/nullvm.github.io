@@ -6,8 +6,15 @@
     <description>Recent content in Tags on nullvm</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Feb 2025 18:42:50 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 12 Jun 2025 21:41:46 +0700</lastBuildDate>
     <atom:link href="/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vim</title>
+      <link>/en/tags/vim/index.xml</link>
+      <pubDate>Thu, 12 Jun 2025 21:41:46 +0700</pubDate>
+      <guid>/en/tags/vim/index.xml</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cybersecurity</title>
       <link>/en/tags/cybersecurity/index.xml</link>
