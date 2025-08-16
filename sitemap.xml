@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <sitemap>
-    <loc>/en/sitemap.xml</loc>
-    
-      <lastmod>2025-06-12T21:41:46+07:00</lastmod>
-    
-  </sitemap>
-  
-  <sitemap>
-    <loc>/id/sitemap.xml</loc>
-    
-      <lastmod>2025-02-10T21:58:34+07:00</lastmod>
-    
-  </sitemap>
-  
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/posts/vim-backup-copy/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
+    <loc>/posts/randint-js/</loc>
+    <lastmod>2024-10-26T20:25:23+07:00</lastmod>
+  </url><url>
+    <loc>/posts/merge-pdf-in-linux-pdfunite/</loc>
+    <lastmod>2024-10-24T20:22:38+07:00</lastmod>
+  </url><url>
+    <loc>/posts/replicating-right-click-behavior-using-vanilla-javascript/</loc>
+    <lastmod>2024-10-24T19:36:18+07:00</lastmod>
+  </url><url>
+    <loc>/posts/promise-simplified-js/</loc>
+    <lastmod>2024-10-21T20:08:35+07:00</lastmod>
+  </url><url>
+    <loc>/posts/dummy-file-watcher-c/</loc>
+    <lastmod>2024-07-06T18:59:44+07:00</lastmod>
+  </url><url>
+    <loc>/posts/pointer-of-c-review/</loc>
+    <lastmod>2024-07-03T15:07:47+07:00</lastmod>
+  </url><url>
+    <loc>/posts/dynamic-array-in-c-simplified/</loc>
+    <lastmod>2024-07-02T13:30:14+07:00</lastmod>
+  </url><url>
+    <loc>/posts/hard-link-soft-link-in-a-nutshell-linux/</loc>
+    <lastmod>2024-06-24T20:47:46+07:00</lastmod>
+  </url><url>
+    <loc>/posts/cpp-pointer-const/</loc>
+    <lastmod>2024-06-15T20:59:34+07:00</lastmod>
+  </url><url>
+    <loc>/archives/</loc>
+  </url><url>
+    <loc>/categories/</loc>
+  </url><url>
+    <loc>/search/</loc>
+  </url><url>
+    <loc>/tags/</loc>
+  </url>
+</urlset>

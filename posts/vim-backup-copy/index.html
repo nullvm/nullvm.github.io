@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Vim Backup-Copy | nullvm</title>
+<meta name="keywords" content="">
+<meta name="description" content="While writing a custom version of the tail -f command in C, I stumbled upon an
+interesting behavior in the Vim/Neovim text editors. The purpose of the program is
+to continuously print any new data appended to the end of a file—just like tail -f,
+which is commonly used for watching log files.
+In my implementation, I have something like this:
+const char *filename = argv[1];
+int fd = open(filename, O_RDONLY);
+if (fd == -1) {
+	perror(&#34;open&#34;);
+	return 1;
+}
+The open() function, provided by #include &lt;fcntl.h&gt;, returns a file descriptor—a
+small, nonnegative integer that acts as an index into the process’s table of
+open file descriptors.">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/vim-backup-copy/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.722dc78c185b53db8a516ab0bbd02e4cbc9a47e1a0e34064cfc3e4f108633efd.css" integrity="sha256-ci3HjBhbU9uKUWqwu9AuTLyaR&#43;Gg40Bkz8Pk8QhjPv0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/vim-backup-copy/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/vim-backup-copy/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="Vim Backup-Copy">
+  <meta property="og:description" content="While writing a custom version of the tail -f command in C, I stumbled upon an interesting behavior in the Vim/Neovim text editors. The purpose of the program is to continuously print any new data appended to the end of a file—just like tail -f, which is commonly used for watching log files.
+In my implementation, I have something like this:
+const char *filename = argv[1]; int fd = open(filename, O_RDONLY); if (fd == -1) { perror(&#34;open&#34;); return 1; } The open() function, provided by #include &lt;fcntl.h&gt;, returns a file descriptor—a small, nonnegative integer that acts as an index into the process’s table of open file descriptors.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-12T21:41:46+07:00">
+    <meta property="article:modified_time" content="2025-06-12T21:41:46+07:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim Backup-Copy">
+<meta name="twitter:description" content="While writing a custom version of the tail -f command in C, I stumbled upon an
+interesting behavior in the Vim/Neovim text editors. The purpose of the program is
+to continuously print any new data appended to the end of a file—just like tail -f,
+which is commonly used for watching log files.
+In my implementation, I have something like this:
+const char *filename = argv[1];
+int fd = open(filename, O_RDONLY);
+if (fd == -1) {
+	perror(&#34;open&#34;);
+	return 1;
+}
+The open() function, provided by #include &lt;fcntl.h&gt;, returns a file descriptor—a
+small, nonnegative integer that acts as an index into the process’s table of
+open file descriptors.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Vim Backup-Copy",
+      "item": "/posts/vim-backup-copy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Vim Backup-Copy",
+  "name": "Vim Backup-Copy",
+  "description": "While writing a custom version of the tail -f command in C, I stumbled upon an interesting behavior in the Vim/Neovim text editors. The purpose of the program is to continuously print any new data appended to the end of a file—just like tail -f, which is commonly used for watching log files.\nIn my implementation, I have something like this:\nconst char *filename = argv[1]; int fd = open(filename, O_RDONLY); if (fd == -1) { perror(\u0026#34;open\u0026#34;); return 1; } The open() function, provided by #include \u0026lt;fcntl.h\u0026gt;, returns a file descriptor—a small, nonnegative integer that acts as an index into the process’s table of open file descriptors.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "While writing a custom version of the tail -f command in C, I stumbled upon an interesting behavior in the Vim/Neovim text editors. The purpose of the program is to continuously print any new data appended to the end of a file—just like tail -f, which is commonly used for watching log files.\nIn my implementation, I have something like this:\nconst char *filename = argv[1]; int fd = open(filename, O_RDONLY); if (fd == -1) { perror(\"open\"); return 1; } The open() function, provided by #include , returns a file descriptor—a small, nonnegative integer that acts as an index into the process’s table of open file descriptors.\nIf you check the man page for open using man 2 open, you’ll find this line:\nEach open() of a file creates a new open file description; thus, there may be multiple open file descriptions corresponding to a file inode. The key concept here is the inode. When I call open, it gives me a file descriptor that maps to a particular file inode.\nAfter calling open, I use the returned file descriptor to monitor any changes made to the file’s content.\nWhen I ran the program and used echo to append lines to the file, everything worked as expected. The program picked up the changes and printed them out immediately.\nHowever, things got weird when I tried editing the file using Neovim. I added a line at the end and saved it.\nNothing happened.\nMy program didn’t detect any changes. But when I used nano to modify the file, the output appeared as expected. This raised a question: what exactly makes Vim and Neovim behave differently when saving changes to a file?\nSince my program keeps track of the file’s inode, I started wondering: when Vim/Neovim saves changes to a file, does it do something that affects the inode?\nEditing a file with Vim/Neovim doesn’t change the filename, so I checked whether it modifies the inode in some way.\nI used ls -li to inspect the file’s inode before and after editing:\n$ touch a.txt $ ls -li 12085572 -rw-rw-r-- 1 deni deni 0 Jun 13 18:23 a.txt Then I made some changes using Neovim:\n$ nvim a.txt $ ls -li 12085597 -rw-rw-r-- 1 deni deni 76 Jun 13 18:24 a.txt Yup, the inode changed.\nThat explains why my program didn’t detect the changes. It was still watching the original file, whose inode no longer existed.\nFrom the Vim manual:\n'backup' 'bk'\tboolean\t(default off) global {not in Vi} Make a backup before overwriting a file. Leave it around after the file has been successfully written. If you do not want to keep the backup file, but you do want a backup while the file is being written, reset this option and set the 'writebackup' option (this is the default). If you do not want a backup file at all reset both options (use this if your file system is almost full). See the |backup-table| for more explanations. When the 'backupskip' pattern matches, a backup is not made anyway. When 'patchmode' is set, the backup may be renamed to become the oldest version of a file. ... 'backupcopy' 'bkc'\tstring\t(Vi default for Unix: \"yes\", otherwise: \"auto\") global {not in Vi} When writing a file and a backup is made, this option tells how it's done. This is a comma separated list of words. The main values are: \"yes\"\tmake a copy of the file and overwrite the original one \"no\"\trename the file and write a new one \"auto\"\tone of the previous, what works best So yeah, since Vim/Neovim has ‘backup’ set to off by default, it doesn’t create a backup and overwrite the original file directly. Instead, it renames the original and writes a new file with the same name—resulting in a new inode.\nAfter realizing that, I modified my program to re-check the file’s inode in case it changes.\nQuite an interesting experience, to say the least.\nStay safe.\nReferences:\nhttps://vimdoc.sourceforge.net/htmldoc/options.html https://man7.org/linux/man-pages/man2/open.2.html ",
+  "wordCount" : "664",
+  "inLanguage": "en",
+  "datePublished": "2025-06-12T21:41:46+07:00",
+  "dateModified": "2025-06-12T21:41:46+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/vim-backup-copy/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Vim Backup-Copy
+    </h1>
+    <div class="post-meta"><span title='2025-06-12 21:41:46 +0700 WIB'>June 12, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/vim-backup-copy.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>While writing a custom version of the <code>tail -f</code> command in C, I stumbled upon an
+interesting behavior in the Vim/Neovim text editors. The purpose of the program is
+to continuously print any new data appended to the end of a file—just like <code>tail -f</code>,
+which is commonly used for watching log files.</p>
+<p>In my implementation, I have something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>filename <span style="color:#f92672">=</span> argv[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> fd <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(filename, O_RDONLY);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;open&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>open()</code> function, provided by <code>#include &lt;fcntl.h&gt;</code>, returns a file descriptor—a
+small, nonnegative integer that acts as an index into the process’s table of
+open file descriptors.</p>
+<p>If you check the man page for <code>open</code> using <code>man 2 open</code>, you’ll find this line:</p>
+<pre tabindex="0"><code>Each open() of a file creates a new open file description; thus,
+there may be multiple open file descriptions corresponding to a
+file inode.
+</code></pre><p>The key concept here is the inode. When I call <code>open</code>, it gives me a file descriptor
+that maps to a particular file inode.</p>
+<p>After calling open, I use the returned file descriptor to monitor any changes made
+to the file&rsquo;s content.</p>
+<p>When I ran the program and used <code>echo</code> to append lines to the file, everything worked
+as expected. The program picked up the changes and printed them out immediately.</p>
+<p>However, things got weird when I tried editing the file using Neovim. I added a
+line at the end and saved it.</p>
+<p>Nothing happened.</p>
+<p>My program didn’t detect any changes. But when I used nano to modify the file,
+the output appeared as expected. This raised a question: what exactly makes Vim
+and Neovim behave differently when saving changes to a file?</p>
+<p>Since my program keeps track of the file&rsquo;s inode, I started wondering:
+when Vim/Neovim saves changes to a file, does it do something that affects the inode?</p>
+<p>Editing a file with Vim/Neovim doesn’t change the filename, so I checked whether it
+modifies the inode in some way.</p>
+<p>I used <code>ls -li</code> to inspect the file’s inode before and after editing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ touch a.txt
+</span></span><span style="display:flex;"><span>$ ls -li
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12085572</span> -rw-rw-r-- <span style="color:#ae81ff">1</span> deni deni <span style="color:#ae81ff">0</span> Jun <span style="color:#ae81ff">13</span> 18:23 a.txt
+</span></span></code></pre></div><p>Then I made some changes using Neovim:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nvim a.txt
+</span></span><span style="display:flex;"><span>$ ls -li
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12085597</span> -rw-rw-r-- <span style="color:#ae81ff">1</span> deni deni <span style="color:#ae81ff">76</span> Jun <span style="color:#ae81ff">13</span> 18:24 a.txt
+</span></span></code></pre></div><p>Yup, the inode changed.</p>
+<p>That explains why my program didn’t detect the changes. It was still
+watching the original file, whose inode no longer existed.</p>
+<p>From the Vim manual:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-man" data-lang="man"><span style="display:flex;"><span>&#39;backup&#39; &#39;bk&#39;		boolean	(default off)
+</span></span><span style="display:flex;"><span>			global
+</span></span><span style="display:flex;"><span>			{not in Vi}
+</span></span><span style="display:flex;"><span>	Make a backup before overwriting a file.  Leave it around after the
+</span></span><span style="display:flex;"><span>	file has been successfully written.  If you do not want to keep the
+</span></span><span style="display:flex;"><span>	backup file, but you do want a backup while the file is being
+</span></span><span style="display:flex;"><span>	written, reset this option and set the &#39;writebackup&#39; option (this is
+</span></span><span style="display:flex;"><span>	the default).  If you do not want a backup file at all reset both
+</span></span><span style="display:flex;"><span>	options (use this if your file system is almost full).  See the
+</span></span><span style="display:flex;"><span>	|backup-table| for more explanations.
+</span></span><span style="display:flex;"><span>	When the &#39;backupskip&#39; pattern matches, a backup is not made anyway.
+</span></span><span style="display:flex;"><span>	When &#39;patchmode&#39; is set, the backup may be renamed to become the
+</span></span><span style="display:flex;"><span>	oldest version of a file.
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	...
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>&#39;backupcopy&#39; &#39;bkc&#39;	string	(Vi default for Unix: &#34;yes&#34;, otherwise: &#34;auto&#34;)
+</span></span><span style="display:flex;"><span>			global
+</span></span><span style="display:flex;"><span>			{not in Vi}
+</span></span><span style="display:flex;"><span>	When writing a file and a backup is made, this option tells how it&#39;s
+</span></span><span style="display:flex;"><span>	done.  This is a comma separated list of words.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	The main values are:
+</span></span><span style="display:flex;"><span>	&#34;yes&#34;	make a copy of the file and overwrite the original one  
+</span></span><span style="display:flex;"><span>	&#34;no&#34;	rename the file and write a new one  
+</span></span><span style="display:flex;"><span>	&#34;auto&#34;	one of the previous, what works best
+</span></span></code></pre></div><p>So yeah, since Vim/Neovim has &lsquo;backup&rsquo; set to off by default, it doesn&rsquo;t create a backup and overwrite the
+original file directly. Instead, it renames the original and writes a new file with the same name—resulting
+in a new inode.</p>
+<p>After realizing that, I modified my program to re-check the file&rsquo;s inode in case it changes.</p>
+<p>Quite an interesting experience, to say the least.</p>
+<p>Stay safe.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://vimdoc.sourceforge.net/htmldoc/options.html">https://vimdoc.sourceforge.net/htmldoc/options.html</a></li>
+<li><a href="https://man7.org/linux/man-pages/man2/open.2.html">https://man7.org/linux/man-pages/man2/open.2.html</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

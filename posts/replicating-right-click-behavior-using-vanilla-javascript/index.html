@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Replicating Right Click Behavior using Vanilla Javascript | nullvm</title>
+<meta name="keywords" content="">
+<meta name="description" content="The idea is simple.
+First, disable the default event handler for right click in the browser.
+Second, create a custom event handler for right click event.
+Implementing the first idea, we can do something like the following.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+});
+from here we can easily add any custom code for event handler
+to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
+the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+  console.log(&#34;Right Click detected!&#34;);
+});
+You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/replicating-right-click-behavior-using-vanilla-javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.722dc78c185b53db8a516ab0bbd02e4cbc9a47e1a0e34064cfc3e4f108633efd.css" integrity="sha256-ci3HjBhbU9uKUWqwu9AuTLyaR&#43;Gg40Bkz8Pk8QhjPv0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/replicating-right-click-behavior-using-vanilla-javascript/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/replicating-right-click-behavior-using-vanilla-javascript/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="Replicating Right Click Behavior using Vanilla Javascript">
+  <meta property="og:description" content="The idea is simple.
+First, disable the default event handler for right click in the browser.
+Second, create a custom event handler for right click event.
+Implementing the first idea, we can do something like the following.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); console.log(&#34;Right Click detected!&#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-24T19:36:18+07:00">
+    <meta property="article:modified_time" content="2024-10-24T19:36:18+07:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Replicating Right Click Behavior using Vanilla Javascript">
+<meta name="twitter:description" content="The idea is simple.
+First, disable the default event handler for right click in the browser.
+Second, create a custom event handler for right click event.
+Implementing the first idea, we can do something like the following.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+});
+from here we can easily add any custom code for event handler
+to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
+the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; {
+  event.preventDefault();
+  console.log(&#34;Right Click detected!&#34;);
+});
+You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Replicating Right Click Behavior using Vanilla Javascript",
+      "item": "/posts/replicating-right-click-behavior-using-vanilla-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Replicating Right Click Behavior using Vanilla Javascript",
+  "name": "Replicating Right Click Behavior using Vanilla Javascript",
+  "description": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log \u0026ldquo;Right Click detected!\u0026rdquo; into the console.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); console.log(\u0026#34;Right Click detected!\u0026#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\"contextmenu\", (event) =\u003e { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.\nwindow.addEventListener(\"contextmenu\", (event) =\u003e { event.preventDefault(); console.log(\"Right Click detected!\"); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.\nAnyway, that’s it for now.\nStay safe!\n",
+  "wordCount" : "107",
+  "inLanguage": "en",
+  "datePublished": "2024-10-24T19:36:18+07:00",
+  "dateModified": "2024-10-24T19:36:18+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/replicating-right-click-behavior-using-vanilla-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Replicating Right Click Behavior using Vanilla Javascript
+    </h1>
+    <div class="post-meta"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/replicating-right-click-behavior-using-vanilla-javascript.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>The idea is simple.</p>
+<p>First, disable the default event handler for right click in the browser.</p>
+<p>Second, create a custom event handler for right click event.</p>
+<p>Implementing the first idea, we can do something like the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;contextmenu&#34;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>from here we can easily add any custom code for event handler
+to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
+the console.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;contextmenu&#34;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Right Click detected!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>You can create additional html elements and put it into the window
+to act as the replacement for the default context menu.</p>
+<p>Anyway, that&rsquo;s it for now.</p>
+<p>Stay safe!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
