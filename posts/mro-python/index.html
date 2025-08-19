@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity | nullvm</title>
+<meta name="keywords" content="python">
+<meta name="description" content="Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?
+That’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/mro-python/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.af48cad252819d53882fb159be15ecd4e57561e9d06c2c5d922c3727f740719b.css" integrity="sha256-r0jK0lKBnVOIL7FZvhXs1OV1YenQbCxdkiw3J/dAcZs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/mro-python/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/mro-python/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity">
+  <meta property="og:description" content="Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?
+That’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-19T16:30:43+07:00">
+    <meta property="article:modified_time" content="2025-08-19T16:30:43+07:00">
+    <meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity">
+<meta name="twitter:description" content="Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?
+That’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity",
+      "item": "/posts/mro-python/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity",
+  "name": "Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity",
+  "description": "Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?\nThat’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.\n",
+  "keywords": [
+    "python"
+  ],
+  "articleBody": "Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?\nThat’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.\nThe Basics Python is object-oriented, meaning you can create classes, inherit from them, and override their behavior. But when you’ve got multiple inheritance (aka the diamond problem’s evil cousin), things get spicy.\nWhen you call a method, Python doesn’t just randomly pick one like a dodgy RNG—it follows the C3 linearization algorithm. That’s a fancy name for “a set of rules that decide which class is checked first, second, third, and so on.”\nAccessing MRO You can inspect the Method Resolution Order in two ways:\n__mro__ attribute (tuple of classes) mro() method (returns a list) They both spill the same beans; one’s just slightly more Pythonic to read.\nExample Time class A: def speak(self): return \"A\" class B(A): pass class C(A): def speak(self): return \"C\" class D(B, C): pass if __name__ == \"__main__\": print(D.__mro__) Running this gives:\n( ",
+  "wordCount" : "456",
+  "inLanguage": "en",
+  "datePublished": "2025-08-19T16:30:43+07:00",
+  "dateModified": "2025-08-19T16:30:43+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/mro-python/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity
+    </h1>
+    <div class="post-meta"><span title='2025-08-19 16:30:43 +0700 WIB'>August 19, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/mro-python.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: <em>when I call a method, which ancestor actually answers the call?</em></p>
+<p>That’s where <strong>MRO (Method Resolution Order)</strong> comes in. Think of it like <code>ls</code> for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which <code>def speak()</code> gets invoked when you’ve got five grandparents fighting for attention.</p>
+<h2 id="the-basics">The Basics<a hidden class="anchor" aria-hidden="true" href="#the-basics">#</a></h2>
+<p>Python is object-oriented, meaning you can create classes, inherit from them, and override their behavior. But when you’ve got multiple inheritance (aka the diamond problem’s evil cousin), things get spicy.</p>
+<p>When you call a method, Python doesn’t just randomly pick one like a dodgy RNG—it follows the <strong>C3 linearization algorithm</strong>. That’s a fancy name for “a set of rules that decide which class is checked first, second, third, and so on.”</p>
+<h2 id="accessing-mro">Accessing MRO<a hidden class="anchor" aria-hidden="true" href="#accessing-mro">#</a></h2>
+<p>You can inspect the Method Resolution Order in two ways:</p>
+<ul>
+<li><code>__mro__</code> attribute (tuple of classes)</li>
+<li><code>mro()</code> method (returns a list)</li>
+</ul>
+<p>They both spill the same beans; one’s just slightly more Pythonic to read.</p>
+<h2 id="example-time">Example Time<a hidden class="anchor" aria-hidden="true" href="#example-time">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#c678dd">class</span> <span style="color:#e5c07b">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">def</span> <span style="color:#61afef;font-weight:bold">speak</span>(<span style="color:#e5c07b">self</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">return</span> <span style="color:#98c379">&#34;A&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">class</span> <span style="color:#e5c07b">B</span>(<span style="color:#e06c75">A</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">class</span> <span style="color:#e5c07b">C</span>(<span style="color:#e06c75">A</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">def</span> <span style="color:#61afef;font-weight:bold">speak</span>(<span style="color:#e5c07b">self</span>): 
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">return</span> <span style="color:#98c379">&#34;C&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">class</span> <span style="color:#e5c07b">D</span>(<span style="color:#e06c75">B</span>, <span style="color:#e06c75">C</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">if</span> <span style="color:#e06c75">__name__</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e5c07b">print</span>(<span style="color:#e06c75">D</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">__mro__</span>)
+</span></span></code></pre></div><p>Running this gives:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#56b6c2">(</span>
+</span></span><span style="display:flex;"><span>    &lt;class <span style="color:#98c379">&#39;__main__.D&#39;</span>&gt;,
+</span></span><span style="display:flex;"><span>    &lt;class <span style="color:#98c379">&#39;__main__.B&#39;</span>&gt;,
+</span></span><span style="display:flex;"><span>    &lt;class <span style="color:#98c379">&#39;__main__.C&#39;</span>&gt;,
+</span></span><span style="display:flex;"><span>    &lt;class <span style="color:#98c379">&#39;__main__.A&#39;</span>&gt;,
+</span></span><span style="display:flex;"><span>    &lt;class <span style="color:#98c379">&#39;object&#39;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">)</span>
+</span></span></code></pre></div><h2 id="what-just-happened">What Just Happened?<a hidden class="anchor" aria-hidden="true" href="#what-just-happened">#</a></h2>
+<p>Notice something weird?
+Class <strong>C</strong> <em>does</em> have its own <code>speak()</code> method, but Python checks <strong>B</strong> before <strong>C</strong>, because when defining <code>class D(B, C)</code>, we listed <code>B</code> first. So Python politely knocks on <code>B</code>’s door before asking <code>C</code>. Since <code>B</code> doesn’t override <code>speak()</code>, it continues down the chain and finds <code>C</code>.</p>
+<p>The rule of thumb: <strong>the order in your inheritance list matters</strong>. If you inherit from <code>B, C</code>, then Python tries <code>B</code> first, then <code>C</code>. If you flip them to <code>C, B</code>, the story changes.</p>
+<h2 id="why-should-you-care">Why Should You Care?<a hidden class="anchor" aria-hidden="true" href="#why-should-you-care">#</a></h2>
+<p>If you’re just subclassing one class, MRO is basically a non-issue. But once you’ve got multiple inheritance, especially those diamond-shaped hierarchies, debugging without understanding MRO is like trying to resolve merge conflicts while half-asleep.</p>
+<p>Knowing MRO saves you from late-night “why the hell is it calling <em>that</em> method” moments.</p>
+<p>Pro tip: If you’re ever lost, just <code>print(SomeClass.mro())</code> and you’ll see the exact search path. Treat it like <code>traceroute</code> for methods.</p>
+<h2 id="afterword">Afterword<a hidden class="anchor" aria-hidden="true" href="#afterword">#</a></h2>
+<p>Think of MRO like your package manager:</p>
+<ul>
+<li><code>apt</code> (Python) has strict rules to decide dependencies.</li>
+<li>You don’t always agree with them.</li>
+<li>But if you fight it, your whole system breaks.</li>
+</ul>
+<p>So… just trust the algorithm. It’s smarter than you, me, and probably most of Stack Overflow combined.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/python/">python</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -6,8 +6,16 @@
     <description>Recent content on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Aug 2025 15:11:13 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 16:30:43 +0700</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity</title>
+      <link>/posts/mro-python/</link>
+      <pubDate>Tue, 19 Aug 2025 16:30:43 +0700</pubDate>
+      <guid>/posts/mro-python/</guid>
+      <description>&lt;p&gt;Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: &lt;em&gt;when I call a method, which ancestor actually answers the call?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That’s where &lt;strong&gt;MRO (Method Resolution Order)&lt;/strong&gt; comes in. Think of it like &lt;code&gt;ls&lt;/code&gt; for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which &lt;code&gt;def speak()&lt;/code&gt; gets invoked when you’ve got five grandparents fighting for attention.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Gacha Game Terms for Lazy Players</title>
       <link>/posts/gacha-terms/</link>
