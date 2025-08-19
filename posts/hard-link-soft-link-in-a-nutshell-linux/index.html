@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Linux Hard Link and Soft Link in a Nutshell | nullvm</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="linux">
 <meta name="description" content="Definition
 Before we talk about hardlink and softlink in linux, we must
 first know what is inode and filename, and what&rsquo;s the difference
@@ -79,6 +79,7 @@ What is inode? Your computer needs a way to ’labelize’ files in its filesyst
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-06-24T20:47:46+07:00">
     <meta property="article:modified_time" content="2024-06-24T20:47:46+07:00">
+    <meta property="article:tag" content="Linux">
     <meta property="og:image" content="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
@@ -124,7 +125,7 @@ that describe a file-system object.">
   "name": "Linux Hard Link and Soft Link in a Nutshell",
   "description": "Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what\u0026rsquo;s the difference between the two.\nWhat is inode? Your computer needs a way to \u0026rsquo;labelize\u0026rsquo; files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that\u0026rsquo;s used to identify an inode. The inode is a data structure that describe a file-system object.\n",
   "keywords": [
-    
+    "linux"
   ],
   "articleBody": "Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what’s the difference between the two.\nWhat is inode? Your computer needs a way to ’labelize’ files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that’s used to identify an inode. The inode is a data structure that describe a file-system object.\nEach file associated with inode, which is identified by an inode number. The inode contains metadata about a file, that is it has data that describe the data inside a file. A directory is just a file containing a list of inodes.\nAn inode can only associated with one file. When you move a file, you actually just putting a different path to the inode. Changing inode means changing the identity of a file at hardware level, so it is not a trivial thing to do and we rarely need to do that.\nWhat is filename? A filename or file name is a name used to uniquely identify a computer file in a file system.\n~ Wikipedia\nFilename is pretty obvious, filename to a file is like a title to a book. The definition from wikipedia said that is a unique identifier but actually it must be unique only for current directory. You can, for example, have a file named fin.txt in ~/.config and ~/Downloads.\nIt is what’s searched by software like find. File manager software also list filename when displaying files instead of inode.\nChanging a filename is easy compared to changing an inode. When you change a filename, you just changing an attribute of a file and not its identity.\nHard link Every file in Linux Filesystem starts with a single hard link. It maps the filename into the file. Let’s say I have a file and its filename, I will call the file as FILE (pretty obvious) and the filename as HARD_LINK_1, the simple way to visual the relation between the two is as the following:\nHARD_LINK_1 -\u003e FILE It implies that if I refer the HARD_LINK_1 I actually referring FILE, any action I do to HARD_LINK_1 is done to FILE.\nIf I create another hard link that links to FILE, let’s say HARD_LINK_2, now FILE has two hard links. Here is how it looks like:\nHARD_LINK_1 -\u003e FILE HARD_LINK_2 -\u003e FILE Both HARD_LINK_1 and HARD_LINK_2 has the same inode since both are referring to the same file FILE. If I change the content via HARD_LINK_1, the content will also changed when I access it from HARD_LINK_2. When I delete HARD_LINK_1, the FILE will not gone since it has one remaining link HARD_LINK_2, it will be removed from the filesystem when all links to the data has been removed.\nHard link only work for regular files and if the new hard links exist on the same filesystem.\nSoft link Unlike hard link that links the filename to the actual data, or inode if you prefer, the soft link (also known as symbolic link) links to the filename. Say that I have a file, a filename, and a soft link, the file is called FILE, the filename is called FNAME and the soft link is called SOFT_LINK. Here is how it looks like:\nFNAME -\u003e FILE SOFT_LINK -\u003e FNAME When I access SOFT_LINK I’m actually accessing the FNAME that access the FILE, in other words, when I use SOFT_LINK I don’t know about the FILE, all I know is that I’m accessing a file that has a filename named FNAME.\nThis raises a problem when FNAME is deleted, since there is no link left that links to FILE, it will be removed from the filesystem, however since SOFT_LINK only knows about FNAME it will still points to FNAME even though it is now didn’t exists in the filesystem. This situation is referred to as a dangling soft link.\nUsing ln Command We have talked about hard link and soft link. How do we create one? We can use the linux command ln to create hard links and soft links. The syntax is pretty simple.\nTo create a hard link, the syntax is as the following:\nln To create a soft link, just add the -s flag:\nln -s For example, if I have a file named hello.txt, to create the hard link in the same directory with the name hardlink_hello.txt I can type:\nln hello.txt hardlink_hello.txt if I want to create a soft link named softlink_hello.txt, I just need to add the -s flag, so:\nln -s hello.txt softlink_hello.txt Afterword There you have it, a short and simplified explanation about hard link and soft link in Linux. Using hard link and soft link are useful when you want to create a shortcut to a certain program or to give it to give it another name that suits you. You can create, for example, a soft link to cp program named copy, so whenever you want to copy something just type copy instead of cp, I don’t know why you want to do that but you can.\nAnyway, that’s it for now. I’ll see you on another post.\nStay safe.\nFurther Reading Hard links and soft links in Linux explained - RedHat ",
   "wordCount" : "901",
@@ -202,6 +203,11 @@ that describe a file-system object.">
                 </a>
             </li>
             <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
                 <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
@@ -217,7 +223,7 @@ that describe a file-system object.">
     <h1 class="post-title entry-hint-parent">
       Linux Hard Link and Soft Link in a Nutshell
     </h1>
-    <div class="post-meta"><span title='2024-06-24 20:47:46 +0700 WIB'>June 24, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/hard-link-soft-link-in-a-nutshell-linux.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-06-24 20:47:46 +0700 WIB'>June 24, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/hard-link-soft-link-in-a-nutshell-linux.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -320,6 +326,7 @@ just type <code>copy</code> instead of <code>cp</code>, I don&rsquo;t know why y
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="/tags/linux/">linux</a></li>
     </ul>
   </footer><div id="disqus_thread"></div>
 <script>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Pointer and Const in C&#43;&#43; | nullvm</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="c&#43;&#43;">
 <meta name="description" content="The following paragraphs are the summary of pointer
 and const in C&#43;&#43;, I always forget about this topic
 so I decided to create a post about it.
@@ -94,6 +94,7 @@ int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *pt
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-06-15T20:59:34+07:00">
     <meta property="article:modified_time" content="2024-06-15T20:59:34+07:00">
+    <meta property="article:tag" content="C&#43;&#43;">
     <meta property="og:image" content="https://images.unsplash.com/photo-1586296188195-89285b63f670?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1586296188195-89285b63f670?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
@@ -153,7 +154,7 @@ is easier to explain it using code rather than using words.
   "name": "Pointer and Const in C\u002b\u002b",
   "description": "The following paragraphs are the summary of pointer and const in C++, I always forget about this topic so I decided to create a post about it.\nRegular Pointers Regular pointers are pointers the we usually use when working with pointers in C++.\nint main() { int x = 5; int* ptr = \u0026amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = \u0026amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won\u0026rsquo;t explain what is it and the rest of the it since it is easier to explain it using code rather than using words. (The definitions are still confusing to me💀)\n",
   "keywords": [
-    
+    "c++"
   ],
   "articleBody": "The following paragraphs are the summary of pointer and const in C++, I always forget about this topic so I decided to create a post about it.\nRegular Pointers Regular pointers are pointers the we usually use when working with pointers in C++.\nint main() { int x = 5; int* ptr = \u0026x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = \u0026y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won’t explain what is it and the rest of the it since it is easier to explain it using code rather than using words. (The definitions are still confusing to me💀)\nint main() { const int x = 5; const int* ptr = \u0026x; // ptr is pointing to a \"const int\" int* ptr = \u0026x; // this will cause compilation error *ptr = 8; // this is not allowed; changing the value of \"const int\" const int y = 8; ptr = \u0026y; // this is allowed; the pointer is not const, only the value of // the pointer that's const return 0; } Pointer to const can point to non-const variable.\nint main() { int x = 5; const int* ptr = \u0026x; // allowed *ptr = 6; // not allowed; changing the value of pointer to const x = 6; // allowed; x is not const return 0; } Const pointers int main() { int x = 5; int y = 6; int* const ptr = \u0026x; // this is the const pointer, we can't change // the address of ptr ptr = \u0026y; // this is not allowed *ptr = 8; // allowed; the value it is pointing at is not const return 0; } Const pointer to a const value int main() { int x = 5; int y = 7; const int* const ptr = \u0026x; // const pointer to a const value *ptr = 7; // not allowed ptr = \u0026y; // also not allowed return 0; } Afterword This is just a note I write so I can comeback to it when I forget.\nAnyway, see you on another post.\nStay safe!\n",
   "wordCount" : "393",
@@ -231,6 +232,11 @@ is easier to explain it using code rather than using words.
                 </a>
             </li>
             <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
                 <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
@@ -246,7 +252,7 @@ is easier to explain it using code rather than using words.
     <h1 class="post-title entry-hint-parent">
       Pointer and Const in C&#43;&#43;
     </h1>
-    <div class="post-meta"><span title='2024-06-15 20:59:34 +0700 WIB'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/cpp-pointer-const.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-06-15 20:59:34 +0700 WIB'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/cpp-pointer-const.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -340,6 +346,7 @@ is easier to explain it using code rather than using words.
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></li>
     </ul>
   </footer><div id="disqus_thread"></div>
 <script>

@@ -2,14 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/tags/gacha/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
+    <loc>/posts/gacha-terms/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
+    <loc>/tags/game/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
     <loc>/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2025-08-19T15:11:13+07:00</lastmod>
+  </url><url>
+    <loc>/tags/binary-exploit/</loc>
+    <lastmod>2025-08-19T14:20:15+07:00</lastmod>
+  </url><url>
+    <loc>/tags/ctf/</loc>
     <lastmod>2025-08-19T14:20:15+07:00</lastmod>
   </url><url>
     <loc>/posts/picoctf-writeup-binary-exploit/</loc>
     <lastmod>2025-08-19T14:20:15+07:00</lastmod>
   </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2025-08-19T14:20:15+07:00</lastmod>
+    <loc>/tags/forensics/</loc>
+    <lastmod>2025-08-19T11:27:28+07:00</lastmod>
   </url><url>
     <loc>/posts/picoctf-writeup-disko-1/</loc>
     <lastmod>2025-08-19T11:27:28+07:00</lastmod>
@@ -17,11 +38,23 @@
     <loc>/posts/picoctf-writeup-ssti/</loc>
     <lastmod>2025-08-19T11:09:54+07:00</lastmod>
   </url><url>
+    <loc>/tags/ssti/</loc>
+    <lastmod>2025-08-19T11:09:54+07:00</lastmod>
+  </url><url>
+    <loc>/tags/vim/</loc>
+    <lastmod>2025-06-12T21:41:46+07:00</lastmod>
+  </url><url>
     <loc>/posts/vim-backup-copy/</loc>
     <lastmod>2025-06-12T21:41:46+07:00</lastmod>
   </url><url>
     <loc>/posts/randint-js/</loc>
     <lastmod>2024-10-26T20:25:23+07:00</lastmod>
+  </url><url>
+    <loc>/tags/javascript/</loc>
+    <lastmod>2024-10-26T20:25:23+07:00</lastmod>
+  </url><url>
+    <loc>/tags/linux/</loc>
+    <lastmod>2024-10-24T20:22:38+07:00</lastmod>
   </url><url>
     <loc>/posts/merge-pdf-in-linux-pdfunite/</loc>
     <lastmod>2024-10-24T20:22:38+07:00</lastmod>
@@ -31,6 +64,9 @@
   </url><url>
     <loc>/posts/promise-simplified-js/</loc>
     <lastmod>2024-10-21T20:08:35+07:00</lastmod>
+  </url><url>
+    <loc>/tags/c/</loc>
+    <lastmod>2024-07-06T18:59:44+07:00</lastmod>
   </url><url>
     <loc>/posts/dummy-file-watcher-c/</loc>
     <lastmod>2024-07-06T18:59:44+07:00</lastmod>
@@ -44,6 +80,9 @@
     <loc>/posts/hard-link-soft-link-in-a-nutshell-linux/</loc>
     <lastmod>2024-06-24T20:47:46+07:00</lastmod>
   </url><url>
+    <loc>/tags/c&#43;&#43;/</loc>
+    <lastmod>2024-06-15T20:59:34+07:00</lastmod>
+  </url><url>
     <loc>/posts/cpp-pointer-const/</loc>
     <lastmod>2024-06-15T20:59:34+07:00</lastmod>
   </url><url>
@@ -52,7 +91,5 @@
     <loc>/categories/</loc>
   </url><url>
     <loc>/search/</loc>
-  </url><url>
-    <loc>/tags/</loc>
   </url>
 </urlset>

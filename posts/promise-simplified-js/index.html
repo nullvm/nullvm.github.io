@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Javascript Promise Simplified | nullvm</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="javascript">
 <meta name="description" content="Promise has three different states: pending, resolve, and reject.
 When you first create a promise, it will be in pending state. This
 promise can be either &ldquo;fulfilled&rdquo; thus it will be resolved or it can
@@ -81,6 +81,7 @@ const myPromise = new Promise(function (resolve, reject) { // do something }); W
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-21T20:08:35+07:00">
     <meta property="article:modified_time" content="2024-10-21T20:08:35+07:00">
+    <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript Promise Simplified">
 <meta name="twitter:description" content="Promise has three different states: pending, resolve, and reject.
@@ -123,7 +124,7 @@ What you do inside the promise will decide whether it will resolve or reject.">
   "name": "Javascript Promise Simplified",
   "description": "Promise has three different states: pending, resolve, and reject.\nWhen you first create a promise, it will be in pending state. This promise can be either \u0026ldquo;fulfilled\u0026rdquo; thus it will be resolved or it can be \u0026ldquo;rejected\u0026rdquo; thus it will be rejected.\nIn other word, if promise resulted in success it resolve, else it reject.\nTo create a promise in javascript is really simple.\nconst myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.\n",
   "keywords": [
-    
+    "javascript"
   ],
   "articleBody": "Promise has three different states: pending, resolve, and reject.\nWhen you first create a promise, it will be in pending state. This promise can be either “fulfilled” thus it will be resolved or it can be “rejected” thus it will be rejected.\nIn other word, if promise resulted in success it resolve, else it reject.\nTo create a promise in javascript is really simple.\nconst myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.\nEither way, the promise will return the value inside the resolve or reject function.\nconst myPromise = new Promise(function (resolve, reject)) { // this promise will resolve if 8 is an even number if (8 % 2 === 0) resolve(\"8 is even\"); else reject(\"8 is not even\"); } After you create a promise, it’s time to consume it. To do that, use the then, catch, and finally sequence like so:\nmyPromise .then(function (result) { // do something with resolved value }) .catch(function (error) { // do something with rejected value }) .finally(function () { // do the cleaning }); And that’s how you use promise in javascript.\nTo deepen your understanding about promise in javascript, you can read this awesome article from javascript.info\nAnyway, see you on another one.\nStay safe!\n",
   "wordCount" : "221",
@@ -201,6 +202,11 @@ What you do inside the promise will decide whether it will resolve or reject.">
                 </a>
             </li>
             <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
                 <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
@@ -216,7 +222,7 @@ What you do inside the promise will decide whether it will resolve or reject.">
     <h1 class="post-title entry-hint-parent">
       Javascript Promise Simplified
     </h1>
-    <div class="post-meta"><span title='2024-10-21 20:08:35 +0700 WIB'>October 21, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/promise-simplified-js.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-10-21 20:08:35 +0700 WIB'>October 21, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/promise-simplified-js.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -259,6 +265,7 @@ you can read <a href="https://javascript.info/promise-basics">this awesome artic
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="/tags/javascript/">javascript</a></li>
     </ul>
   </footer><div id="disqus_thread"></div>
 <script>

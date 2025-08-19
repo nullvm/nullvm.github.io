@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on nullvm</title>
+    <link>/tags/linux/index.xml</link>
+    <description>Recent content in Linux on nullvm</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Oct 2024 20:22:38 +0700</lastBuildDate>
+    <atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Merge Pdf in Linux using pdfunite</title>
+      <link>/posts/merge-pdf-in-linux-pdfunite/</link>
+      <pubDate>Thu, 24 Oct 2024 20:22:38 +0700</pubDate>
+      <guid>/posts/merge-pdf-in-linux-pdfunite/</guid>
+      <description>&lt;p&gt;Merging pdf files in Linux is really simple, you can use a
+command line called &lt;code&gt;pdfunite&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Open a terminal and type the following&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pdfunite --help
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;in my system, it prints&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pdfunite version 24.06.0
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Copyright 1996-2011, &lt;span style=&#34;color:#d19a66&#34;&gt;2022&lt;/span&gt; Glyph &amp;amp; Cog, LLC
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Usage: pdfunite &lt;span style=&#34;color:#56b6c2&#34;&gt;[&lt;/span&gt;options&lt;span style=&#34;color:#56b6c2&#34;&gt;]&lt;/span&gt; &amp;lt;PDF-sourcefile-1&amp;gt;..&amp;lt;PDF-sourcefile-n&amp;gt; &amp;lt;PDF-destfile&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -v             : print copyright and version info
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -h             : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -help          : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  --help         : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -?             : print usage information
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s say we want to merge three pdf files &lt;code&gt;head.pdf&lt;/code&gt;, &lt;code&gt;body.pdf&lt;/code&gt;, and &lt;code&gt;foot.pdf&lt;/code&gt; into
+one file named &lt;code&gt;all.pdf&lt;/code&gt;. Using &lt;code&gt;pdfunite&lt;/code&gt; we can effortlessly merge all those pdf
+files like so&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux Hard Link and Soft Link in a Nutshell</title>
+      <link>/posts/hard-link-soft-link-in-a-nutshell-linux/</link>
+      <pubDate>Mon, 24 Jun 2024 20:47:46 +0700</pubDate>
+      <guid>/posts/hard-link-soft-link-in-a-nutshell-linux/</guid>
+      <description>&lt;h2 id=&#34;definition&#34;&gt;Definition&lt;/h2&gt;
+&lt;p&gt;Before we talk about hardlink and softlink in linux, we must
+first know what is inode and filename, and what&amp;rsquo;s the difference
+between the two.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-inode&#34;&gt;What is inode?&lt;/h3&gt;
+&lt;p&gt;Your computer needs a way to &amp;rsquo;labelize&amp;rsquo; files in its filesystem.
+Remember, &lt;a href=&#34;https://en.wikipedia.org/wiki/Everything_is_a_file&#34;&gt;everything is a file&lt;/a&gt; in linux.
+One way to do this is to put a unique integer value to the file.
+This unique integer value is what we called the &lt;em&gt;inode number&lt;/em&gt;, which
+is a number that&amp;rsquo;s used to identify an &lt;em&gt;inode&lt;/em&gt;. The &lt;a href=&#34;https://en.wikipedia.org/wiki/Inode&#34;&gt;inode&lt;/a&gt; is a data structure
+that describe a file-system object.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

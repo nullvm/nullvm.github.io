@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Replicating Right Click Behavior using Vanilla Javascript | nullvm</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="javascript">
 <meta name="description" content="The idea is simple.
 First, disable the default event handler for right click in the browser.
 Second, create a custom event handler for right click event.
@@ -88,6 +88,7 @@ window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefa
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-24T19:36:18+07:00">
     <meta property="article:modified_time" content="2024-10-24T19:36:18+07:00">
+    <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Replicating Right Click Behavior using Vanilla Javascript">
 <meta name="twitter:description" content="The idea is simple.
@@ -136,7 +137,7 @@ to act as the replacement for the default context menu.">
   "name": "Replicating Right Click Behavior using Vanilla Javascript",
   "description": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log \u0026ldquo;Right Click detected!\u0026rdquo; into the console.\nwindow.addEventListener(\u0026#34;contextmenu\u0026#34;, (event) =\u0026gt; { event.preventDefault(); console.log(\u0026#34;Right Click detected!\u0026#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.\n",
   "keywords": [
-    
+    "javascript"
   ],
   "articleBody": "The idea is simple.\nFirst, disable the default event handler for right click in the browser.\nSecond, create a custom event handler for right click event.\nImplementing the first idea, we can do something like the following.\nwindow.addEventListener(\"contextmenu\", (event) =\u003e { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.\nwindow.addEventListener(\"contextmenu\", (event) =\u003e { event.preventDefault(); console.log(\"Right Click detected!\"); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.\nAnyway, that’s it for now.\nStay safe!\n",
   "wordCount" : "107",
@@ -214,6 +215,11 @@ to act as the replacement for the default context menu.">
                 </a>
             </li>
             <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
                 <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
@@ -229,7 +235,7 @@ to act as the replacement for the default context menu.">
     <h1 class="post-title entry-hint-parent">
       Replicating Right Click Behavior using Vanilla Javascript
     </h1>
-    <div class="post-meta"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/replicating-right-click-behavior-using-vanilla-javascript.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2024-10-24 19:36:18 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/replicating-right-click-behavior-using-vanilla-javascript.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -257,6 +263,7 @@ to act as the replacement for the default context menu.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="/tags/javascript/">javascript</a></li>
     </ul>
   </footer><div id="disqus_thread"></div>
 <script>
