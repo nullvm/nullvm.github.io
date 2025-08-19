@@ -6,8 +6,38 @@
     <description>Recent content in Posts on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Jun 2025 21:41:46 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 19 Aug 2025 11:27:28 +0700</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PicoCTF Writeup #505</title>
+      <link>/posts/picoctf-writeup-disko-1/</link>
+      <pubDate>Tue, 19 Aug 2025 11:27:28 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-disko-1/</guid>
+      <description>&lt;h2 id=&#34;picoctf-writeup--forensics-disk-image&#34;&gt;PicoCTF Writeup – Forensics Disk Image&lt;/h2&gt;
+&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/505&#34;&gt;Disk, disk, sleuth!&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;
+Can you find the flag in this disk image?
+Download the disk image &lt;a href=&#34;https://artifacts.picoctf.net/c/536/disko-1.dd.gz&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;first-thoughts&#34;&gt;First Thoughts&lt;/h2&gt;
+&lt;p&gt;This challenge was tagged &lt;strong&gt;forensics&lt;/strong&gt;, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.&lt;/p&gt;
+&lt;p&gt;I grabbed the disk image (&lt;code&gt;disko-1.dd&lt;/code&gt;) and started experimenting.&lt;/p&gt;
+&lt;h2 id=&#34;initial-attempts&#34;&gt;Initial Attempts&lt;/h2&gt;
+&lt;p&gt;My first instinct was to take a look at the raw hex using &lt;code&gt;xxd&lt;/code&gt;:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PicoCTF Writeup #492</title>
+      <link>/posts/picoctf-writeup-ssti/</link>
+      <pubDate>Tue, 19 Aug 2025 11:09:54 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-ssti/</guid>
+      <description>&lt;h2 id=&#34;picoctf-writeup--server-side-template-injection-ssti&#34;&gt;PicoCTF Writeup – Server-Side Template Injection (SSTI)&lt;/h2&gt;
+&lt;p&gt;Recently, I played around with a PicoCTF &lt;a href=&#34;https://play.picoctf.org/practice/challenge/492&#34;&gt;challenge 492&lt;/a&gt;. The challenge looked like a simple web app that lets you &amp;ldquo;announce whatever you want.&amp;rdquo; Naturally, I fired up my terminal and started poking at it with &lt;code&gt;curl&lt;/code&gt;. By the way, we can also visit the website and experiment with the form instead.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -X GET http://rescued-float.picoctf.net:49878/announce -i
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Response:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HTTP/1.1 405 METHOD NOT ALLOWED
+Allow: POST, OPTIONS
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Looks like only &lt;code&gt;POST&lt;/code&gt; is allowed, so I retried with:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Vim Backup-Copy</title>
       <link>/posts/vim-backup-copy/</link>
@@ -151,7 +181,7 @@ with same data types, we can access it really easy, updating the value
 of array is also a trivial thing to do. One of the most important use
 of array is that is it used to implement other more complex data structures
 such as linked list, binary tree and hash tables.&lt;/p&gt;
-&lt;p&gt;But what is greater that array? Yup, dynamic array.&lt;/p&gt;</description>
+&lt;p&gt;But what is greater than array? Yup, dynamic array.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux Hard Link and Soft Link in a Nutshell</title>

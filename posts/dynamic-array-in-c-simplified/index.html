@@ -12,10 +12,10 @@ with same data types, we can access it really easy, updating the value
 of array is also a trivial thing to do. One of the most important use
 of array is that is it used to implement other more complex data structures
 such as linked list, binary tree and hash tables.
-But what is greater that array? Yup, dynamic array.">
+But what is greater than array? Yup, dynamic array.">
 <meta name="author" content="Deni Andrian Prayoga">
 <link rel="canonical" href="/posts/dynamic-array-in-c-simplified/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.722dc78c185b53db8a516ab0bbd02e4cbc9a47e1a0e34064cfc3e4f108633efd.css" integrity="sha256-ci3HjBhbU9uKUWqwu9AuTLyaR&#43;Gg40Bkz8Pk8QhjPv0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e13cd26641e1575c2d0e802b3928b9691188ff15800ee9dab119a64fbfb2cfda.css" integrity="sha256-4TzSZkHhV1wtDoArOSi5aRGI/xWADunasRmmT7&#43;yz9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -24,6 +24,10 @@ But what is greater that array? Yup, dynamic array.">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <link rel="alternate" hreflang="en" href="/posts/dynamic-array-in-c-simplified/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
 <noscript>
     <style>
         #theme-toggle,
@@ -64,7 +68,7 @@ But what is greater that array? Yup, dynamic array.">
   <meta property="og:site_name" content="nullvm">
   <meta property="og:title" content="Dynamic Array in C Simplified">
   <meta property="og:description" content="Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.
-But what is greater that array? Yup, dynamic array.">
+But what is greater than array? Yup, dynamic array.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -79,7 +83,7 @@ with same data types, we can access it really easy, updating the value
 of array is also a trivial thing to do. One of the most important use
 of array is that is it used to implement other more complex data structures
 such as linked list, binary tree and hash tables.
-But what is greater that array? Yup, dynamic array.">
+But what is greater than array? Yup, dynamic array.">
 
 
 <script type="application/ld+json">
@@ -108,11 +112,11 @@ But what is greater that array? Yup, dynamic array.">
   "@type": "BlogPosting",
   "headline": "Dynamic Array in C Simplified",
   "name": "Dynamic Array in C Simplified",
-  "description": "Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.\nBut what is greater that array? Yup, dynamic array.\n",
+  "description": "Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.\nBut what is greater than array? Yup, dynamic array.\n",
   "keywords": [
     
   ],
-  "articleBody": "Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.\nBut what is greater that array? Yup, dynamic array.\nWe will create an echo program to see how we can implement dynamic array in C programming language.\nNow, C doesn’t support dynamic array natively, however we can implement it easily, this article will show you how.\nReallocate Memory Before implementing dynamic array in C, let’s take a look on how to realloc memory in C using realloc.\nrealloc has the following syntax:\nvoid *realloc(void *_Nullable ptr, size_t size); pretty easy to use.\nHere is a code to demonstrate the use of realloc.\n#include #include int main() { int* ptr = (int*) malloc(2 * sizeof(int)); *(ptr + 0) = 7; *(ptr + 1) = 5; // *(ptr + 2) = 3; // uncommenting this will result in undefined behavior ptr = (int*) realloc(3 * sizeof(int)); *(ptr + 2) = 3; // valid free(ptr); return 0; } Using realloc is pretty straight forward, you only need to provide the pointer you wanted to resize and the new size.\nEcho Program Let’s say we have a program that capture user input and then store it in a pointer, after the user input new line, the program will print it to the standard output.\nHere is one way to implement it.\n#include int main() { char s[10]; int c, i; i = 0; while (i \u003c 9 \u0026\u0026 (c = getchar()) != '\\n') { s[i++] = c; } s[i] = '\\0'; printf(\"%s\\n\", s); return 0; } The code above will work just fine however, it will only able to print up to 9 characters long (10 characters with the \\0 delimiter).\nWhat if user input more than 9 characters? Well, we can just allocate big enough memory to store the user’s input. However, this might not be the best choice for our problem because allocating such big memory with no use is just impractical. User can input only 5 characters but if we already allocated, say 1000 characters, the rest of the memory will be unused.\nSince we never know the exact length of the user’s input, how about we start with small array and then increase the size of the array accordingly. This is where we use dynamic memory allocation.\nRewriting the above code will give us the following.\n#include #include int main() { char* s = (char*) malloc(10 * sizeof(char)); int c, i; i = 0; while (i \u003c 9 \u0026\u0026 (c = getchar()) != '\\n') { *(s+i) = c; ++i; } *(s+i) = '\\0'; printf(\"%s\\n\", s); free(s); return 0; } Yes, it is still static.\nWe need to use realloc to resize the pointer s.\n#include #include #define BUFSIZE 8 int main() { char* s = (char*) malloc(BUFSIZE * sizeof(char)); int c, i, j; i = 0; j = 1; while ((c = getchar()) != '\\n') { *(s+i) = c; ++i; if (i % BUFSIZE == 0) { ++j; s = (char*) realloc(s, BUFSIZE * j * sizeof(char)); } } *(s+i) = '\\0'; printf(\"%s\\n\", s); free(s); return 0; } Now the program will work as expected. Compile using -Wall -Werror -fsanitize=address using gcc to check if the program compiles correctly.\nAfterword We have seen how we can implement a dynamic array in C programming language, there are a lot of things we can improve in our echo program like error handling and non-ascii characters. I’ll leave it to you to do that.\nThat’s it for now, I’ll see you on another one.\nStay safe!\n",
+  "articleBody": "Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.\nBut what is greater than array? Yup, dynamic array.\nWe will create an echo program to see how we can implement dynamic array in C programming language.\nNow, C doesn’t support dynamic array natively, however we can implement it easily, this article will show you how.\nReallocate Memory Before implementing dynamic array in C, let’s take a look on how to realloc memory in C using realloc.\nrealloc has the following syntax:\nvoid *realloc(void *_Nullable ptr, size_t size); pretty easy to use.\nHere is a code to demonstrate the use of realloc.\n#include #include int main() { int* ptr = (int*) malloc(2 * sizeof(int)); *(ptr + 0) = 7; *(ptr + 1) = 5; // *(ptr + 2) = 3; // uncommenting this will result in undefined behavior ptr = (int*) realloc(3 * sizeof(int)); *(ptr + 2) = 3; // valid free(ptr); return 0; } Using realloc is pretty straight forward, you only need to provide the pointer you wanted to resize and the new size.\nEcho Program Let’s say we have a program that capture user input and then store it in a pointer, after the user input new line, the program will print it to the standard output.\nHere is one way to implement it.\n#include int main() { char s[10]; int c, i; i = 0; while (i \u003c 9 \u0026\u0026 (c = getchar()) != '\\n') { s[i++] = c; } s[i] = '\\0'; printf(\"%s\\n\", s); return 0; } The code above will work just fine however, it will only able to print up to 9 characters long (10 characters with the \\0 delimiter).\nWhat if user input more than 9 characters? Well, we can just allocate big enough memory to store the user’s input. However, this might not be the best choice for our problem because allocating such big memory with no use is just impractical. User can input only 5 characters but if we already allocated, say 1000 characters, the rest of the memory will be unused.\nSince we never know the exact length of the user’s input, how about we start with small array and then increase the size of the array accordingly. This is where we use dynamic memory allocation.\nRewriting the above code will give us the following.\n#include #include int main() { char* s = (char*) malloc(10 * sizeof(char)); int c, i; i = 0; while (i \u003c 9 \u0026\u0026 (c = getchar()) != '\\n') { *(s+i) = c; ++i; } *(s+i) = '\\0'; printf(\"%s\\n\", s); free(s); return 0; } Yes, it is still static.\nWe need to use realloc to resize the pointer s.\n#include #include #define BUFSIZE 8 int main() { char* s = (char*) malloc(BUFSIZE * sizeof(char)); int c, i, j; i = 0; j = 1; while ((c = getchar()) != '\\n') { *(s+i) = c; ++i; if (i % BUFSIZE == 0) { ++j; s = (char*) realloc(s, BUFSIZE * j * sizeof(char)); } } *(s+i) = '\\0'; printf(\"%s\\n\", s); free(s); return 0; } Now the program will work as expected. Compile using -Wall -Werror -fsanitize=address using gcc to check if the program compiles correctly.\nAfterword We have seen how we can implement a dynamic array in C programming language, there are a lot of things we can improve in our echo program like error handling and non-ascii characters. I’ll leave it to you to do that.\nThat’s it for now, I’ll see you on another one.\nStay safe!\n",
   "wordCount" : "644",
   "inLanguage": "en",
   "image":"https://images.unsplash.com/photo-1644357655176-69d3fe7f2fcc?q=80\u0026w=1470\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.0.3\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","datePublished": "2024-07-02T13:30:14+07:00",
@@ -216,7 +220,7 @@ with same data types, we can access it really easy, updating the value
 of array is also a trivial thing to do. One of the most important use
 of array is that is it used to implement other more complex data structures
 such as linked list, binary tree and hash tables.</p>
-<p>But what is greater that array? Yup, dynamic array.</p>
+<p>But what is greater than array? Yup, dynamic array.</p>
 <p>We will create an echo program to see how we can implement dynamic array
 in C programming language.</p>
 <p>Now, C doesn&rsquo;t support dynamic array natively, however we can implement it

@@ -5,27 +5,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Merge Pdf in Linux using pdfunite | nullvm</title>
+<title>PicoCTF Writeup #505 | nullvm</title>
 <meta name="keywords" content="">
-<meta name="description" content="Merging pdf files in Linux is really simple, you can use a
-command line called pdfunite.
-Open a terminal and type the following
-pdfunite --help
-in my system, it prints
-pdfunite version 24.06.0
-Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
-Copyright 1996-2011, 2022 Glyph &amp; Cog, LLC
-Usage: pdfunite [options] &lt;PDF-sourcefile-1&gt;..&lt;PDF-sourcefile-n&gt; &lt;PDF-destfile&gt;
-  -v             : print copyright and version info
-  -h             : print usage information
-  -help          : print usage information
-  --help         : print usage information
-  -?             : print usage information
-Let&rsquo;s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into
-one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf
-files like so">
+<meta name="description" content="PicoCTF Writeup – Forensics Disk Image
+Challenge: Disk, disk, sleuth!
+
+Description:
+Can you find the flag in this disk image?
+Download the disk image here.
+First Thoughts
+This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.
+I grabbed the disk image (disko-1.dd) and started experimenting.
+Initial Attempts
+My first instinct was to take a look at the raw hex using xxd:">
 <meta name="author" content="Deni Andrian Prayoga">
-<link rel="canonical" href="/posts/merge-pdf-in-linux-pdfunite/">
+<link rel="canonical" href="/posts/picoctf-writeup-disko-1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.e13cd26641e1575c2d0e802b3928b9691188ff15800ee9dab119a64fbfb2cfda.css" integrity="sha256-4TzSZkHhV1wtDoArOSi5aRGI/xWADunasRmmT7&#43;yz9o=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -34,7 +28,7 @@ files like so">
 <link rel="mask-icon" href="/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="/posts/merge-pdf-in-linux-pdfunite/">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-writeup-disko-1/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -75,37 +69,32 @@ files like so">
         }
 
     </style>
-</noscript><meta property="og:url" content="/posts/merge-pdf-in-linux-pdfunite/">
+</noscript><meta property="og:url" content="/posts/picoctf-writeup-disko-1/">
   <meta property="og:site_name" content="nullvm">
-  <meta property="og:title" content="Merge Pdf in Linux using pdfunite">
-  <meta property="og:description" content="Merging pdf files in Linux is really simple, you can use a command line called pdfunite.
-Open a terminal and type the following
-pdfunite --help in my system, it prints
-pdfunite version 24.06.0 Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org Copyright 1996-2011, 2022 Glyph &amp; Cog, LLC Usage: pdfunite [options] &lt;PDF-sourcefile-1&gt;..&lt;PDF-sourcefile-n&gt; &lt;PDF-destfile&gt; -v : print copyright and version info -h : print usage information -help : print usage information --help : print usage information -? : print usage information Let’s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf files like so">
+  <meta property="og:title" content="PicoCTF Writeup #505">
+  <meta property="og:description" content="PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!
+Description: Can you find the flag in this disk image? Download the disk image here.
+First Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.
+I grabbed the disk image (disko-1.dd) and started experimenting.
+Initial Attempts My first instinct was to take a look at the raw hex using xxd:">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-10-24T20:22:38+07:00">
-    <meta property="article:modified_time" content="2024-10-24T20:22:38+07:00">
+    <meta property="article:published_time" content="2025-08-19T11:27:28+07:00">
+    <meta property="article:modified_time" content="2025-08-19T11:27:28+07:00">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Merge Pdf in Linux using pdfunite">
-<meta name="twitter:description" content="Merging pdf files in Linux is really simple, you can use a
-command line called pdfunite.
-Open a terminal and type the following
-pdfunite --help
-in my system, it prints
-pdfunite version 24.06.0
-Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
-Copyright 1996-2011, 2022 Glyph &amp; Cog, LLC
-Usage: pdfunite [options] &lt;PDF-sourcefile-1&gt;..&lt;PDF-sourcefile-n&gt; &lt;PDF-destfile&gt;
-  -v             : print copyright and version info
-  -h             : print usage information
-  -help          : print usage information
-  --help         : print usage information
-  -?             : print usage information
-Let&rsquo;s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into
-one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf
-files like so">
+<meta name="twitter:title" content="PicoCTF Writeup #505">
+<meta name="twitter:description" content="PicoCTF Writeup – Forensics Disk Image
+Challenge: Disk, disk, sleuth!
+
+Description:
+Can you find the flag in this disk image?
+Download the disk image here.
+First Thoughts
+This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.
+I grabbed the disk image (disko-1.dd) and started experimenting.
+Initial Attempts
+My first instinct was to take a look at the raw hex using xxd:">
 
 
 <script type="application/ld+json">
@@ -122,8 +111,8 @@ files like so">
     {
       "@type": "ListItem",
       "position":  1 ,
-      "name": "Merge Pdf in Linux using pdfunite",
-      "item": "/posts/merge-pdf-in-linux-pdfunite/"
+      "name": "PicoCTF Writeup #505",
+      "item": "/posts/picoctf-writeup-disko-1/"
     }
   ]
 }
@@ -132,24 +121,24 @@ files like so">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Merge Pdf in Linux using pdfunite",
-  "name": "Merge Pdf in Linux using pdfunite",
-  "description": "Merging pdf files in Linux is really simple, you can use a command line called pdfunite.\nOpen a terminal and type the following\npdfunite --help in my system, it prints\npdfunite version 24.06.0 Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org Copyright 1996-2011, 2022 Glyph \u0026amp; Cog, LLC Usage: pdfunite [options] \u0026lt;PDF-sourcefile-1\u0026gt;..\u0026lt;PDF-sourcefile-n\u0026gt; \u0026lt;PDF-destfile\u0026gt; -v : print copyright and version info -h : print usage information -help : print usage information --help : print usage information -? : print usage information Let\u0026rsquo;s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf files like so\n",
+  "headline": "PicoCTF Writeup #505",
+  "name": "PicoCTF Writeup #505",
+  "description": "PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!\nDescription: Can you find the flag in this disk image? Download the disk image here.\nFirst Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.\nI grabbed the disk image (disko-1.dd) and started experimenting.\nInitial Attempts My first instinct was to take a look at the raw hex using xxd:\n",
   "keywords": [
     
   ],
-  "articleBody": "Merging pdf files in Linux is really simple, you can use a command line called pdfunite.\nOpen a terminal and type the following\npdfunite --help in my system, it prints\npdfunite version 24.06.0 Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org Copyright 1996-2011, 2022 Glyph \u0026 Cog, LLC Usage: pdfunite [options] .. -v : print copyright and version info -h : print usage information -help : print usage information --help : print usage information -? : print usage information Let’s say we want to merge three pdf files head.pdf, body.pdf, and foot.pdf into one file named all.pdf. Using pdfunite we can effortlessly merge all those pdf files like so\npdfunite head.pdf body.pdf foot.pdf all.pdf And that’s literally the only thing we need to do to merge all those pdf files into one single file, the order of the merged file would follow the order in the source file, so the above command will resulted a pdf file with the following order head.pdf, body.pdf, foot.pdf.\nStay safe!\n",
-  "wordCount" : "166",
+  "articleBody": "PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!\nDescription: Can you find the flag in this disk image? Download the disk image here.\nFirst Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.\nI grabbed the disk image (disko-1.dd) and started experimenting.\nInitial Attempts My first instinct was to take a look at the raw hex using xxd:\nxxd disko-1.dd | less I did see some readable text, like:\nThis is not a bootable disk. Please insert a bootable floppy and .. press any key to try to gain... But nothing that looked like a flag. At this point, I also tried mounting the image as a loop device, but it didn’t yield anything useful either.\nSwitching Gears Since the flag format is predictable (picoCTF{...}), a simpler approach came to mind: just dump all printable text and grep for the flag.\nOn Linux, strings is perfect for this:\nstrings disko-1.dd | grep -i picoCTF And sure enough, the flag popped out.\nThe Flag picoCTF{1t5_ju5t_4_5tr1n9_c63b02ef} Takeaways Forensics challenges don’t always require fancy tools — sometimes the classic Unix pipeline (strings | grep) is all you need. Recognizing patterns (like picoCTF{}) can save you from wasting time on dead ends. Always start simple before diving into heavy forensic frameworks. ",
+  "wordCount" : "231",
   "inLanguage": "en",
-  "datePublished": "2024-10-24T20:22:38+07:00",
-  "dateModified": "2024-10-24T20:22:38+07:00",
+  "datePublished": "2025-08-19T11:27:28+07:00",
+  "dateModified": "2025-08-19T11:27:28+07:00",
   "author":{
     "@type": "Person",
     "name": "Deni Andrian Prayoga"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/posts/merge-pdf-in-linux-pdfunite/"
+    "@id": "/posts/picoctf-writeup-disko-1/"
   },
   "publisher": {
     "@type": "Organization",
@@ -227,35 +216,41 @@ files like so">
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      Merge Pdf in Linux using pdfunite
+      PicoCTF Writeup #505
     </h1>
-    <div class="post-meta"><span title='2024-10-24 20:22:38 +0700 WIB'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/merge-pdf-in-linux-pdfunite.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2025-08-19 11:27:28 +0700 WIB'>August 19, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/en/posts/picoctf-writeup-disko-1.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
-  <div class="post-content"><p>Merging pdf files in Linux is really simple, you can use a
-command line called <code>pdfunite</code>.</p>
-<p>Open a terminal and type the following</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pdfunite --help
-</span></span></code></pre></div><p>in my system, it prints</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pdfunite version 24.06.0
-</span></span><span style="display:flex;"><span>Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
-</span></span><span style="display:flex;"><span>Copyright 1996-2011, <span style="color:#ae81ff">2022</span> Glyph &amp; Cog, LLC
-</span></span><span style="display:flex;"><span>Usage: pdfunite <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> &lt;PDF-sourcefile-1&gt;..&lt;PDF-sourcefile-n&gt; &lt;PDF-destfile&gt;
-</span></span><span style="display:flex;"><span>  -v             : print copyright and version info
-</span></span><span style="display:flex;"><span>  -h             : print usage information
-</span></span><span style="display:flex;"><span>  -help          : print usage information
-</span></span><span style="display:flex;"><span>  --help         : print usage information
-</span></span><span style="display:flex;"><span>  -?             : print usage information
-</span></span></code></pre></div><p>Let&rsquo;s say we want to merge three pdf files <code>head.pdf</code>, <code>body.pdf</code>, and <code>foot.pdf</code> into
-one file named <code>all.pdf</code>. Using <code>pdfunite</code> we can effortlessly merge all those pdf
-files like so</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pdfunite head.pdf body.pdf foot.pdf all.pdf
-</span></span></code></pre></div><p>And that&rsquo;s literally the only thing we need to do to merge all those pdf files
-into one single file, the order of the merged file would follow the order in the
-source file, so the above command will resulted a pdf file with the following
-order <code>head.pdf</code>, <code>body.pdf</code>, <code>foot.pdf</code>.</p>
-<p>Stay safe!</p>
+  <div class="post-content"><h2 id="picoctf-writeup--forensics-disk-image">PicoCTF Writeup – Forensics Disk Image<a hidden class="anchor" aria-hidden="true" href="#picoctf-writeup--forensics-disk-image">#</a></h2>
+<p>Challenge: <a href="https://play.picoctf.org/practice/challenge/505">Disk, disk, sleuth!</a></p>
+<blockquote>
+<p><strong>Description:</strong>
+Can you find the flag in this disk image?
+Download the disk image <a href="https://artifacts.picoctf.net/c/536/disko-1.dd.gz">here</a>.</p></blockquote>
+<h2 id="first-thoughts">First Thoughts<a hidden class="anchor" aria-hidden="true" href="#first-thoughts">#</a></h2>
+<p>This challenge was tagged <strong>forensics</strong>, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.</p>
+<p>I grabbed the disk image (<code>disko-1.dd</code>) and started experimenting.</p>
+<h2 id="initial-attempts">Initial Attempts<a hidden class="anchor" aria-hidden="true" href="#initial-attempts">#</a></h2>
+<p>My first instinct was to take a look at the raw hex using <code>xxd</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xxd disko-1.dd | less
+</span></span></code></pre></div><p>I did see some readable text, like:</p>
+<pre tabindex="0"><code>This is not a bootable disk. Please insert a bootable floppy
+and .. press any key to try to gain...
+</code></pre><p>But nothing that looked like a flag. At this point, I also tried mounting the image as a loop device, but it didn’t yield anything useful either.</p>
+<h2 id="switching-gears">Switching Gears<a hidden class="anchor" aria-hidden="true" href="#switching-gears">#</a></h2>
+<p>Since the flag format is predictable (<code>picoCTF{...}</code>), a simpler approach came to mind: just dump all printable text and grep for the flag.</p>
+<p>On Linux, <code>strings</code> is perfect for this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>strings disko-1.dd | grep -i picoCTF
+</span></span></code></pre></div><p>And sure enough, the flag popped out.</p>
+<h2 id="the-flag">The Flag<a hidden class="anchor" aria-hidden="true" href="#the-flag">#</a></h2>
+<pre tabindex="0"><code>picoCTF{1t5_ju5t_4_5tr1n9_c63b02ef}
+</code></pre><h2 id="takeaways">Takeaways<a hidden class="anchor" aria-hidden="true" href="#takeaways">#</a></h2>
+<ul>
+<li>Forensics challenges don’t always require fancy tools — sometimes the classic Unix pipeline (<code>strings | grep</code>) is all you need.</li>
+<li>Recognizing patterns (like <code>picoCTF{}</code>) can save you from wasting time on dead ends.</li>
+<li>Always start simple before diving into heavy forensic frameworks.</li>
+</ul>
 
 
   </div>
