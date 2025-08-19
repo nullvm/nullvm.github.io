@@ -237,15 +237,15 @@ to act as the replacement for the default context menu.">
 <p>First, disable the default event handler for right click in the browser.</p>
 <p>Second, create a custom event handler for right click event.</p>
 <p>Implementing the first idea, we can do something like the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;contextmenu&#34;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#e5c07b">window</span>.<span style="color:#e06c75">addEventListener</span>(<span style="color:#98c379">&#34;contextmenu&#34;</span>, (<span style="color:#e06c75">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">event</span>.<span style="color:#e06c75">preventDefault</span>();
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></div><p>from here we can easily add any custom code for event handler
 to our liking, here I will just log &ldquo;Right Click detected!&rdquo; into
 the console.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;contextmenu&#34;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Right Click detected!&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#e5c07b">window</span>.<span style="color:#e06c75">addEventListener</span>(<span style="color:#98c379">&#34;contextmenu&#34;</span>, (<span style="color:#e06c75">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">event</span>.<span style="color:#e06c75">preventDefault</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">console</span>.<span style="color:#e06c75">log</span>(<span style="color:#98c379">&#34;Right Click detected!&#34;</span>);
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></div><p>You can create additional html elements and put it into the window
 to act as the replacement for the default context menu.</p>

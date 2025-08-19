@@ -231,62 +231,62 @@ stored it in an array, after that, every 500ms we will check all the files'
 <code>st_ctime</code> property and see if something has changed.</p>
 <p>Here is the full code to do just that, it will print <code>&quot;Something has changed, I can feel it...\n&quot;</code>
 whenever something changed in the given directory.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/types.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/stat.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dirent.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[])
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;stdio.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;sys/types.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;sys/stat.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;dirent.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;unistd.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e">#include</span> <span style="color:#7f848e">&lt;string.h&gt;</span><span style="color:#7f848e">
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">int</span> <span style="color:#61afef;font-weight:bold">main</span>(<span style="color:#e5c07b">int</span> <span style="color:#e06c75">argc</span>, <span style="color:#e5c07b">char</span><span style="color:#56b6c2">*</span> <span style="color:#e06c75">argv</span>[])
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fprintf</span>(stderr, <span style="color:#e6db74">&#34;syntax: prog &lt;directory&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">if</span> (<span style="color:#e06c75">argc</span> <span style="color:#56b6c2">!=</span> <span style="color:#d19a66">2</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#61afef;font-weight:bold">fprintf</span>(<span style="color:#e06c75">stderr</span>, <span style="color:#98c379">&#34;syntax: prog &lt;directory&gt;</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">return</span> <span style="color:#d19a66">1</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  DIR<span style="color:#f92672">*</span> dp;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> fdl[<span style="color:#ae81ff">64</span>];
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> dirent<span style="color:#f92672">*</span> ep;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> stat st;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> setchg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">DIR</span><span style="color:#56b6c2">*</span> <span style="color:#e06c75">dp</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#e5c07b">unsigned</span> <span style="color:#e5c07b">int</span> <span style="color:#e06c75">fdl</span>[<span style="color:#d19a66">64</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">struct</span> <span style="color:#e06c75">dirent</span><span style="color:#56b6c2">*</span> <span style="color:#e06c75">ep</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">struct</span> <span style="color:#e06c75">stat</span> <span style="color:#e06c75">st</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#e5c07b">unsigned</span> <span style="color:#e5c07b">int</span> <span style="color:#e06c75">c</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#e5c07b">int</span> <span style="color:#e06c75">setchg</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  dp <span style="color:#f92672">=</span> <span style="color:#a6e22e">opendir</span>(argv[<span style="color:#ae81ff">1</span>]);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (dp <span style="color:#f92672">==</span> NULL) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;opendir&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">dp</span> <span style="color:#56b6c2">=</span> <span style="color:#61afef;font-weight:bold">opendir</span>(<span style="color:#e06c75">argv</span>[<span style="color:#d19a66">1</span>]);
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">if</span> (<span style="color:#e06c75">dp</span> <span style="color:#56b6c2">==</span> <span style="color:#e5c07b">NULL</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#61afef;font-weight:bold">perror</span>(<span style="color:#98c379">&#34;opendir&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">return</span> <span style="color:#d19a66">1</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// store every file&#39;s st_ctime property into an array
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span> (ep <span style="color:#f92672">=</span> <span style="color:#a6e22e">readdir</span>(dp)) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">stat</span>(ep<span style="color:#f92672">-&gt;</span>d_name, <span style="color:#f92672">&amp;</span>st);
-</span></span><span style="display:flex;"><span>    fdl[c<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> st.st_ctime;
+</span></span><span style="display:flex;"><span>  <span style="color:#7f848e">// store every file&#39;s st_ctime property into an array
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e"></span>  <span style="color:#c678dd">while</span> (<span style="color:#e06c75">ep</span> <span style="color:#56b6c2">=</span> <span style="color:#61afef;font-weight:bold">readdir</span>(<span style="color:#e06c75">dp</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#61afef;font-weight:bold">stat</span>(<span style="color:#e06c75">ep</span><span style="color:#56b6c2">-&gt;</span><span style="color:#e06c75">d_name</span>, <span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">st</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">fdl</span>[<span style="color:#e06c75">c</span><span style="color:#56b6c2">++</span>] <span style="color:#56b6c2">=</span> <span style="color:#e06c75">st</span>.<span style="color:#e06c75">st_ctime</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// monitoring loop
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>    c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">usleep</span>(<span style="color:#ae81ff">500000</span>);
-</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> <span style="color:#a6e22e">opendir</span>(argv[<span style="color:#ae81ff">1</span>]);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ((ep <span style="color:#f92672">=</span> <span style="color:#a6e22e">readdir</span>(dp)) <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">64</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stat</span>(ep<span style="color:#f92672">-&gt;</span>d_name, <span style="color:#f92672">&amp;</span>st);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (fdl[c] <span style="color:#f92672">!=</span> st.st_ctime) { <span style="color:#75715e">// if a file was modified or deleted or there is a new file
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        setchg <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;                <span style="color:#75715e">// the previous array and the current array will differ
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }
-</span></span><span style="display:flex;"><span>      fdl[c<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> st.st_ctime;
+</span></span><span style="display:flex;"><span>  <span style="color:#7f848e">// monitoring loop
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e"></span>  <span style="color:#c678dd">while</span> (<span style="color:#d19a66">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">c</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#61afef;font-weight:bold">usleep</span>(<span style="color:#d19a66">500000</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">dp</span> <span style="color:#56b6c2">=</span> <span style="color:#61afef;font-weight:bold">opendir</span>(<span style="color:#e06c75">argv</span>[<span style="color:#d19a66">1</span>]);
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">while</span> ((<span style="color:#e06c75">ep</span> <span style="color:#56b6c2">=</span> <span style="color:#61afef;font-weight:bold">readdir</span>(<span style="color:#e06c75">dp</span>)) <span style="color:#56b6c2">&amp;&amp;</span> <span style="color:#e06c75">c</span> <span style="color:#56b6c2">&lt;</span> <span style="color:#d19a66">64</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#61afef;font-weight:bold">stat</span>(<span style="color:#e06c75">ep</span><span style="color:#56b6c2">-&gt;</span><span style="color:#e06c75">d_name</span>, <span style="color:#56b6c2">&amp;</span><span style="color:#e06c75">st</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">if</span> (<span style="color:#e06c75">fdl</span>[<span style="color:#e06c75">c</span>] <span style="color:#56b6c2">!=</span> <span style="color:#e06c75">st</span>.<span style="color:#e06c75">st_ctime</span>) { <span style="color:#7f848e">// if a file was modified or deleted or there is a new file
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e"></span>        <span style="color:#e06c75">setchg</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">1</span>;                <span style="color:#7f848e">// the previous array and the current array will differ
+</span></span></span><span style="display:flex;"><span><span style="color:#7f848e"></span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#e06c75">fdl</span>[<span style="color:#e06c75">c</span><span style="color:#56b6c2">++</span>] <span style="color:#56b6c2">=</span> <span style="color:#e06c75">st</span>.<span style="color:#e06c75">st_ctime</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (setchg) {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Something has changed, I can feel it...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>      setchg <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> (<span style="color:#e06c75">setchg</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#61afef;font-weight:bold">printf</span>(<span style="color:#98c379">&#34;Something has changed, I can feel it...</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#e06c75">setchg</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">closedir</span>(dp);
+</span></span><span style="display:flex;"><span>  <span style="color:#61afef;font-weight:bold">closedir</span>(<span style="color:#e06c75">dp</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">return</span> <span style="color:#d19a66">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The code is not perfect and needs a lot of improvement, for example
 it can only monitor up to 64 files. I will leave it to you to improve

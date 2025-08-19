@@ -231,11 +231,11 @@ interesting behavior in the Vim/Neovim text editors. The purpose of the program 
 to continuously print any new data appended to the end of a file—just like <code>tail -f</code>,
 which is commonly used for watching log files.</p>
 <p>In my implementation, I have something like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>filename <span style="color:#f92672">=</span> argv[<span style="color:#ae81ff">1</span>];
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> fd <span style="color:#f92672">=</span> <span style="color:#a6e22e">open</span>(filename, O_RDONLY);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;open&#34;</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#c678dd">const</span> <span style="color:#e5c07b">char</span> <span style="color:#56b6c2">*</span><span style="color:#e06c75">filename</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">argv</span>[<span style="color:#d19a66">1</span>];
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">int</span> <span style="color:#e06c75">fd</span> <span style="color:#56b6c2">=</span> <span style="color:#61afef;font-weight:bold">open</span>(<span style="color:#e06c75">filename</span>, <span style="color:#e06c75">O_RDONLY</span>);
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">if</span> (<span style="color:#e06c75">fd</span> <span style="color:#56b6c2">==</span> <span style="color:#56b6c2">-</span><span style="color:#d19a66">1</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#61afef;font-weight:bold">perror</span>(<span style="color:#98c379">&#34;open&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#c678dd">return</span> <span style="color:#d19a66">1</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The <code>open()</code> function, provided by <code>#include &lt;fcntl.h&gt;</code>, returns a file descriptor—a
 small, nonnegative integer that acts as an index into the process’s table of
@@ -261,18 +261,18 @@ when Vim/Neovim saves changes to a file, does it do something that affects the i
 <p>Editing a file with Vim/Neovim doesn’t change the filename, so I checked whether it
 modifies the inode in some way.</p>
 <p>I used <code>ls -li</code> to inspect the file’s inode before and after editing:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ touch a.txt
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ touch a.txt
 </span></span><span style="display:flex;"><span>$ ls -li
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12085572</span> -rw-rw-r-- <span style="color:#ae81ff">1</span> deni deni <span style="color:#ae81ff">0</span> Jun <span style="color:#ae81ff">13</span> 18:23 a.txt
+</span></span><span style="display:flex;"><span><span style="color:#d19a66">12085572</span> -rw-rw-r-- <span style="color:#d19a66">1</span> deni deni <span style="color:#d19a66">0</span> Jun <span style="color:#d19a66">13</span> 18:23 a.txt
 </span></span></code></pre></div><p>Then I made some changes using Neovim:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nvim a.txt
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nvim a.txt
 </span></span><span style="display:flex;"><span>$ ls -li
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">12085597</span> -rw-rw-r-- <span style="color:#ae81ff">1</span> deni deni <span style="color:#ae81ff">76</span> Jun <span style="color:#ae81ff">13</span> 18:24 a.txt
+</span></span><span style="display:flex;"><span><span style="color:#d19a66">12085597</span> -rw-rw-r-- <span style="color:#d19a66">1</span> deni deni <span style="color:#d19a66">76</span> Jun <span style="color:#d19a66">13</span> 18:24 a.txt
 </span></span></code></pre></div><p>Yup, the inode changed.</p>
 <p>That explains why my program didn’t detect the changes. It was still
 watching the original file, whose inode no longer existed.</p>
 <p>From the Vim manual:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-man" data-lang="man"><span style="display:flex;"><span>&#39;backup&#39; &#39;bk&#39;		boolean	(default off)
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-man" data-lang="man"><span style="display:flex;"><span>&#39;backup&#39; &#39;bk&#39;		boolean	(default off)
 </span></span><span style="display:flex;"><span>			global
 </span></span><span style="display:flex;"><span>			{not in Vi}
 </span></span><span style="display:flex;"><span>	Make a backup before overwriting a file.  Leave it around after the

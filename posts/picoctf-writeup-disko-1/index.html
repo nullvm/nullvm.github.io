@@ -233,7 +233,7 @@ Download the disk image <a href="https://artifacts.picoctf.net/c/536/disko-1.dd.
 <p>I grabbed the disk image (<code>disko-1.dd</code>) and started experimenting.</p>
 <h2 id="initial-attempts">Initial Attempts<a hidden class="anchor" aria-hidden="true" href="#initial-attempts">#</a></h2>
 <p>My first instinct was to take a look at the raw hex using <code>xxd</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xxd disko-1.dd | less
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xxd disko-1.dd | less
 </span></span></code></pre></div><p>I did see some readable text, like:</p>
 <pre tabindex="0"><code>This is not a bootable disk. Please insert a bootable floppy
 and .. press any key to try to gain...
@@ -241,7 +241,7 @@ and .. press any key to try to gain...
 <h2 id="switching-gears">Switching Gears<a hidden class="anchor" aria-hidden="true" href="#switching-gears">#</a></h2>
 <p>Since the flag format is predictable (<code>picoCTF{...}</code>), a simpler approach came to mind: just dump all printable text and grep for the flag.</p>
 <p>On Linux, <code>strings</code> is perfect for this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>strings disko-1.dd | grep -i picoCTF
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>strings disko-1.dd | grep -i picoCTF
 </span></span></code></pre></div><p>And sure enough, the flag popped out.</p>
 <h2 id="the-flag">The Flag<a hidden class="anchor" aria-hidden="true" href="#the-flag">#</a></h2>
 <pre tabindex="0"><code>picoCTF{1t5_ju5t_4_5tr1n9_c63b02ef}

@@ -294,14 +294,14 @@ didn&rsquo;t exists in the filesystem. This situation is referred to as a <em>da
 the linux command <code>ln</code> to create hard links and soft links. The syntax is pretty
 simple.</p>
 <p>To create a hard link, the syntax is as the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln &lt;source_file&gt; &lt;output_file&gt;
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln &lt;source_file&gt; &lt;output_file&gt;
 </span></span></code></pre></div><p>To create a soft link, just add the <code>-s</code> flag:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s &lt;source_file&gt; &lt;output_file&gt;
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s &lt;source_file&gt; &lt;output_file&gt;
 </span></span></code></pre></div><p>For example, if I have a file named <code>hello.txt</code>, to create the hard link in the
 same directory with the name <code>hardlink_hello.txt</code> I can type:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln hello.txt hardlink_hello.txt
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln hello.txt hardlink_hello.txt
 </span></span></code></pre></div><p>if I want to create a soft link named <code>softlink_hello.txt</code>, I just need to add the <code>-s</code> flag, so:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s hello.txt softlink_hello.txt
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s hello.txt softlink_hello.txt
 </span></span></code></pre></div><h2 id="afterword">Afterword<a hidden class="anchor" aria-hidden="true" href="#afterword">#</a></h2>
 <p>There you have it, a short and simplified explanation about hard link and soft link in
 Linux. Using hard link and soft link are useful when you want to create a <em>shortcut</em> to
