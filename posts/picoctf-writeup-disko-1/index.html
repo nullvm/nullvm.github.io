@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>PicoCTF Writeup #505 | nullvm</title>
-<meta name="keywords" content="CTF, forensics">
+<meta name="keywords" content="ctf, forensics">
 <meta name="description" content="PicoCTF Writeup – Forensics Disk Image
 Challenge: Disk, disk, sleuth!
 
@@ -82,7 +82,7 @@ Initial Attempts My first instinct was to take a look at the raw hex using xxd:"
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-19T11:27:28+07:00">
     <meta property="article:modified_time" content="2025-08-19T11:27:28+07:00">
-    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Ctf">
     <meta property="article:tag" content="Forensics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PicoCTF Writeup #505">
@@ -127,7 +127,7 @@ My first instinct was to take a look at the raw hex using xxd:">
   "name": "PicoCTF Writeup #505",
   "description": "PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!\nDescription: Can you find the flag in this disk image? Download the disk image here.\nFirst Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.\nI grabbed the disk image (disko-1.dd) and started experimenting.\nInitial Attempts My first instinct was to take a look at the raw hex using xxd:\n",
   "keywords": [
-    "CTF", "forensics"
+    "ctf", "forensics"
   ],
   "articleBody": "PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!\nDescription: Can you find the flag in this disk image? Download the disk image here.\nFirst Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.\nI grabbed the disk image (disko-1.dd) and started experimenting.\nInitial Attempts My first instinct was to take a look at the raw hex using xxd:\nxxd disko-1.dd | less I did see some readable text, like:\nThis is not a bootable disk. Please insert a bootable floppy and .. press any key to try to gain... But nothing that looked like a flag. At this point, I also tried mounting the image as a loop device, but it didn’t yield anything useful either.\nSwitching Gears Since the flag format is predictable (picoCTF{...}), a simpler approach came to mind: just dump all printable text and grep for the flag.\nOn Linux, strings is perfect for this:\nstrings disko-1.dd | grep -i picoCTF And sure enough, the flag popped out.\nThe Flag picoCTF{1t5_ju5t_4_5tr1n9_c63b02ef} Takeaways Forensics challenges don’t always require fancy tools — sometimes the classic Unix pipeline (strings | grep) is all you need. Recognizing patterns (like picoCTF{}) can save you from wasting time on dead ends. Always start simple before diving into heavy forensic frameworks. ",
   "wordCount" : "231",
