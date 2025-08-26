@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PicoCTF Writeup #475 | nullvm</title>
+<meta name="keywords" content="cryptography, ctf">
+<meta name="description" content="The hashcrack challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself here.
+Challenge Overview
+The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/picoctf-hashcrack/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.af48cad252819d53882fb159be15ecd4e57561e9d06c2c5d922c3727f740719b.css" integrity="sha256-r0jK0lKBnVOIL7FZvhXs1OV1YenQbCxdkiw3J/dAcZs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-hashcrack/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/picoctf-hashcrack/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="PicoCTF Writeup #475">
+  <meta property="og:description" content="The hashcrack challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself here.
+Challenge Overview The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-26T11:59:43+07:00">
+    <meta property="article:modified_time" content="2025-08-26T11:59:43+07:00">
+    <meta property="article:tag" content="Cryptography">
+    <meta property="article:tag" content="Ctf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PicoCTF Writeup #475">
+<meta name="twitter:description" content="The hashcrack challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself here.
+Challenge Overview
+The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "PicoCTF Writeup #475",
+      "item": "/posts/picoctf-hashcrack/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PicoCTF Writeup #475",
+  "name": "PicoCTF Writeup #475",
+  "description": "The hashcrack challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself here.\nChallenge Overview The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:\n",
+  "keywords": [
+    "cryptography", "ctf"
+  ],
+  "articleBody": "The hashcrack challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself here.\nChallenge Overview The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:\nnc verbal-sleep.picoctf.net 51671 This means the challenge requires interacting with a remote service over Netcat. No additional information is provided beyond the context that weak hashing is involved.\nInitial Interaction with the Service After connecting to the given host and port using Netcat, the service displays the following prompt:\nWelcome!! Looking For the Secret? We have identified a hash: 482c811da5d5b4bc6d497ffa98491e38 Enter the password for identified hash: test Incorrect. Goodbye. From this output, we can infer that the server provides a hash and expects us to supply the correct plaintext password. If the input is incorrect, the connection is closed immediately.\nAnalyzing the Problem The first step is to understand what kind of hash we are dealing with. The hash provided is a 32-character hexadecimal string, which is a strong indicator of the MD5 algorithm. MD5 is widely recognized as an insecure hashing algorithm that is easy to reverse due to precomputed databases and rainbow tables.\nConsidering the challenge difficulty is marked as easy, it would be inefficient to attempt a brute-force attack using tools such as hashcat or John the Ripper. Large wordlists like rockyou.txt could solve the problem eventually, but they would consume unnecessary time and resources. Instead, this situation calls for a more direct and practical solution.\nChoosing the Approach The most efficient approach for this challenge is to use an online MD5 reverse lookup service. Many such services exist, and they work by checking the hash against massive precomputed databases of known hashes. Since this is a Capture The Flag (CTF) environment and the password is almost certainly a common word, this method is quick and effective.\nStep-by-Step Solution The first thing I did was grab the hash the server handed me:\n482c811da5d5b4bc6d497ffa98491e38 Now, I could have gone full hacker mode—spinning up hashcat, loading rockyou.txt, and watching my CPU slowly turn into a space heater—but this was an easy challenge. That means the solution probably isn’t brute force; it’s something much simpler.\nSo I took the pragmatic route. Instead of brute-forcing, I opened Google and typed:\n482c811da5d5b4bc6d497ffa98491e38 pattern Adding the word “pattern” helps Google return relevant reverse-hash lookups instead of random hash algorithm explanations. Sure enough, the very first result was a site called md5hashing.net.\nThis site is essentially a cheat code for CTFs—it told me the exact plaintext for the hash and even confirmed it was MD5. No guesswork.\nI took that plaintext, reconnected to the server, and entered it. Boom—the server accepted it but immediately gave me another hash. So the game was on:\nCopy the new hash. Search again using the same “ pattern” trick. Get the plaintext from the website. Submit it to the server. I repeated this process a few times, like solving a puzzle where the answer unlocks the next piece. Finally, after the last submission, the server revealed the ultimate reward: the flag.\nThe Result The flag obtained from the challenge is:\npicoCTF{UseStr0nG_h@shEs_\u0026PaSswDs!_eb2f8459} Key Takeaways This challenge illustrates why MD5 is no longer suitable for password hashing. MD5 hashes can be reversed with ease using publicly available tools and precomputed hash databases. Any system still relying on MD5 for password storage is vulnerable to trivial attacks.\nInstead of MD5, modern applications should implement secure, computationally expensive hashing algorithms designed for password storage, such as bcrypt, scrypt, or Argon2. These algorithms incorporate salting and adjustable work factors, which significantly reduce the effectiveness of brute-force and dictionary attacks.\nTools Used Netcat (nc) – for interacting with the remote service. md5hashing.net – for reversing MD5 hashes using precomputed databases. Afterword This solution emphasizes the importance of avoiding outdated security practices and demonstrates how easy it is to exploit weak hashing in real-world scenarios. The simplicity of this challenge is deliberate—it serves as a reminder that security through obscurity is not security at all.\n",
+  "wordCount" : "728",
+  "inLanguage": "en",
+  "datePublished": "2025-08-26T11:59:43+07:00",
+  "dateModified": "2025-08-26T11:59:43+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/picoctf-hashcrack/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PicoCTF Writeup #475
+    </h1>
+    <div class="post-meta"><span title='2025-08-26 11:59:43 +0700 +07'>August 26, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-hashcrack.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>The <strong><code>hashcrack</code></strong> challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself <a href="https://play.picoctf.org/practice/challenge/475">here</a>.</p>
+<h2 id="challenge-overview">Challenge Overview<a hidden class="anchor" aria-hidden="true" href="#challenge-overview">#</a></h2>
+<p>The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc verbal-sleep.picoctf.net <span style="color:#d19a66">51671</span>
+</span></span></code></pre></div><p>This means the challenge requires interacting with a remote service over Netcat. No additional information is provided beyond the context that weak hashing is involved.</p>
+<h2 id="initial-interaction-with-the-service">Initial Interaction with the Service<a hidden class="anchor" aria-hidden="true" href="#initial-interaction-with-the-service">#</a></h2>
+<p>After connecting to the given host and port using Netcat, the service displays the following prompt:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Welcome!! Looking For the Secret?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>We have identified a hash: 482c811da5d5b4bc6d497ffa98491e38
+</span></span><span style="display:flex;"><span>Enter the password <span style="color:#c678dd">for</span> identified hash: <span style="color:#e5c07b">test</span>
+</span></span><span style="display:flex;"><span>Incorrect. Goodbye.
+</span></span></code></pre></div><p>From this output, we can infer that the server provides a hash and expects us to supply the correct plaintext password. If the input is incorrect, the connection is closed immediately.</p>
+<h2 id="analyzing-the-problem">Analyzing the Problem<a hidden class="anchor" aria-hidden="true" href="#analyzing-the-problem">#</a></h2>
+<p>The first step is to understand what kind of hash we are dealing with. The hash provided is a 32-character hexadecimal string, which is a strong indicator of the <strong>MD5</strong> algorithm. MD5 is widely recognized as an insecure hashing algorithm that is easy to reverse due to precomputed databases and rainbow tables.</p>
+<p>Considering the challenge difficulty is marked as <strong>easy</strong>, it would be inefficient to attempt a brute-force attack using tools such as <code>hashcat</code> or <code>John the Ripper</code>. Large wordlists like <code>rockyou.txt</code> could solve the problem eventually, but they would consume unnecessary time and resources. Instead, this situation calls for a more direct and practical solution.</p>
+<h2 id="choosing-the-approach">Choosing the Approach<a hidden class="anchor" aria-hidden="true" href="#choosing-the-approach">#</a></h2>
+<p>The most efficient approach for this challenge is to use an online MD5 reverse lookup service. Many such services exist, and they work by checking the hash against massive precomputed databases of known hashes. Since this is a Capture The Flag (CTF) environment and the password is almost certainly a common word, this method is quick and effective.</p>
+<h2 id="step-by-step-solution">Step-by-Step Solution<a hidden class="anchor" aria-hidden="true" href="#step-by-step-solution">#</a></h2>
+<p>The first thing I did was grab the hash the server handed me:</p>
+<pre tabindex="0"><code>482c811da5d5b4bc6d497ffa98491e38
+</code></pre><p>Now, I could have gone full hacker mode—spinning up <code>hashcat</code>, loading <code>rockyou.txt</code>, and watching my CPU slowly turn into a space heater—but this was an <strong>easy</strong> challenge. That means the solution probably isn’t brute force; it’s something much simpler.</p>
+<p>So I took the pragmatic route. Instead of brute-forcing, I opened Google and typed:</p>
+<pre tabindex="0"><code>482c811da5d5b4bc6d497ffa98491e38 pattern
+</code></pre><p>Adding the word “pattern” helps Google return relevant reverse-hash lookups instead of random hash algorithm explanations. Sure enough, the very first result was a site called <strong><a href="https://md5hashing.net">md5hashing.net</a></strong>.</p>
+<p>This site is essentially a cheat code for CTFs—it told me the exact plaintext for the hash and even confirmed it was MD5. No guesswork.</p>
+<p>I took that plaintext, reconnected to the server, and entered it. Boom—the server accepted it but immediately gave me <strong>another</strong> hash. So the game was on:</p>
+<ul>
+<li>Copy the new hash.</li>
+<li>Search again using the same “<code>&lt;HASHVALUE&gt; pattern</code>” trick.</li>
+<li>Get the plaintext from the website.</li>
+<li>Submit it to the server.</li>
+</ul>
+<p>I repeated this process a few times, like solving a puzzle where the answer unlocks the next piece. Finally, after the last submission, the server revealed the ultimate reward: the flag.</p>
+<h2 id="the-result">The Result<a hidden class="anchor" aria-hidden="true" href="#the-result">#</a></h2>
+<p>The flag obtained from the challenge is:</p>
+<pre tabindex="0"><code>picoCTF{UseStr0nG_h@shEs_&amp;PaSswDs!_eb2f8459}
+</code></pre><h2 id="key-takeaways">Key Takeaways<a hidden class="anchor" aria-hidden="true" href="#key-takeaways">#</a></h2>
+<p>This challenge illustrates why MD5 is no longer suitable for password hashing. MD5 hashes can be reversed with ease using publicly available tools and precomputed hash databases. Any system still relying on MD5 for password storage is vulnerable to trivial attacks.</p>
+<p>Instead of MD5, modern applications should implement secure, computationally expensive hashing algorithms designed for password storage, such as <strong>bcrypt</strong>, <strong>scrypt</strong>, or <strong>Argon2</strong>. These algorithms incorporate salting and adjustable work factors, which significantly reduce the effectiveness of brute-force and dictionary attacks.</p>
+<h2 id="tools-used">Tools Used<a hidden class="anchor" aria-hidden="true" href="#tools-used">#</a></h2>
+<ul>
+<li><strong>Netcat (<code>nc</code>)</strong> – for interacting with the remote service.</li>
+<li><strong><a href="https://md5hashing.net">md5hashing.net</a></strong> – for reversing MD5 hashes using precomputed databases.</li>
+</ul>
+<h2 id="afterword">Afterword<a hidden class="anchor" aria-hidden="true" href="#afterword">#</a></h2>
+<p>This solution emphasizes the importance of avoiding outdated security practices and demonstrates how easy it is to exploit weak hashing in real-world scenarios. The simplicity of this challenge is deliberate—it serves as a reminder that security through obscurity is not security at all.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/cryptography/">cryptography</a></li>
+      <li><a href="/tags/ctf/">ctf</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

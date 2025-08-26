@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cryptography on nullvm</title>
+    <link>/tags/cryptography/index.xml</link>
+    <description>Recent content in Cryptography on nullvm</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Aug 2025 11:59:43 +0700</lastBuildDate>
+    <atom:link href="/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PicoCTF Writeup #475</title>
+      <link>/posts/picoctf-hashcrack/</link>
+      <pubDate>Tue, 26 Aug 2025 11:59:43 +0700</pubDate>
+      <guid>/posts/picoctf-hashcrack/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;&lt;code&gt;hashcrack&lt;/code&gt;&lt;/strong&gt; challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself &lt;a href=&#34;https://play.picoctf.org/practice/challenge/475&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;challenge-overview&#34;&gt;Challenge Overview&lt;/h2&gt;
+&lt;p&gt;The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
