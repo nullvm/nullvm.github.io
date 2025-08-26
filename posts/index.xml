@@ -18,7 +18,7 @@
 &lt;p&gt;👨‍💻 &lt;em&gt;“A developer added profile picture uploads. What could possibly go wrong?”&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If you’ve ever touched PHP (I’m sorry) you already know the answer: &lt;strong&gt;literally everything&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/482&#34;&gt;Standard Pizzas&lt;/a&gt; 🍕&lt;/p&gt;
-&lt;h2 id=&#34;step-1-upload-feature-more-like-upload-malware&#34;&gt;Step 1: Upload Feature? More Like Upload &lt;em&gt;Malware&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;upload-feature-more-like-upload-malware&#34;&gt;Upload Feature? More Like Upload &lt;em&gt;Malware&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;The site lets you upload an image and then proudly tells you where it lives:&lt;/p&gt;</description>
     </item>
     <item>
@@ -31,7 +31,7 @@
 &lt;p&gt;…until you stumble across one of its cursed features and realize &lt;strong&gt;“oh no, this is how hackers get RCE.”&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Today’s silly Python feature:
 👉 You can &lt;strong&gt;import literally anything, from anywhere.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;step-1-wait-i-can-do-that&#34;&gt;Step 1: Wait… I Can Do &lt;em&gt;That?&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;wait-i-can-do-that&#34;&gt;Wait… I Can Do &lt;em&gt;That?&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;Normally in Python, you import modules at the top like a responsible developer:&lt;/p&gt;</description>
     </item>
     <item>

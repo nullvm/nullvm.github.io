@@ -18,7 +18,7 @@
 &lt;p&gt;…until you stumble across one of its cursed features and realize &lt;strong&gt;“oh no, this is how hackers get RCE.”&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Today’s silly Python feature:
 👉 You can &lt;strong&gt;import literally anything, from anywhere.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;step-1-wait-i-can-do-that&#34;&gt;Step 1: Wait… I Can Do &lt;em&gt;That?&lt;/em&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;wait-i-can-do-that&#34;&gt;Wait… I Can Do &lt;em&gt;That?&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;Normally in Python, you import modules at the top like a responsible developer:&lt;/p&gt;</description>
     </item>
     <item>

