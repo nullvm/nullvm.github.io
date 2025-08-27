@@ -6,8 +6,16 @@
     <description>Recent content in Posts on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Aug 2025 11:59:43 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 27 Aug 2025 13:33:34 +0700</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Declared War on Windows Updates (and Won… Kind of)</title>
+      <link>/posts/windows-update-disable/</link>
+      <pubDate>Wed, 27 Aug 2025 13:33:34 +0700</pubDate>
+      <guid>/posts/windows-update-disable/</guid>
+      <description>&lt;p&gt;Ever since I installed my first Linux distro (good old Ubuntu), I never once thought about going back to Windows. I mean, why would I? Before Linux, I only touched computers for gaming. Anything beyond that—writing documents, checking emails, or wrestling with random &lt;strong&gt;Blue Screen of Death&lt;/strong&gt; encounters—sounded like the digital equivalent of watching paint dry.&lt;/p&gt;
+&lt;p&gt;Linux changed everything. Suddenly, computers weren’t these boring office machines—they were &lt;em&gt;fun&lt;/em&gt;. They were obedient little metal pets that did whatever I told them to. Want to customize your entire desktop? Sure. Want to write a bash script that does absolutely nothing useful but makes you feel like a hacker? Go for it. Want to nuke your bootloader at 2 AM and spend the next 4 hours fixing it? Linux says, &lt;em&gt;“Challenge accepted.”&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>PicoCTF Writeup #475</title>
       <link>/posts/picoctf-hashcrack/</link>
