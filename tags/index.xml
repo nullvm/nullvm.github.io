@@ -6,20 +6,48 @@
     <description>Recent content in Tags on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Sep 2025 00:00:41 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 11:35:05 +0700</lastBuildDate>
     <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Language</title>
-      <link>/tags/language/index.xml</link>
-      <pubDate>Tue, 16 Sep 2025 00:00:41 +0700</pubDate>
-      <guid>/tags/language/index.xml</guid>
+      <title>Light Novel</title>
+      <link>/tags/light-novel/index.xml</link>
+      <pubDate>Tue, 16 Sep 2025 11:35:05 +0700</pubDate>
+      <guid>/tags/light-novel/index.xml</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>意見</title>
+      <link>/tags/%E6%84%8F%E8%A6%8B/index.xml</link>
+      <pubDate>Tue, 16 Sep 2025 11:35:05 +0700</pubDate>
+      <guid>/tags/%E6%84%8F%E8%A6%8B/index.xml</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>日本語</title>
+      <link>/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/index.xml</link>
+      <pubDate>Tue, 16 Sep 2025 11:35:05 +0700</pubDate>
+      <guid>/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/index.xml</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Powershell</title>
+      <link>/tags/powershell/index.xml</link>
+      <pubDate>Tue, 16 Sep 2025 10:42:48 +0700</pubDate>
+      <guid>/tags/powershell/index.xml</guid>
       <description></description>
     </item>
     <item>
       <title>Windows</title>
       <link>/tags/windows/index.xml</link>
-      <pubDate>Wed, 27 Aug 2025 13:33:34 +0700</pubDate>
+      <pubDate>Tue, 16 Sep 2025 10:42:48 +0700</pubDate>
       <guid>/tags/windows/index.xml</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Language</title>
+      <link>/tags/language/index.xml</link>
+      <pubDate>Tue, 16 Sep 2025 00:00:41 +0700</pubDate>
+      <guid>/tags/language/index.xml</guid>
       <description></description>
     </item>
     <item>

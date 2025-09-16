@@ -158,6 +158,38 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #505
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>PicoCTF Writeup – Forensics Disk Image Challenge: Disk, disk, sleuth!
+Description: Can you find the flag in this disk image? Download the disk image here.
+First Thoughts This challenge was tagged forensics, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.
+I grabbed the disk image (disko-1.dd) and started experimenting.
+Initial Attempts My first instinct was to take a look at the raw hex using xxd:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-19 11:27:28 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #505" href="/posts/picoctf-writeup-disko-1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #492
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>PicoCTF Writeup – Server-Side Template Injection (SSTI) Recently, I played around with a PicoCTF challenge 492. The challenge looked like a simple web app that lets you “announce whatever you want.” Naturally, I fired up my terminal and started poking at it with curl. By the way, we can also visit the website and experiment with the form instead.
+curl -X GET http://rescued-float.picoctf.net:49878/announce -i Response:
+HTTP/1.1 405 METHOD NOT ALLOWED Allow: POST, OPTIONS Looks like only POST is allowed, so I retried with:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-19 11:09:54 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #492" href="/posts/picoctf-writeup-ssti/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Vim Backup-Copy
     </h2>
   </header>
@@ -289,45 +321,12 @@ But what is greater than array? Yup, dynamic array.
   <footer class="entry-footer"><span title='2024-07-02 13:30:14 +0700 +07'>July 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
   <a class="entry-link" aria-label="post link to Dynamic Array in C Simplified" href="/posts/dynamic-array-in-c-simplified/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/black-computer-keyboard-DuHKoV44prg)">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Linux Hard Link and Soft Link in a Nutshell
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what’s the difference between the two.
-What is inode? Your computer needs a way to ’labelize’ files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that’s used to identify an inode. The inode is a data structure that describe a file-system object.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-24 20:47:46 +0700 +07'>June 24, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Linux Hard Link and Soft Link in a Nutshell" href="/posts/hard-link-soft-link-in-a-nutshell-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1586296188195-89285b63f670?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/white-and-black-star-print-textile-4993XnXQKHY)">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Pointer and Const in C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The following paragraphs are the summary of pointer and const in C&#43;&#43;, I always forget about this topic so I decided to create a post about it.
-Regular Pointers Regular pointers are pointers the we usually use when working with pointers in C&#43;&#43;.
-int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = &amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won’t explain what is it and the rest of the it since it is easier to explain it using code rather than using words. (The definitions are still confusing to me💀)
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-15 20:59:34 +0700 +07'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Pointer and Const in C&#43;&#43;" href="/posts/cpp-pointer-const/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="/posts/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="/posts/page/3/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
