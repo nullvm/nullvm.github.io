@@ -17,7 +17,7 @@ once you know your way, you can combine any of that commands to make everything
 even more concise and quick.">
 <meta name="author" content="Deni Andrian Prayoga">
 <link rel="canonical" href="/posts/powershell-basic/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.af48cad252819d53882fb159be15ecd4e57561e9d06c2c5d922c3727f740719b.css" integrity="sha256-r0jK0lKBnVOIL7FZvhXs1OV1YenQbCxdkiw3J/dAcZs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,6 +29,10 @@ even more concise and quick.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
 
 <noscript>
     <style>
@@ -120,8 +124,8 @@ even more concise and quick.">
   "keywords": [
     "windows", "powershell"
   ],
-  "articleBody": "As someone coming from linux, there is one thing that I miss when trying to daily driving windows, and that is the terminal. Windows has great terminal emulator nowadays, with powershell being windows’ most powerful shell.\nYou see, it’s really natural for me to spend most of my time in the terminal when I’m using linux, it’s just much more simple and more focused. Not only that, the commands in linux are really short consisting of 2-6 letters on average, and once you know your way, you can combine any of that commands to make everything even more concise and quick.\nThat being said, here we will take a look on how to navigate windows file system and do simple actions in windows using powershell.\npwd A lot of powershell commands that has been aliased to that of the bash counterpart, however pwd is not one of them. We need to use Get-Location to print current working directory.\n\u003e Get-Location Path ---- C:\\Users\\deni ls Powershell counterpart Get-ChildItem. Alias ls, dir, gci.\n\u003e ls Directory: C:\\Users\\deni Mode LastWriteTime Length Name ---- ------------- ------ ---- d-r--- 9/13/2025 22:28 Desktop d-r--- 9/16/2025 11:07 Documents d-r--- 9/15/2025 19:18 Downloads d-r--- 8/23/2025 12:25 Favorites d----- 9/5/2025 16:39 Games d-r--- 8/23/2025 12:25 Links cd Powershell counterpart Set-Location. Alias cd, sl.\n\u003e cd $HOME cp Powershell counterpart Copy-Item. Alias cp, copy.\ncp file1.txt file2.txt ",
-  "wordCount" : "227",
+  "articleBody": "As someone coming from linux, there is one thing that I miss when trying to daily driving windows, and that is the terminal. Windows has great terminal emulator nowadays, with powershell being windows’ most powerful shell.\nYou see, it’s really natural for me to spend most of my time in the terminal when I’m using linux, it’s just much more simple and more focused. Not only that, the commands in linux are really short consisting of 2-6 letters on average, and once you know your way, you can combine any of that commands to make everything even more concise and quick.\nThat being said, here we will take a look on how to navigate windows file system and do simple actions in windows using powershell.\npwd A lot of powershell commands that has been aliased to that of the bash counterpart, however pwd is not one of them. We need to use Get-Location to print current working directory.\n\u003e Get-Location Path ---- C:\\Users\\deni ls Powershell counterpart Get-ChildItem. Alias ls, dir, gci.\n\u003e ls Directory: C:\\Users\\deni Mode LastWriteTime Length Name ---- ------------- ------ ---- d-r--- 9/13/2025 22:28 Desktop d-r--- 9/16/2025 11:07 Documents d-r--- 9/15/2025 19:18 Downloads d-r--- 8/23/2025 12:25 Favorites d----- 9/5/2025 16:39 Games d-r--- 8/23/2025 12:25 Links cd Powershell counterpart Set-Location. Alias cd, sl.\n\u003e cd $HOME cp Powershell counterpart Copy-Item. Alias cp, copy.\n\u003e cp file1.txt file2.txt mv Powershell counterpart Move-Item. Alias mv, move.\n\u003e mv oldname.txt newname.txt rm Powershell counterpart Remove-Item. Alias rm, del, erase.\n\u003e rm file.txt cat Powershell counterpart Get-Content. Alias cat, gc, type.\n\u003e cat file.txt echo Powershell counterpart Write-Output. Alias echo.\n\u003e echo \"hi\" grep Powershell counterpart Select-String.\n\u003e Select-String \"word\" file.txt which Powershell counterpart Get-Command. Alias gcm.\n\u003e gcm git man Powershell counterpart Get-Help.\n\u003e Get-Help Get-Location whoami Powershell counterpart whoami.\n\u003e whoami printenv \u003e Get-ChildItem Env: export VAR=value $env:VAR=\"value\" ps \u003e Get-Process kill \u003e Stop-Process -Id \u003cPID\u003e history \u003e Get-History ifconfig \u003e Get-NetIPAddress curl \u003e Invoke-WebRequest \u003cURL\u003e df \u003e Get-PSDrive stat \u003e Get-Item file You can also view the list of aliases possible in powershell by using command alias.\n",
+  "wordCount" : "347",
   "inLanguage": "en",
   "datePublished": "2025-09-16T10:42:48+07:00",
   "dateModified": "2025-09-16T10:42:48+07:00",
@@ -259,8 +263,51 @@ working directory.</p>
 <div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">cd </span><span style="color:#e06c75">$HOME</span>
 </span></span></code></pre></div><h3 id="cp">cp<a hidden class="anchor" aria-hidden="true" href="#cp">#</a></h3>
 <p>Powershell counterpart <code>Copy-Item</code>. Alias <code>cp</code>, <code>copy</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span><span style="color:#e5c07b">cp </span><span style="color:#e06c75">file1</span>.<span style="color:#e06c75">txt</span> <span style="color:#e06c75">file2</span>.<span style="color:#e06c75">txt</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">cp </span><span style="color:#e06c75">file1</span>.<span style="color:#e06c75">txt</span> <span style="color:#e06c75">file2</span>.<span style="color:#e06c75">txt</span>
+</span></span></code></pre></div><h3 id="mv">mv<a hidden class="anchor" aria-hidden="true" href="#mv">#</a></h3>
+<p>Powershell counterpart <code>Move-Item</code>. Alias <code>mv</code>, <code>move</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">mv </span><span style="color:#e06c75">oldname</span>.<span style="color:#e06c75">txt</span> <span style="color:#e06c75">newname</span>.<span style="color:#e06c75">txt</span>
+</span></span></code></pre></div><h3 id="rm">rm<a hidden class="anchor" aria-hidden="true" href="#rm">#</a></h3>
+<p>Powershell counterpart <code>Remove-Item</code>. Alias <code>rm</code>, <code>del</code>, <code>erase</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">rm </span><span style="color:#e06c75">file</span>.<span style="color:#e06c75">txt</span>
+</span></span></code></pre></div><h3 id="cat">cat<a hidden class="anchor" aria-hidden="true" href="#cat">#</a></h3>
+<p>Powershell counterpart <code>Get-Content</code>. Alias <code>cat</code>, <code>gc</code>, <code>type</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">cat </span><span style="color:#e06c75">file</span>.<span style="color:#e06c75">txt</span>
+</span></span></code></pre></div><h3 id="echo">echo<a hidden class="anchor" aria-hidden="true" href="#echo">#</a></h3>
+<p>Powershell counterpart <code>Write-Output</code>. Alias <code>echo</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">echo </span><span style="color:#98c379">&#34;hi&#34;</span>
+</span></span></code></pre></div><h3 id="grep">grep<a hidden class="anchor" aria-hidden="true" href="#grep">#</a></h3>
+<p>Powershell counterpart <code>Select-String</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Select-String</span> <span style="color:#98c379">&#34;word&#34;</span> <span style="color:#e06c75">file</span>.<span style="color:#e06c75">txt</span>
+</span></span></code></pre></div><h3 id="which">which<a hidden class="anchor" aria-hidden="true" href="#which">#</a></h3>
+<p>Powershell counterpart <code>Get-Command</code>. Alias <code>gcm</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">gcm </span><span style="color:#e06c75">git</span>
+</span></span></code></pre></div><h3 id="man">man<a hidden class="anchor" aria-hidden="true" href="#man">#</a></h3>
+<p>Powershell counterpart <code>Get-Help</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-Help</span> <span style="color:#e5c07b">Get-Location</span>
+</span></span></code></pre></div><h3 id="whoami">whoami<a hidden class="anchor" aria-hidden="true" href="#whoami">#</a></h3>
+<p>Powershell counterpart <code>whoami</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e06c75">whoami</span>
+</span></span></code></pre></div><h3 id="printenv">printenv<a hidden class="anchor" aria-hidden="true" href="#printenv">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-ChildItem</span> <span style="color:#e06c75">Env</span>:
+</span></span></code></pre></div><h3 id="export-varvalue">export VAR=value<a hidden class="anchor" aria-hidden="true" href="#export-varvalue">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span><span style="color:#e06c75">$env:VAR</span>=<span style="color:#98c379">&#34;value&#34;</span>
+</span></span></code></pre></div><h3 id="ps">ps<a hidden class="anchor" aria-hidden="true" href="#ps">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-Process</span>
+</span></span></code></pre></div><h3 id="kill">kill<a hidden class="anchor" aria-hidden="true" href="#kill">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Stop-Process</span> <span style="color:#e06c75">-Id</span> &lt;<span style="color:#e06c75">PID</span>&gt;
+</span></span></code></pre></div><h3 id="history">history<a hidden class="anchor" aria-hidden="true" href="#history">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-History</span>
+</span></span></code></pre></div><h3 id="ifconfig">ifconfig<a hidden class="anchor" aria-hidden="true" href="#ifconfig">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-NetIPAddress</span>
+</span></span></code></pre></div><h3 id="curl">curl<a hidden class="anchor" aria-hidden="true" href="#curl">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Invoke-WebRequest</span> &lt;<span style="color:#e06c75">URL</span>&gt;
+</span></span></code></pre></div><h3 id="df">df<a hidden class="anchor" aria-hidden="true" href="#df">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-PSDrive</span>
+</span></span></code></pre></div><h3 id="stat">stat<a hidden class="anchor" aria-hidden="true" href="#stat">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-pwsh" data-lang="pwsh"><span style="display:flex;"><span>&gt; <span style="color:#e5c07b">Get-Item</span> <span style="color:#e06c75">file</span>
+</span></span></code></pre></div><p>You can also view the list of aliases possible in powershell by using command <code>alias</code>.</p>
+
 
   </div>
 
