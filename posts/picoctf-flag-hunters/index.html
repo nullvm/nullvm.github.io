@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PicoCTF Writeup #472 | nullvm</title>
+<meta name="keywords" content="ctf, reverse engineering">
+<meta name="description" content="Challenge: Flag Hunters
+This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.
+Here is the full source code.
+import re
+import time
+
+
+# Read in flag from file
+flag = open(&#39;flag.txt&#39;, &#39;r&#39;).read()
+
+secret_intro = \
+&#39;&#39;&#39;Pico warriors rising, puzzles laid bare,
+Solving each challenge with precision and flair.
+With unity and skill, flags we deliver,
+The ether’s ours to conquer, &#39;&#39;&#39;\
+&#43; flag &#43; &#39;\n&#39;
+
+
+song_flag_hunters = secret_intro &#43;\
+&#39;&#39;&#39;
+
+[REFRAIN]
+We’re flag hunters in the ether, lighting up the grid,
+No puzzle too dark, no challenge too hid.
+With every exploit we trigger, every byte we decrypt,
+We’re chasing that victory, and we’ll never quit.
+CROWD (Singalong here!);
+RETURN
+
+[VERSE1]
+Command line wizards, we’re starting it right,
+Spawning shells in the terminal, hacking all night.
+Scripts and searches, grep through the void,
+Every keystroke, we&#39;re a cypher&#39;s envoy.
+Brute force the lock or craft that regex,
+Flag on the horizon, what challenge is next?
+
+REFRAIN;
+
+Echoes in memory, packets in trace,
+Digging through the remnants to uncover with haste.
+Hex and headers, carving out clues,
+Resurrect the hidden, it&#39;s forensics we choose.
+Disk dumps and packet dumps, follow the trail,
+Buried deep in the noise, but we will prevail.
+
+REFRAIN;
+
+Binary sorcerers, let’s tear it apart,
+Disassemble the code to reveal the dark heart.
+From opcode to logic, tracing each line,
+Emulate and break it, this key will be mine.
+Debugging the maze, and I see through the deceit,
+Patch it up right, and watch the lock release.
+
+REFRAIN;
+
+Ciphertext tumbling, breaking the spin,
+Feistel or AES, we’re destined to win.
+Frequency, padding, primes on the run,
+Vigenère, RSA, cracking them for fun.
+Shift the letters, matrices fall,
+Decrypt that flag and hear the ether call.
+
+REFRAIN;
+
+SQL injection, XSS flow,
+Map the backend out, let the database show.
+Inspecting each cookie, fiddler in the fight,
+Capturing requests, push the payload just right.
+HTML&#39;s secrets, backdoors unlocked,
+In the world wide labyrinth, we’re never lost.
+
+REFRAIN;
+
+Stack&#39;s overflowing, breaking the chain,
+ROP gadget wizardry, ride it to fame.
+Heap spray in silence, memory&#39;s plight,
+Race the condition, crash it just right.
+Shellcode ready, smashing the frame,
+Control the instruction, flags call my name.
+
+REFRAIN;
+
+END;
+&#39;&#39;&#39;
+
+MAX_LINES = 100
+
+def reader(song, startLabel):
+  lip = 0
+  start = 0
+  refrain = 0
+  refrain_return = 0
+  finished = False
+
+  # Get list of lyric lines
+  song_lines = song.splitlines()
+  
+  # Find startLabel, refrain and refrain return
+  for i in range(0, len(song_lines)):
+    if song_lines[i] == startLabel:
+      start = i &#43; 1
+    elif song_lines[i] == &#39;[REFRAIN]&#39;:
+      refrain = i &#43; 1
+    elif song_lines[i] == &#39;RETURN&#39;:
+      refrain_return = i
+
+  # Print lyrics
+  line_count = 0
+  lip = start
+  while not finished and line_count &lt; MAX_LINES:
+    line_count &#43;= 1
+    for line in song_lines[lip].split(&#39;;&#39;):
+      if line == &#39;&#39; and song_lines[lip] != &#39;&#39;:
+        continue
+      if line == &#39;REFRAIN&#39;:
+        song_lines[refrain_return] = &#39;RETURN &#39; &#43; str(lip &#43; 1)
+        lip = refrain
+      elif re.match(r&#34;CROWD.*&#34;, line):
+        crowd = input(&#39;Crowd: &#39;)
+        song_lines[lip] = &#39;Crowd: &#39; &#43; crowd
+        lip &#43;= 1
+      elif re.match(r&#34;RETURN [0-9]&#43;&#34;, line):
+        lip = int(line.split()[1])
+      elif line == &#39;END&#39;:
+        finished = True
+      else:
+        print(line, flush=True)
+        time.sleep(0.5)
+        lip &#43;= 1
+
+
+
+reader(song_flag_hunters, &#39;[VERSE1]&#39;)
+Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/picoctf-flag-hunters/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-flag-hunters/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/picoctf-flag-hunters/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="PicoCTF Writeup #472">
+  <meta property="og:description" content="Challenge: Flag Hunters
+This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.
+Here is the full source code.
+import re import time # Read in flag from file flag = open(&#39;flag.txt&#39;, &#39;r&#39;).read() secret_intro = \ &#39;&#39;&#39;Pico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, &#39;&#39;&#39;\ &#43; flag &#43; &#39;\n&#39; song_flag_hunters = secret_intro &#43;\ &#39;&#39;&#39; [REFRAIN] We’re flag hunters in the ether, lighting up the grid, No puzzle too dark, no challenge too hid. With every exploit we trigger, every byte we decrypt, We’re chasing that victory, and we’ll never quit. CROWD (Singalong here!); RETURN [VERSE1] Command line wizards, we’re starting it right, Spawning shells in the terminal, hacking all night. Scripts and searches, grep through the void, Every keystroke, we&#39;re a cypher&#39;s envoy. Brute force the lock or craft that regex, Flag on the horizon, what challenge is next? REFRAIN; Echoes in memory, packets in trace, Digging through the remnants to uncover with haste. Hex and headers, carving out clues, Resurrect the hidden, it&#39;s forensics we choose. Disk dumps and packet dumps, follow the trail, Buried deep in the noise, but we will prevail. REFRAIN; Binary sorcerers, let’s tear it apart, Disassemble the code to reveal the dark heart. From opcode to logic, tracing each line, Emulate and break it, this key will be mine. Debugging the maze, and I see through the deceit, Patch it up right, and watch the lock release. REFRAIN; Ciphertext tumbling, breaking the spin, Feistel or AES, we’re destined to win. Frequency, padding, primes on the run, Vigenère, RSA, cracking them for fun. Shift the letters, matrices fall, Decrypt that flag and hear the ether call. REFRAIN; SQL injection, XSS flow, Map the backend out, let the database show. Inspecting each cookie, fiddler in the fight, Capturing requests, push the payload just right. HTML&#39;s secrets, backdoors unlocked, In the world wide labyrinth, we’re never lost. REFRAIN; Stack&#39;s overflowing, breaking the chain, ROP gadget wizardry, ride it to fame. Heap spray in silence, memory&#39;s plight, Race the condition, crash it just right. Shellcode ready, smashing the frame, Control the instruction, flags call my name. REFRAIN; END; &#39;&#39;&#39; MAX_LINES = 100 def reader(song, startLabel): lip = 0 start = 0 refrain = 0 refrain_return = 0 finished = False # Get list of lyric lines song_lines = song.splitlines() # Find startLabel, refrain and refrain return for i in range(0, len(song_lines)): if song_lines[i] == startLabel: start = i &#43; 1 elif song_lines[i] == &#39;[REFRAIN]&#39;: refrain = i &#43; 1 elif song_lines[i] == &#39;RETURN&#39;: refrain_return = i # Print lyrics line_count = 0 lip = start while not finished and line_count &lt; MAX_LINES: line_count &#43;= 1 for line in song_lines[lip].split(&#39;;&#39;): if line == &#39;&#39; and song_lines[lip] != &#39;&#39;: continue if line == &#39;REFRAIN&#39;: song_lines[refrain_return] = &#39;RETURN &#39; &#43; str(lip &#43; 1) lip = refrain elif re.match(r&#34;CROWD.*&#34;, line): crowd = input(&#39;Crowd: &#39;) song_lines[lip] = &#39;Crowd: &#39; &#43; crowd lip &#43;= 1 elif re.match(r&#34;RETURN [0-9]&#43;&#34;, line): lip = int(line.split()[1]) elif line == &#39;END&#39;: finished = True else: print(line, flush=True) time.sleep(0.5) lip &#43;= 1 reader(song_flag_hunters, &#39;[VERSE1]&#39;) Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-04T20:57:27+07:00">
+    <meta property="article:modified_time" content="2025-10-04T20:57:27+07:00">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Reverse Engineering">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PicoCTF Writeup #472">
+<meta name="twitter:description" content="Challenge: Flag Hunters
+This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.
+Here is the full source code.
+import re
+import time
+
+
+# Read in flag from file
+flag = open(&#39;flag.txt&#39;, &#39;r&#39;).read()
+
+secret_intro = \
+&#39;&#39;&#39;Pico warriors rising, puzzles laid bare,
+Solving each challenge with precision and flair.
+With unity and skill, flags we deliver,
+The ether’s ours to conquer, &#39;&#39;&#39;\
+&#43; flag &#43; &#39;\n&#39;
+
+
+song_flag_hunters = secret_intro &#43;\
+&#39;&#39;&#39;
+
+[REFRAIN]
+We’re flag hunters in the ether, lighting up the grid,
+No puzzle too dark, no challenge too hid.
+With every exploit we trigger, every byte we decrypt,
+We’re chasing that victory, and we’ll never quit.
+CROWD (Singalong here!);
+RETURN
+
+[VERSE1]
+Command line wizards, we’re starting it right,
+Spawning shells in the terminal, hacking all night.
+Scripts and searches, grep through the void,
+Every keystroke, we&#39;re a cypher&#39;s envoy.
+Brute force the lock or craft that regex,
+Flag on the horizon, what challenge is next?
+
+REFRAIN;
+
+Echoes in memory, packets in trace,
+Digging through the remnants to uncover with haste.
+Hex and headers, carving out clues,
+Resurrect the hidden, it&#39;s forensics we choose.
+Disk dumps and packet dumps, follow the trail,
+Buried deep in the noise, but we will prevail.
+
+REFRAIN;
+
+Binary sorcerers, let’s tear it apart,
+Disassemble the code to reveal the dark heart.
+From opcode to logic, tracing each line,
+Emulate and break it, this key will be mine.
+Debugging the maze, and I see through the deceit,
+Patch it up right, and watch the lock release.
+
+REFRAIN;
+
+Ciphertext tumbling, breaking the spin,
+Feistel or AES, we’re destined to win.
+Frequency, padding, primes on the run,
+Vigenère, RSA, cracking them for fun.
+Shift the letters, matrices fall,
+Decrypt that flag and hear the ether call.
+
+REFRAIN;
+
+SQL injection, XSS flow,
+Map the backend out, let the database show.
+Inspecting each cookie, fiddler in the fight,
+Capturing requests, push the payload just right.
+HTML&#39;s secrets, backdoors unlocked,
+In the world wide labyrinth, we’re never lost.
+
+REFRAIN;
+
+Stack&#39;s overflowing, breaking the chain,
+ROP gadget wizardry, ride it to fame.
+Heap spray in silence, memory&#39;s plight,
+Race the condition, crash it just right.
+Shellcode ready, smashing the frame,
+Control the instruction, flags call my name.
+
+REFRAIN;
+
+END;
+&#39;&#39;&#39;
+
+MAX_LINES = 100
+
+def reader(song, startLabel):
+  lip = 0
+  start = 0
+  refrain = 0
+  refrain_return = 0
+  finished = False
+
+  # Get list of lyric lines
+  song_lines = song.splitlines()
+  
+  # Find startLabel, refrain and refrain return
+  for i in range(0, len(song_lines)):
+    if song_lines[i] == startLabel:
+      start = i &#43; 1
+    elif song_lines[i] == &#39;[REFRAIN]&#39;:
+      refrain = i &#43; 1
+    elif song_lines[i] == &#39;RETURN&#39;:
+      refrain_return = i
+
+  # Print lyrics
+  line_count = 0
+  lip = start
+  while not finished and line_count &lt; MAX_LINES:
+    line_count &#43;= 1
+    for line in song_lines[lip].split(&#39;;&#39;):
+      if line == &#39;&#39; and song_lines[lip] != &#39;&#39;:
+        continue
+      if line == &#39;REFRAIN&#39;:
+        song_lines[refrain_return] = &#39;RETURN &#39; &#43; str(lip &#43; 1)
+        lip = refrain
+      elif re.match(r&#34;CROWD.*&#34;, line):
+        crowd = input(&#39;Crowd: &#39;)
+        song_lines[lip] = &#39;Crowd: &#39; &#43; crowd
+        lip &#43;= 1
+      elif re.match(r&#34;RETURN [0-9]&#43;&#34;, line):
+        lip = int(line.split()[1])
+      elif line == &#39;END&#39;:
+        finished = True
+      else:
+        print(line, flush=True)
+        time.sleep(0.5)
+        lip &#43;= 1
+
+
+
+reader(song_flag_hunters, &#39;[VERSE1]&#39;)
+Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "PicoCTF Writeup #472",
+      "item": "/posts/picoctf-flag-hunters/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PicoCTF Writeup #472",
+  "name": "PicoCTF Writeup #472",
+  "description": "Challenge: Flag Hunters\nThis challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.\nHere is the full source code.\nimport re import time # Read in flag from file flag = open(\u0026#39;flag.txt\u0026#39;, \u0026#39;r\u0026#39;).read() secret_intro = \\ \u0026#39;\u0026#39;\u0026#39;Pico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, \u0026#39;\u0026#39;\u0026#39;\\ + flag + \u0026#39;\\n\u0026#39; song_flag_hunters = secret_intro +\\ \u0026#39;\u0026#39;\u0026#39; [REFRAIN] We’re flag hunters in the ether, lighting up the grid, No puzzle too dark, no challenge too hid. With every exploit we trigger, every byte we decrypt, We’re chasing that victory, and we’ll never quit. CROWD (Singalong here!); RETURN [VERSE1] Command line wizards, we’re starting it right, Spawning shells in the terminal, hacking all night. Scripts and searches, grep through the void, Every keystroke, we\u0026#39;re a cypher\u0026#39;s envoy. Brute force the lock or craft that regex, Flag on the horizon, what challenge is next? REFRAIN; Echoes in memory, packets in trace, Digging through the remnants to uncover with haste. Hex and headers, carving out clues, Resurrect the hidden, it\u0026#39;s forensics we choose. Disk dumps and packet dumps, follow the trail, Buried deep in the noise, but we will prevail. REFRAIN; Binary sorcerers, let’s tear it apart, Disassemble the code to reveal the dark heart. From opcode to logic, tracing each line, Emulate and break it, this key will be mine. Debugging the maze, and I see through the deceit, Patch it up right, and watch the lock release. REFRAIN; Ciphertext tumbling, breaking the spin, Feistel or AES, we’re destined to win. Frequency, padding, primes on the run, Vigenère, RSA, cracking them for fun. Shift the letters, matrices fall, Decrypt that flag and hear the ether call. REFRAIN; SQL injection, XSS flow, Map the backend out, let the database show. Inspecting each cookie, fiddler in the fight, Capturing requests, push the payload just right. HTML\u0026#39;s secrets, backdoors unlocked, In the world wide labyrinth, we’re never lost. REFRAIN; Stack\u0026#39;s overflowing, breaking the chain, ROP gadget wizardry, ride it to fame. Heap spray in silence, memory\u0026#39;s plight, Race the condition, crash it just right. Shellcode ready, smashing the frame, Control the instruction, flags call my name. REFRAIN; END; \u0026#39;\u0026#39;\u0026#39; MAX_LINES = 100 def reader(song, startLabel): lip = 0 start = 0 refrain = 0 refrain_return = 0 finished = False # Get list of lyric lines song_lines = song.splitlines() # Find startLabel, refrain and refrain return for i in range(0, len(song_lines)): if song_lines[i] == startLabel: start = i + 1 elif song_lines[i] == \u0026#39;[REFRAIN]\u0026#39;: refrain = i + 1 elif song_lines[i] == \u0026#39;RETURN\u0026#39;: refrain_return = i # Print lyrics line_count = 0 lip = start while not finished and line_count \u0026lt; MAX_LINES: line_count += 1 for line in song_lines[lip].split(\u0026#39;;\u0026#39;): if line == \u0026#39;\u0026#39; and song_lines[lip] != \u0026#39;\u0026#39;: continue if line == \u0026#39;REFRAIN\u0026#39;: song_lines[refrain_return] = \u0026#39;RETURN \u0026#39; + str(lip + 1) lip = refrain elif re.match(r\u0026#34;CROWD.*\u0026#34;, line): crowd = input(\u0026#39;Crowd: \u0026#39;) song_lines[lip] = \u0026#39;Crowd: \u0026#39; + crowd lip += 1 elif re.match(r\u0026#34;RETURN [0-9]+\u0026#34;, line): lip = int(line.split()[1]) elif line == \u0026#39;END\u0026#39;: finished = True else: print(line, flush=True) time.sleep(0.5) lip += 1 reader(song_flag_hunters, \u0026#39;[VERSE1]\u0026#39;) Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.\n",
+  "keywords": [
+    "ctf", "reverse engineering"
+  ],
+  "articleBody": "Challenge: Flag Hunters\nThis challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.\nHere is the full source code.\nimport re import time # Read in flag from file flag = open('flag.txt', 'r').read() secret_intro = \\ '''Pico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, '''\\ + flag + '\\n' song_flag_hunters = secret_intro +\\ ''' [REFRAIN] We’re flag hunters in the ether, lighting up the grid, No puzzle too dark, no challenge too hid. With every exploit we trigger, every byte we decrypt, We’re chasing that victory, and we’ll never quit. CROWD (Singalong here!); RETURN [VERSE1] Command line wizards, we’re starting it right, Spawning shells in the terminal, hacking all night. Scripts and searches, grep through the void, Every keystroke, we're a cypher's envoy. Brute force the lock or craft that regex, Flag on the horizon, what challenge is next? REFRAIN; Echoes in memory, packets in trace, Digging through the remnants to uncover with haste. Hex and headers, carving out clues, Resurrect the hidden, it's forensics we choose. Disk dumps and packet dumps, follow the trail, Buried deep in the noise, but we will prevail. REFRAIN; Binary sorcerers, let’s tear it apart, Disassemble the code to reveal the dark heart. From opcode to logic, tracing each line, Emulate and break it, this key will be mine. Debugging the maze, and I see through the deceit, Patch it up right, and watch the lock release. REFRAIN; Ciphertext tumbling, breaking the spin, Feistel or AES, we’re destined to win. Frequency, padding, primes on the run, Vigenère, RSA, cracking them for fun. Shift the letters, matrices fall, Decrypt that flag and hear the ether call. REFRAIN; SQL injection, XSS flow, Map the backend out, let the database show. Inspecting each cookie, fiddler in the fight, Capturing requests, push the payload just right. HTML's secrets, backdoors unlocked, In the world wide labyrinth, we’re never lost. REFRAIN; Stack's overflowing, breaking the chain, ROP gadget wizardry, ride it to fame. Heap spray in silence, memory's plight, Race the condition, crash it just right. Shellcode ready, smashing the frame, Control the instruction, flags call my name. REFRAIN; END; ''' MAX_LINES = 100 def reader(song, startLabel): lip = 0 start = 0 refrain = 0 refrain_return = 0 finished = False # Get list of lyric lines song_lines = song.splitlines() # Find startLabel, refrain and refrain return for i in range(0, len(song_lines)): if song_lines[i] == startLabel: start = i + 1 elif song_lines[i] == '[REFRAIN]': refrain = i + 1 elif song_lines[i] == 'RETURN': refrain_return = i # Print lyrics line_count = 0 lip = start while not finished and line_count \u003c MAX_LINES: line_count += 1 for line in song_lines[lip].split(';'): if line == '' and song_lines[lip] != '': continue if line == 'REFRAIN': song_lines[refrain_return] = 'RETURN ' + str(lip + 1) lip = refrain elif re.match(r\"CROWD.*\", line): crowd = input('Crowd: ') song_lines[lip] = 'Crowd: ' + crowd lip += 1 elif re.match(r\"RETURN [0-9]+\", line): lip = int(line.split()[1]) elif line == 'END': finished = True else: print(line, flush=True) time.sleep(0.5) lip += 1 reader(song_flag_hunters, '[VERSE1]') Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.\nLet’s carefully walk through the important pieces.\nThe Flag Placement At the very beginning of the script, the program reads a flag directly from a file:\nflag = open('flag.txt', 'r').read() That value is then embedded inside a string called secret_intro, which forms the start of the song:\nsecret_intro = ( \"Pico warriors rising, puzzles laid bare,\\n\" \"Solving each challenge with precision and flair.\\n\" \"With unity and skill, flags we deliver,\\n\" \"The ether’s ours to conquer, \" + flag + \"\\n\" ) This means the flag is not hidden in memory or generated dynamically — it is simply appended to the opening lyrics. If we can cause the program to print that introduction, we will see the flag.\nHow Lyrics are Processed The script includes a reader() function that steps through the lyrics line by line. Each line may contain ordinary text, or it may include special directives like REFRAIN, RETURN, or END, which alter the program’s flow.\nA simplified view of the main loop looks like this:\nfor line in song_lines[lip].split(';'): if re.match(r\"CROWD.*\", line): crowd = input('Crowd: ') song_lines[lip] = 'Crowd: ' + crowd elif re.match(r\"RETURN [0-9]+\", line): lip = int(line.split()[1]) elif line == 'END': finished = True else: print(line, flush=True) Two details here are critical:\nSplitting on ; — Every lyric line is split into multiple parts if it contains semicolons. This means user input can introduce new “commands” simply by including a ;. RETURN tokens — If a token looks like RETURN n, the program jumps (lip = n) to another line in the lyrics. This effectively allows manual control of the script’s reading position. The vulnerability\nDuring the [CROWD] sections, the program calls input() and then places the raw user input back into the lyrics list. Importantly, this input is not sanitized. Because of the split(';') step, any semicolons in user input will be interpreted as new tokens — and tokens are processed by the same logic as actual lyrics.\nThis allows us to “smuggle” in a control command. For example, typing:\nphp;RETURN 0 creates two tokens:\nphp → harmless text\nRETURN 0 → special directive that forces the program to jump back to the beginning of the lyrics (lip = 0)\nSince the very beginning contains the secret_intro with the flag, the program dutifully prints it.\nExploiting The Bug Step-by-step:\nRun the script until it reaches a [CROWD] prompt. At the prompt, enter:\nphp;RETURN 0\n(The php part can be anything — it only exists to satisfy the first token.) The RETURN 0 command resets the lyric pointer to the start of the file. The introduction is printed again, including the hidden flag. Example output\nAfter submitting the crafted input, the output includes:\nPico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, picoCTF{70637h3r_f0r3v3r_befbccb7} Conclusion What initially appears to be a playful lyric-printing script actually hides a classic injection-style vulnerability. Because user input is not sanitized and is later reinterpreted as program instructions, it becomes\n",
+  "wordCount" : "1102",
+  "inLanguage": "en",
+  "datePublished": "2025-10-04T20:57:27+07:00",
+  "dateModified": "2025-10-04T20:57:27+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/picoctf-flag-hunters/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PicoCTF Writeup #472
+    </h1>
+    <div class="post-meta"><span title='2025-10-04 20:57:27 +0700 +07'>October 4, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-flag-hunters.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Challenge: <a href="https://play.picoctf.org/practice/challenge/505">Flag Hunters</a></p>
+<p>This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.</p>
+<p>Here is the full source code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#c678dd">import</span> <span style="color:#e06c75">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">import</span> <span style="color:#e06c75">time</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Read in flag from file</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">flag</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">open</span>(<span style="color:#98c379">&#39;flag.txt&#39;</span>, <span style="color:#98c379">&#39;r&#39;</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">read</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">secret_intro</span> <span style="color:#56b6c2">=</span> \
+</span></span><span style="display:flex;"><span><span style="color:#98c379">&#39;&#39;&#39;Pico warriors rising, puzzles laid bare,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Solving each challenge with precision and flair.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">With unity and skill, flags we deliver,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">The ether’s ours to conquer, &#39;&#39;&#39;</span>\
+</span></span><span style="display:flex;"><span><span style="color:#56b6c2">+</span> <span style="color:#e06c75">flag</span> <span style="color:#56b6c2">+</span> <span style="color:#98c379">&#39;</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">song_flag_hunters</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">secret_intro</span> <span style="color:#56b6c2">+</span>\
+</span></span><span style="display:flex;"><span><span style="color:#98c379">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">[REFRAIN]
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">We’re flag hunters in the ether, lighting up the grid,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">No puzzle too dark, no challenge too hid.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">With every exploit we trigger, every byte we decrypt,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">We’re chasing that victory, and we’ll never quit.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">CROWD (Singalong here!);
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">RETURN
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">[VERSE1]
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Command line wizards, we’re starting it right,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Spawning shells in the terminal, hacking all night.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Scripts and searches, grep through the void,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Every keystroke, we&#39;re a cypher&#39;s envoy.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Brute force the lock or craft that regex,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Flag on the horizon, what challenge is next?
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Echoes in memory, packets in trace,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Digging through the remnants to uncover with haste.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Hex and headers, carving out clues,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Resurrect the hidden, it&#39;s forensics we choose.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Disk dumps and packet dumps, follow the trail,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Buried deep in the noise, but we will prevail.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Binary sorcerers, let’s tear it apart,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Disassemble the code to reveal the dark heart.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">From opcode to logic, tracing each line,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Emulate and break it, this key will be mine.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Debugging the maze, and I see through the deceit,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Patch it up right, and watch the lock release.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Ciphertext tumbling, breaking the spin,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Feistel or AES, we’re destined to win.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Frequency, padding, primes on the run,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Vigenère, RSA, cracking them for fun.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Shift the letters, matrices fall,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Decrypt that flag and hear the ether call.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">SQL injection, XSS flow,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Map the backend out, let the database show.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Inspecting each cookie, fiddler in the fight,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Capturing requests, push the payload just right.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">HTML&#39;s secrets, backdoors unlocked,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">In the world wide labyrinth, we’re never lost.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Stack&#39;s overflowing, breaking the chain,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">ROP gadget wizardry, ride it to fame.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Heap spray in silence, memory&#39;s plight,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Race the condition, crash it just right.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Shellcode ready, smashing the frame,
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">Control the instruction, flags call my name.
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">REFRAIN;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">END;
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">MAX_LINES</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">def</span> <span style="color:#61afef;font-weight:bold">reader</span>(<span style="color:#e06c75">song</span>, <span style="color:#e06c75">startLabel</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">start</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">refrain</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">refrain_return</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">finished</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7f848e"># Get list of lyric lines</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">song_lines</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">song</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">splitlines</span>()
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#7f848e"># Find startLabel, refrain and refrain return</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">for</span> <span style="color:#e06c75">i</span> <span style="color:#56b6c2">in</span> <span style="color:#e5c07b">range</span>(<span style="color:#d19a66">0</span>, <span style="color:#e5c07b">len</span>(<span style="color:#e06c75">song_lines</span>)):
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">i</span>] <span style="color:#56b6c2">==</span> <span style="color:#e06c75">startLabel</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#e06c75">start</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">i</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">elif</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">i</span>] <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;[REFRAIN]&#39;</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#e06c75">refrain</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">i</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">elif</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">i</span>] <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;RETURN&#39;</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#e06c75">refrain_return</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">i</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#7f848e"># Print lyrics</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">line_count</span> <span style="color:#56b6c2">=</span> <span style="color:#d19a66">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">start</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c678dd">while</span> <span style="color:#56b6c2">not</span> <span style="color:#e06c75">finished</span> <span style="color:#56b6c2">and</span> <span style="color:#e06c75">line_count</span> <span style="color:#56b6c2">&lt;</span> <span style="color:#e06c75">MAX_LINES</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">line_count</span> <span style="color:#56b6c2">+=</span> <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">for</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">in</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">lip</span>]<span style="color:#56b6c2">.</span><span style="color:#e06c75">split</span>(<span style="color:#98c379">&#39;;&#39;</span>):
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">if</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;&#39;</span> <span style="color:#56b6c2">and</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">lip</span>] <span style="color:#56b6c2">!=</span> <span style="color:#98c379">&#39;&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#c678dd">continue</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">if</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;REFRAIN&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">refrain_return</span>] <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#39;RETURN &#39;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e06c75">lip</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">refrain</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">elif</span> <span style="color:#e06c75">re</span><span style="color:#56b6c2">.</span><span style="color:#c678dd">match</span>(<span style="color:#98c379">r</span><span style="color:#98c379">&#34;CROWD.*&#34;</span>, <span style="color:#e06c75">line</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">crowd</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">input</span>(<span style="color:#98c379">&#39;Crowd: &#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">lip</span>] <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#39;Crowd: &#39;</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">crowd</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">+=</span> <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">elif</span> <span style="color:#e06c75">re</span><span style="color:#56b6c2">.</span><span style="color:#c678dd">match</span>(<span style="color:#98c379">r</span><span style="color:#98c379">&#34;RETURN [0-9]+&#34;</span>, <span style="color:#e06c75">line</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">int</span>(<span style="color:#e06c75">line</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">split</span>()[<span style="color:#d19a66">1</span>])
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">elif</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;END&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">finished</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">True</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c678dd">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e5c07b">print</span>(<span style="color:#e06c75">line</span>, <span style="color:#e06c75">flush</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">time</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sleep</span>(<span style="color:#d19a66">0.5</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">+=</span> <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">reader</span>(<span style="color:#e06c75">song_flag_hunters</span>, <span style="color:#98c379">&#39;[VERSE1]&#39;</span>)
+</span></span></code></pre></div><p>Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.</p>
+<p>Let’s carefully walk through the important pieces.</p>
+<h3 id="the-flag-placement">The Flag Placement<a hidden class="anchor" aria-hidden="true" href="#the-flag-placement">#</a></h3>
+<p>At the very beginning of the script, the program reads a flag directly from a file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e06c75">flag</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">open</span>(<span style="color:#98c379">&#39;flag.txt&#39;</span>, <span style="color:#98c379">&#39;r&#39;</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">read</span>()
+</span></span></code></pre></div><p>That value is then embedded inside a string called <code>secret_intro</code>, which forms the start of the song:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e06c75">secret_intro</span> <span style="color:#56b6c2">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#98c379">&#34;Pico warriors rising, puzzles laid bare,</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#98c379">&#34;Solving each challenge with precision and flair.</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#98c379">&#34;With unity and skill, flags we deliver,</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#98c379">&#34;The ether’s ours to conquer, &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">flag</span> <span style="color:#56b6c2">+</span> <span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>This means the flag is not hidden in memory or generated dynamically — it is simply appended to the opening lyrics. If we can cause the program to print that introduction, we will see the flag.</p>
+<h3 id="how-lyrics-are-processed">How Lyrics are Processed<a hidden class="anchor" aria-hidden="true" href="#how-lyrics-are-processed">#</a></h3>
+<p>The script includes a <code>reader()</code> function that steps through the lyrics line by line. Each line may contain ordinary text, or it may include special directives like <code>REFRAIN</code>, <code>RETURN</code>, or <code>END</code>, which alter the program’s flow.</p>
+<p>A simplified view of the main loop looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#c678dd">for</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">in</span> <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">lip</span>]<span style="color:#56b6c2">.</span><span style="color:#e06c75">split</span>(<span style="color:#98c379">&#39;;&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">if</span> <span style="color:#e06c75">re</span><span style="color:#56b6c2">.</span><span style="color:#c678dd">match</span>(<span style="color:#98c379">r</span><span style="color:#98c379">&#34;CROWD.*&#34;</span>, <span style="color:#e06c75">line</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">crowd</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">input</span>(<span style="color:#98c379">&#39;Crowd: &#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">song_lines</span>[<span style="color:#e06c75">lip</span>] <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#39;Crowd: &#39;</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">crowd</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">elif</span> <span style="color:#e06c75">re</span><span style="color:#56b6c2">.</span><span style="color:#c678dd">match</span>(<span style="color:#98c379">r</span><span style="color:#98c379">&#34;RETURN [0-9]+&#34;</span>, <span style="color:#e06c75">line</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">lip</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">int</span>(<span style="color:#e06c75">line</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">split</span>()[<span style="color:#d19a66">1</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">elif</span> <span style="color:#e06c75">line</span> <span style="color:#56b6c2">==</span> <span style="color:#98c379">&#39;END&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e06c75">finished</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#c678dd">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e5c07b">print</span>(<span style="color:#e06c75">line</span>, <span style="color:#e06c75">flush</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">True</span>)
+</span></span></code></pre></div><p>Two details here are critical:</p>
+<p>Splitting on <code>;</code> — Every lyric line is split into multiple parts if it contains semicolons. This means user input can introduce new “commands” simply by including a <code>;</code>.
+<code>RETURN</code> tokens — If a token looks like <code>RETURN n</code>, the program jumps <code>(lip = n)</code> to another line in the lyrics. This effectively allows manual control of the script’s reading position.
+The vulnerability</p>
+<p>During the <code>[CROWD]</code> sections, the program calls <code>input()</code> and then places the raw user input back into the lyrics list. Importantly, this input is not sanitized. Because of the <code>split(';')</code> step, any semicolons in user input will be interpreted as new tokens — and tokens are processed by the same logic as actual lyrics.</p>
+<p>This allows us to “smuggle” in a control command. For example, typing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e06c75">php</span>;<span style="color:#e06c75">RETURN</span> <span style="color:#d19a66">0</span>
+</span></span></code></pre></div><p>creates two tokens:</p>
+<p><code>php</code> → harmless text<br>
+<code>RETURN 0</code> → special directive that forces the program to jump back to the beginning of the lyrics <code>(lip = 0)</code></p>
+<p>Since the very beginning contains the <code>secret_intro</code> with the flag, the program dutifully prints it.</p>
+<h3 id="exploiting-the-bug">Exploiting The Bug<a hidden class="anchor" aria-hidden="true" href="#exploiting-the-bug">#</a></h3>
+<p>Step-by-step:</p>
+<p>Run the script until it reaches a <code>[CROWD]</code> prompt.
+At the prompt, enter:<br>
+<code>php;RETURN 0</code></p>
+<p>(The <code>php</code> part can be anything — it only exists to satisfy the first token.)
+The <code>RETURN 0</code> command resets the lyric pointer to the start of the file.
+The introduction is printed again, including the hidden flag.
+Example output</p>
+<p>After submitting the crafted input, the output includes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Pico warriors rising, puzzles laid bare,
+</span></span><span style="display:flex;"><span>Solving each challenge with precision and flair.
+</span></span><span style="display:flex;"><span>With unity and skill, flags we deliver,
+</span></span><span style="display:flex;"><span>The ether’s ours to conquer, picoCTF<span style="color:#56b6c2">{</span>70637h3r_f0r3v3r_befbccb7<span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>What initially appears to be a playful lyric-printing script actually hides a classic injection-style vulnerability. Because user input is not sanitized and is later reinterpreted as program instructions, it becomes</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ctf/">ctf</a></li>
+      <li><a href="/tags/reverse-engineering/">reverse engineering</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

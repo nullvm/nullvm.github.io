@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Posts | nullvm</title>
+<title>Reverse Engineering | nullvm</title>
 <meta name="keywords" content="">
-<meta name="description" content="Posts - nullvm">
+<meta name="description" content="">
 <meta name="author" content="Deni Andrian Prayoga">
-<link rel="canonical" href="/posts/">
+<link rel="canonical" href="/tags/reverse-engineering/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="/posts/index.xml">
-<link rel="alternate" hreflang="en" href="/posts/">
+<link rel="alternate" type="application/rss+xml" href="/tags/reverse-engineering/index.xml">
+<link rel="alternate" hreflang="en" href="/tags/reverse-engineering/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -64,30 +64,15 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="/posts/">
+</noscript><meta property="og:url" content="/tags/reverse-engineering/">
   <meta property="og:site_name" content="nullvm">
-  <meta property="og:title" content="Posts">
+  <meta property="og:title" content="Reverse Engineering">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Posts">
+<meta name="twitter:title" content="Reverse Engineering">
 <meta name="twitter:description" content="">
 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "/posts/"
-    }
-  ]
-}
-</script>
 </head>
 
 <body class="list" id="top">
@@ -132,7 +117,7 @@
         <ul id="menu">
             <li>
                 <a href="/posts" title="Post">
-                    <span class="active">Post</span>
+                    <span>Post</span>
                 </a>
             </li>
             <li>
@@ -156,80 +141,25 @@
 <main class="main"> 
 <header class="page-header">
   <h1>
-    Posts
+    Reverse Engineering
   </h1>
 </header>
 
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1644357655176-69d3fe7f2fcc?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/a-building-with-a-clock-on-the-side-of-it-YWR9NKDHnls)">
-</figure>
+<article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Dynamic Array in C Simplified
+    <h2 class="entry-hint-parent">PicoCTF Writeup #472
     </h2>
   </header>
   <div class="entry-content">
-    <p>Array data structure is really useful, it can used to to store value with same data types, we can access it really easy, updating the value of array is also a trivial thing to do. One of the most important use of array is that is it used to implement other more complex data structures such as linked list, binary tree and hash tables.
-But what is greater than array? Yup, dynamic array.
+    <p>Challenge: Flag Hunters
+This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.
+Here is the full source code.
+import re import time # Read in flag from file flag = open(&#39;flag.txt&#39;, &#39;r&#39;).read() secret_intro = \ &#39;&#39;&#39;Pico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, &#39;&#39;&#39;\ &#43; flag &#43; &#39;\n&#39; song_flag_hunters = secret_intro &#43;\ &#39;&#39;&#39; [REFRAIN] We’re flag hunters in the ether, lighting up the grid, No puzzle too dark, no challenge too hid. With every exploit we trigger, every byte we decrypt, We’re chasing that victory, and we’ll never quit. CROWD (Singalong here!); RETURN [VERSE1] Command line wizards, we’re starting it right, Spawning shells in the terminal, hacking all night. Scripts and searches, grep through the void, Every keystroke, we&#39;re a cypher&#39;s envoy. Brute force the lock or craft that regex, Flag on the horizon, what challenge is next? REFRAIN; Echoes in memory, packets in trace, Digging through the remnants to uncover with haste. Hex and headers, carving out clues, Resurrect the hidden, it&#39;s forensics we choose. Disk dumps and packet dumps, follow the trail, Buried deep in the noise, but we will prevail. REFRAIN; Binary sorcerers, let’s tear it apart, Disassemble the code to reveal the dark heart. From opcode to logic, tracing each line, Emulate and break it, this key will be mine. Debugging the maze, and I see through the deceit, Patch it up right, and watch the lock release. REFRAIN; Ciphertext tumbling, breaking the spin, Feistel or AES, we’re destined to win. Frequency, padding, primes on the run, Vigenère, RSA, cracking them for fun. Shift the letters, matrices fall, Decrypt that flag and hear the ether call. REFRAIN; SQL injection, XSS flow, Map the backend out, let the database show. Inspecting each cookie, fiddler in the fight, Capturing requests, push the payload just right. HTML&#39;s secrets, backdoors unlocked, In the world wide labyrinth, we’re never lost. REFRAIN; Stack&#39;s overflowing, breaking the chain, ROP gadget wizardry, ride it to fame. Heap spray in silence, memory&#39;s plight, Race the condition, crash it just right. Shellcode ready, smashing the frame, Control the instruction, flags call my name. REFRAIN; END; &#39;&#39;&#39; MAX_LINES = 100 def reader(song, startLabel): lip = 0 start = 0 refrain = 0 refrain_return = 0 finished = False # Get list of lyric lines song_lines = song.splitlines() # Find startLabel, refrain and refrain return for i in range(0, len(song_lines)): if song_lines[i] == startLabel: start = i &#43; 1 elif song_lines[i] == &#39;[REFRAIN]&#39;: refrain = i &#43; 1 elif song_lines[i] == &#39;RETURN&#39;: refrain_return = i # Print lyrics line_count = 0 lip = start while not finished and line_count &lt; MAX_LINES: line_count &#43;= 1 for line in song_lines[lip].split(&#39;;&#39;): if line == &#39;&#39; and song_lines[lip] != &#39;&#39;: continue if line == &#39;REFRAIN&#39;: song_lines[refrain_return] = &#39;RETURN &#39; &#43; str(lip &#43; 1) lip = refrain elif re.match(r&#34;CROWD.*&#34;, line): crowd = input(&#39;Crowd: &#39;) song_lines[lip] = &#39;Crowd: &#39; &#43; crowd lip &#43;= 1 elif re.match(r&#34;RETURN [0-9]&#43;&#34;, line): lip = int(line.split()[1]) elif line == &#39;END&#39;: finished = True else: print(line, flush=True) time.sleep(0.5) lip &#43;= 1 reader(song_flag_hunters, &#39;[VERSE1]&#39;) Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-02 13:30:14 +0700 +07'>July 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Dynamic Array in C Simplified" href="/posts/dynamic-array-in-c-simplified/"></a>
+  <footer class="entry-footer"><span title='2025-10-04 20:57:27 +0700 +07'>October 4, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #472" href="/posts/picoctf-flag-hunters/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/black-computer-keyboard-DuHKoV44prg)">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Linux Hard Link and Soft Link in a Nutshell
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Definition Before we talk about hardlink and softlink in linux, we must first know what is inode and filename, and what’s the difference between the two.
-What is inode? Your computer needs a way to ’labelize’ files in its filesystem. Remember, everything is a file in linux. One way to do this is to put a unique integer value to the file. This unique integer value is what we called the inode number, which is a number that’s used to identify an inode. The inode is a data structure that describe a file-system object.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-24 20:47:46 +0700 +07'>June 24, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Linux Hard Link and Soft Link in a Nutshell" href="/posts/hard-link-soft-link-in-a-nutshell-linux/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1586296188195-89285b63f670?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://unsplash.com/photos/white-and-black-star-print-textile-4993XnXQKHY)">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Pointer and Const in C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The following paragraphs are the summary of pointer and const in C&#43;&#43;, I always forget about this topic so I decided to create a post about it.
-Regular Pointers Regular pointers are pointers the we usually use when working with pointers in C&#43;&#43;.
-int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *ptr would be 6 // we can change the value at the address being held *ptr = 1; // x and *ptr would be 1 int y = 88; ptr = &amp;y; // changing the address that ptr is pointing at return 0; } Pointer to a const value I won’t explain what is it and the rest of the it since it is easier to explain it using code rather than using words. (The definitions are still confusing to me💀)
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-15 20:59:34 +0700 +07'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Pointer and Const in C&#43;&#43;" href="/posts/cpp-pointer-const/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p></p>
-  </div>
-  <footer class="entry-footer">0 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to " href="/posts/minecraft-play/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="prev" href="/posts/page/2/">
-      «&nbsp;Prev&nbsp;
-    </a>
-  </nav>
-</footer>
     </main>
     
 <footer class="footer">

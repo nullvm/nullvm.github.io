@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Ctf on nullvm</title>
-    <link>/tags/ctf/index.xml</link>
-    <description>Recent content in Ctf on nullvm</description>
+    <title>Reverse Engineering on nullvm</title>
+    <link>/tags/reverse-engineering/index.xml</link>
+    <description>Recent content in Reverse Engineering on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Oct 2025 20:57:27 +0700</lastBuildDate>
-    <atom:link href="/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PicoCTF Writeup #472</title>
       <link>/posts/picoctf-flag-hunters/</link>
@@ -149,67 +149,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;reader&lt;/span&gt;(&lt;span style=&#34;color:#e06c75&#34;&gt;song_flag_hunters&lt;/span&gt;, &lt;span style=&#34;color:#98c379&#34;&gt;&amp;#39;[VERSE1]&amp;#39;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PicoCTF Writeup #475</title>
-      <link>/posts/picoctf-hashcrack/</link>
-      <pubDate>Tue, 26 Aug 2025 11:59:43 +0700</pubDate>
-      <guid>/posts/picoctf-hashcrack/</guid>
-      <description>&lt;p&gt;The &lt;strong&gt;&lt;code&gt;hashcrack&lt;/code&gt;&lt;/strong&gt; challenge from PicoCTF is a practical demonstration of the security risks posed by weak hashing algorithms for passwords. In this write-up, I will detail the steps taken to solve the challenge, the reasoning behind each decision, and the security lessons that can be learned from this exercise. You can try and solve it yourself &lt;a href=&#34;https://play.picoctf.org/practice/challenge/475&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;challenge-overview&#34;&gt;Challenge Overview&lt;/h2&gt;
-&lt;p&gt;The challenge description states that a company’s server was breached because the administrator used weakly hashed passwords. Our goal is to gain access to the secret message stored on that server. To start, we are given the connection details:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PicoCTF Writeup #482</title>
-      <link>/posts/picoctf-writeup-482/</link>
-      <pubDate>Wed, 20 Aug 2025 10:06:40 +0700</pubDate>
-      <guid>/posts/picoctf-writeup-482/</guid>
-      <description>&lt;h2 id=&#34;hacking-profile-pictures-like-its-2005-picoctf-web-exploit-writeup&#34;&gt;Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup)&lt;/h2&gt;
-&lt;p&gt;So, I tried another picoCTF challenge and this one was basically:&lt;/p&gt;
-&lt;p&gt;👨‍💻 &lt;em&gt;“A developer added profile picture uploads. What could possibly go wrong?”&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If you’ve ever touched PHP (I’m sorry) you already know the answer: &lt;strong&gt;literally everything&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;The challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/482&#34;&gt;Standard Pizzas&lt;/a&gt; 🍕&lt;/p&gt;
-&lt;h2 id=&#34;upload-feature-more-like-upload-malware&#34;&gt;Upload Feature? More Like Upload &lt;em&gt;Malware&lt;/em&gt;&lt;/h2&gt;
-&lt;p&gt;The site lets you upload an image and then proudly tells you where it lives:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PicoCTF Writeup #490</title>
-      <link>/posts/picoctf-writeup-binary-exploit/</link>
-      <pubDate>Tue, 19 Aug 2025 14:20:15 +0700</pubDate>
-      <guid>/posts/picoctf-writeup-binary-exploit/</guid>
-      <description>&lt;h2 id=&#34;binary-exploitation-challenge-pie--function-hijacking-in-picoctf&#34;&gt;Binary Exploitation Challenge (PIE &amp;amp; Function Hijacking in picoCTF)&lt;/h2&gt;
-&lt;p&gt;I’ve always been fascinated by low-level programming and security, but up until now I hadn’t really tried a &lt;strong&gt;binary exploitation challenge&lt;/strong&gt;. Recently, I stumbled upon &lt;a href=&#34;https://play.picoctf.org/practice/challenge/490&#34;&gt;this picoCTF challenge&lt;/a&gt; called &lt;em&gt;“rescue-float”&lt;/em&gt; — and let me tell you, it was a mix of confusion, discovery, and a little bit of victory at the end.&lt;/p&gt;
-&lt;p&gt;This post is a casual walkthrough of how I approached it as a beginner. If you’re into Linux, development, or cybersecurity, you’ll probably find this fun (or at least relatable if you remember your first binary exploitation adventure).&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PicoCTF Writeup #505</title>
-      <link>/posts/picoctf-writeup-disko-1/</link>
-      <pubDate>Tue, 19 Aug 2025 11:27:28 +0700</pubDate>
-      <guid>/posts/picoctf-writeup-disko-1/</guid>
-      <description>&lt;h2 id=&#34;picoctf-writeup--forensics-disk-image&#34;&gt;PicoCTF Writeup – Forensics Disk Image&lt;/h2&gt;
-&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/505&#34;&gt;Disk, disk, sleuth!&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;
-Can you find the flag in this disk image?
-Download the disk image &lt;a href=&#34;https://artifacts.picoctf.net/c/536/disko-1.dd.gz&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h2 id=&#34;first-thoughts&#34;&gt;First Thoughts&lt;/h2&gt;
-&lt;p&gt;This challenge was tagged &lt;strong&gt;forensics&lt;/strong&gt;, which usually means poking around filesystems, memory dumps, or raw disk images. The goal is to extract hidden information — in this case, the flag.&lt;/p&gt;
-&lt;p&gt;I grabbed the disk image (&lt;code&gt;disko-1.dd&lt;/code&gt;) and started experimenting.&lt;/p&gt;
-&lt;h2 id=&#34;initial-attempts&#34;&gt;Initial Attempts&lt;/h2&gt;
-&lt;p&gt;My first instinct was to take a look at the raw hex using &lt;code&gt;xxd&lt;/code&gt;:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PicoCTF Writeup #492</title>
-      <link>/posts/picoctf-writeup-ssti/</link>
-      <pubDate>Tue, 19 Aug 2025 11:09:54 +0700</pubDate>
-      <guid>/posts/picoctf-writeup-ssti/</guid>
-      <description>&lt;h2 id=&#34;picoctf-writeup--server-side-template-injection-ssti&#34;&gt;PicoCTF Writeup – Server-Side Template Injection (SSTI)&lt;/h2&gt;
-&lt;p&gt;Recently, I played around with a PicoCTF &lt;a href=&#34;https://play.picoctf.org/practice/challenge/492&#34;&gt;challenge 492&lt;/a&gt;. The challenge looked like a simple web app that lets you &amp;ldquo;announce whatever you want.&amp;rdquo; Naturally, I fired up my terminal and started poking at it with &lt;code&gt;curl&lt;/code&gt;. By the way, we can also visit the website and experiment with the form instead.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -X GET http://rescued-float.picoctf.net:49878/announce -i
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Response:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HTTP/1.1 405 METHOD NOT ALLOWED
-Allow: POST, OPTIONS
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Looks like only &lt;code&gt;POST&lt;/code&gt; is allowed, so I retried with:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

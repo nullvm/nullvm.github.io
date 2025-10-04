@@ -194,6 +194,22 @@
 </article>
 
 <article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #472
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Flag Hunters
+This challenge provides a Python script that at first glance looks like a quirky program for singing along to a set of lyrics. Buried inside, however, is the real objective: a flag hidden within the program’s text handling logic.
+Here is the full source code.
+import re import time # Read in flag from file flag = open(&#39;flag.txt&#39;, &#39;r&#39;).read() secret_intro = \ &#39;&#39;&#39;Pico warriors rising, puzzles laid bare, Solving each challenge with precision and flair. With unity and skill, flags we deliver, The ether’s ours to conquer, &#39;&#39;&#39;\ &#43; flag &#43; &#39;\n&#39; song_flag_hunters = secret_intro &#43;\ &#39;&#39;&#39; [REFRAIN] We’re flag hunters in the ether, lighting up the grid, No puzzle too dark, no challenge too hid. With every exploit we trigger, every byte we decrypt, We’re chasing that victory, and we’ll never quit. CROWD (Singalong here!); RETURN [VERSE1] Command line wizards, we’re starting it right, Spawning shells in the terminal, hacking all night. Scripts and searches, grep through the void, Every keystroke, we&#39;re a cypher&#39;s envoy. Brute force the lock or craft that regex, Flag on the horizon, what challenge is next? REFRAIN; Echoes in memory, packets in trace, Digging through the remnants to uncover with haste. Hex and headers, carving out clues, Resurrect the hidden, it&#39;s forensics we choose. Disk dumps and packet dumps, follow the trail, Buried deep in the noise, but we will prevail. REFRAIN; Binary sorcerers, let’s tear it apart, Disassemble the code to reveal the dark heart. From opcode to logic, tracing each line, Emulate and break it, this key will be mine. Debugging the maze, and I see through the deceit, Patch it up right, and watch the lock release. REFRAIN; Ciphertext tumbling, breaking the spin, Feistel or AES, we’re destined to win. Frequency, padding, primes on the run, Vigenère, RSA, cracking them for fun. Shift the letters, matrices fall, Decrypt that flag and hear the ether call. REFRAIN; SQL injection, XSS flow, Map the backend out, let the database show. Inspecting each cookie, fiddler in the fight, Capturing requests, push the payload just right. HTML&#39;s secrets, backdoors unlocked, In the world wide labyrinth, we’re never lost. REFRAIN; Stack&#39;s overflowing, breaking the chain, ROP gadget wizardry, ride it to fame. Heap spray in silence, memory&#39;s plight, Race the condition, crash it just right. Shellcode ready, smashing the frame, Control the instruction, flags call my name. REFRAIN; END; &#39;&#39;&#39; MAX_LINES = 100 def reader(song, startLabel): lip = 0 start = 0 refrain = 0 refrain_return = 0 finished = False # Get list of lyric lines song_lines = song.splitlines() # Find startLabel, refrain and refrain return for i in range(0, len(song_lines)): if song_lines[i] == startLabel: start = i &#43; 1 elif song_lines[i] == &#39;[REFRAIN]&#39;: refrain = i &#43; 1 elif song_lines[i] == &#39;RETURN&#39;: refrain_return = i # Print lyrics line_count = 0 lip = start while not finished and line_count &lt; MAX_LINES: line_count &#43;= 1 for line in song_lines[lip].split(&#39;;&#39;): if line == &#39;&#39; and song_lines[lip] != &#39;&#39;: continue if line == &#39;REFRAIN&#39;: song_lines[refrain_return] = &#39;RETURN &#39; &#43; str(lip &#43; 1) lip = refrain elif re.match(r&#34;CROWD.*&#34;, line): crowd = input(&#39;Crowd: &#39;) song_lines[lip] = &#39;Crowd: &#39; &#43; crowd lip &#43;= 1 elif re.match(r&#34;RETURN [0-9]&#43;&#34;, line): lip = int(line.split()[1]) elif line == &#39;END&#39;: finished = True else: print(line, flush=True) time.sleep(0.5) lip &#43;= 1 reader(song_flag_hunters, &#39;[VERSE1]&#39;) Although the file looks long and perhaps intimidating, most of the code is simply song lyrics wrapped in string variables and some straightforward branching logic to print them out. The actual vulnerability lies in how the script processes user input during the “crowd participation” parts of the song.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-04 20:57:27 +0700 +07'>October 4, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #472" href="/posts/picoctf-flag-hunters/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover">
         <img loading="lazy" src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&amp;w=1031&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Source: [unsplash](https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
 </figure>
@@ -328,20 +344,6 @@ But then one day, I stumbled onto this game called Zenless Zone Zero. The fandom
   </div>
   <footer class="entry-footer"><span title='2025-08-19 15:11:13 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
   <a class="entry-link" aria-label="post link to Gacha Game Terms for Lazy Players" href="/posts/gacha-terms/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">PicoCTF Writeup #490
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Binary Exploitation Challenge (PIE &amp; Function Hijacking in picoCTF) I’ve always been fascinated by low-level programming and security, but up until now I hadn’t really tried a binary exploitation challenge. Recently, I stumbled upon this picoCTF challenge called “rescue-float” — and let me tell you, it was a mix of confusion, discovery, and a little bit of victory at the end.
-This post is a casual walkthrough of how I approached it as a beginner. If you’re into Linux, development, or cybersecurity, you’ll probably find this fun (or at least relatable if you remember your first binary exploitation adventure).
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-08-19 14:20:15 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to PicoCTF Writeup #490" href="/posts/picoctf-writeup-binary-exploit/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
