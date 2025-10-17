@@ -6,8 +6,24 @@
     <description>Recent content in Ctf on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Oct 2025 20:57:27 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 21:47:29 +0700</lastBuildDate>
     <atom:link href="/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PicoCTF Writeup #530</title>
+      <link>/posts/picoctf-writeup-530/</link>
+      <pubDate>Fri, 17 Oct 2025 21:47:29 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-530/</guid>
+      <description>&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/530&#34;&gt;Riddle Registry&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Every digital file has a story to tell — some louder than others.
+In this &lt;strong&gt;picoCTF forensics challenge&lt;/strong&gt;, our mission was simple on paper (pun intended): &lt;em&gt;find the flag hidden inside a PDF file.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Of course, as any seasoned Linux user knows, “simple” often means “prepare for several hours of creative command-line archaeology.”&lt;/p&gt;
+&lt;h2 id=&#34;the-setup&#34;&gt;The Setup&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Challenge:&lt;/strong&gt; A suspicious-looking PDF file
+&lt;strong&gt;Goal:&lt;/strong&gt; Find the flag
+&lt;strong&gt;Category:&lt;/strong&gt; Forensics&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Opening the file showed nothing but Lorem Ipsum text and some odd blank spaces. That’s usually a hint in CTFs — if you can’t see it, it’s probably hidden somewhere else.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>PicoCTF Writeup #472</title>
       <link>/posts/picoctf-flag-hunters/</link>
