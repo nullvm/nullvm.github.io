@@ -156,6 +156,57 @@
 <main class="main"> 
 
 <article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Replicating Right Click Behavior using Vanilla Javascript
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The idea is simple.
+First, disable the default event handler for right click in the browser.
+Second, create a custom event handler for right click event.
+Implementing the first idea, we can do something like the following.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); }); from here we can easily add any custom code for event handler to our liking, here I will just log “Right Click detected!” into the console.
+window.addEventListener(&#34;contextmenu&#34;, (event) =&gt; { event.preventDefault(); console.log(&#34;Right Click detected!&#34;); }); You can create additional html elements and put it into the window to act as the replacement for the default context menu.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-24 19:36:18 +0700 +07'>October 24, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to Replicating Right Click Behavior using Vanilla Javascript" href="/posts/replicating-right-click-behavior-using-vanilla-javascript/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Javascript Promise Simplified
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Promise has three different states: pending, resolve, and reject.
+When you first create a promise, it will be in pending state. This promise can be either “fulfilled” thus it will be resolved or it can be “rejected” thus it will be rejected.
+In other word, if promise resulted in success it resolve, else it reject.
+To create a promise in javascript is really simple.
+const myPromise = new Promise(function (resolve, reject) { // do something }); What you do inside the promise will decide whether it will resolve or reject.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-21 20:08:35 +0700 +07'>October 21, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to Javascript Promise Simplified" href="/posts/promise-simplified-js/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Dummy File Watcher in C
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In this article we will build a dummy file watcher using C programming language.
+We say dummy file watcher because to build a proper file watcher, we need to utilize os internal features which is a bit more complex.
+Instead, we will create an infinite loop that checks a given directory every 0.5 second and see if something has changed.
+First thing we need to do is to create a function that tells if something has changed in a given directory.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-06 18:59:44 +0700 +07'>July 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to Dummy File Watcher in C" href="/posts/dummy-file-watcher-c/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover">
         <img loading="lazy" src="https://raw.githubusercontent.com/deniandriancode/website-assets/main/images/github-page/OIG1.Ae1bF6jUwFBOJBWiq48q.jpg" alt="Source: DALL-E">
 </figure>

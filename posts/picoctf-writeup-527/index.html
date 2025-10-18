@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PicoCTF Writeup #527 | nullvm</title>
+<meta name="keywords" content="ctf, forensics">
+<meta name="description" content="Challenge: Log Hunt
+Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.
+Setup and file inspection
+Download the provided file:
+https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log
+Open a terminal and inspect the file with some basics:">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/picoctf-writeup-527/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-writeup-527/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/picoctf-writeup-527/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="PicoCTF Writeup #527">
+  <meta property="og:description" content="Challenge: Log Hunt
+Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.
+Setup and file inspection Download the provided file:
+https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log Open a terminal and inspect the file with some basics:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-18T14:19:19+07:00">
+    <meta property="article:modified_time" content="2025-10-18T14:19:19+07:00">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Forensics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PicoCTF Writeup #527">
+<meta name="twitter:description" content="Challenge: Log Hunt
+Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.
+Setup and file inspection
+Download the provided file:
+https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log
+Open a terminal and inspect the file with some basics:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "PicoCTF Writeup #527",
+      "item": "/posts/picoctf-writeup-527/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PicoCTF Writeup #527",
+  "name": "PicoCTF Writeup #527",
+  "description": "Challenge: Log Hunt\nShort version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.\nSetup and file inspection Download the provided file:\nhttps://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log Open a terminal and inspect the file with some basics:\n",
+  "keywords": [
+    "ctf", "forensics"
+  ],
+  "articleBody": "Challenge: Log Hunt\nShort version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.\nSetup and file inspection Download the provided file:\nhttps://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log Open a terminal and inspect the file with some basics:\n# show the file on stdout (quick look) cat server.log # count lines to get a sense of file size / structure wc -l server.log # open interactively if you want to browse / search manually vim server.log Why these commands?\ncat file streams the entire file to stdout. Good for quick checks or piping into other tools. wc -l file prints the number of lines, which helps estimate scale (useful for deciding whether to script or manual inspect). vim file (or less) is for interactive exploration — search, jump to line numbers, etc. Pattern search: grep for likely candidates We’re looking for a flag; common picoCTF flags often contain the string picoCTF. Use grep to find lines that mention that substring:\n# case-insensitive search, show line numbers cat server.log | grep -i -n pico grep -i : case-insensitive match. -n : prefix each matching line with its line number (handy for references). Piping cat into grep is functionally equivalent to grep -i -n pico server.log. Either is fine; the pipe form is explicit about “streaming the file into the next tool”. Output (excerpted):\n1:[1990-08-09 10:00:10] INFO FLAGPART: picoCTF{us3_ 728:[1990-08-09 11:04:27] INFO FLAGPART: picoCTF{us3_ 729:[1990-08-09 11:04:29] INFO FLAGPART: picoCTF{us3_ ... 1546:[1990-08-09 12:19:32] INFO FLAGPART: picoCTF{us3_ So: the log contains entries that include FLAGPART and fragments that look like parts of a flag. There are duplicates — typical in logs that repeat events.\nNarrow the matches by keyword Search explicitly for the FLAGPART tag so we don’t pull unrelated pico mentions:\ncat server.log | grep -i flagpart This returns lines like:\n[1990-08-09 10:00:10] INFO FLAGPART: picoCTF{us3_ [1990-08-09 10:02:55] INFO FLAGPART: y0urlinux_ [1990-08-09 10:05:54] INFO FLAGPART: sk1lls_ ... [1990-08-09 10:10:54] INFO FLAGPART: cedfa5fb} Each relevant line follows the same pattern: a timestamp, a log level, a tag FLAGPART:, and then the fragment we care about. That regular structure lets us extract the fragment reliably.\nExtract the fragment/token using awk We only want the token after FLAGPART:. The log is whitespace-separated, so the fragment is the fifth whitespace-delimited field. Use awk to print that field:\ncat server.log | grep -i flagpart | awk '{print $5}' Explanation:\nawk processes each line and {print $5} outputs the 5th space-separated field. Field counting in awk starts at $1 for the first token. Output (excerpt):\npicoCTF{us3_ y0urlinux_ sk1lls_ sk1lls_ cedfa5fb} ... You can see the flag is already split into ordered fragments (including underscores and the closing brace in the last fragment).\nDe-duplicate noisy repeats with uniq Logs often contain repeated entries. uniq removes adjacent duplicate lines. Combine it with the previous pipeline:\ncat server.log | grep -i flagpart | awk '{print $5}' | uniq Important nuance: uniq only collapses consecutive duplicate lines. If the same fragment appears in separate parts of the file separated by other content, uniq will not remove the non-adjacent duplicates. That’s why you may still see repeated groups when you run uniq on the whole output — the log contains repeating blocks, not one big contiguous block of duplicates.\nIn this case the output shows repeated groups like:\npicoCTF{us3_ y0urlinux_ sk1lls_ cedfa5fb} picoCTF{us3_ y0urlinux_ sk1lls_ cedfa5fb} ... We only need one instance of each part, in order.\nTake the first (ordered) set of fragments Since the repeated pattern appears in blocks and the first block is the earliest complete set, we can take the top four unique fragments with head:\ncat server.log | grep -i flagpart | awk '{print $5}' | uniq | head -n 4 head -n 4 selects the first four lines. That gives the sequence of pieces that form the flag. Result:\npicoCTF{us3_ y0urlinux_ sk1lls_ cedfa5fb} These are the pieces in order.\nReassemble the pieces into a single string Now combine the lines into one continuous string. The original steps use tr '\\n' '\\0' which replaces newlines with NUL characters. NULs are invisible on the terminal, and some tools treat or display them differently. A more straightforward approach is removing newlines entirely:\ncat server.log | grep -i flagpart | awk '{print $5}' | uniq | head -n 4 | tr -d '\\n' Explanation of tr usage:\ntr -d '\\n' deletes newline characters, concatenating the lines into one string. The earlier tr '\\n' '\\0' replaces newlines with NUL bytes; that also yields a single line visually, but produces NUL bytes in the output stream which may be undesirable for further processing. Running the tr -d '\\n' pipeline yields:\npicoCTF{us3_y0urlinux_sk1lls_cedfa5fb} That is the flag.\n(If you prefer a NUL-separated result for machine consumption, tr '\\n' '\\0' is acceptable — just be aware that NULs are non-printable and can confuse some tools.)\nCompact full pipeline One compact, readable pipeline that reproduces the steps:\ngrep -i flagpart server.log \\ | awk '{print $5}' \\ | uniq \\ | head -n 4 \\ | tr -d '\\n' Notes:\ngrep -i flagpart server.log is equivalent to cat server.log | grep -i flagpart but avoids the extra cat. The pipeline is composed of small tools, each doing one thing: find lines, extract the field, remove adjacent duplicates, choose the first block, and concatenate. Final result (flag) picoCTF{us3_y0urlinux_sk1lls_cedfa5fb} Postmortem / tips awk by default splits on runs of whitespace (spaces, tabs). If lines contain variable spacing or you need a different delimiter, use awk -F or cut -d accordingly.\nuniq only collapses adjacent duplicates. If you need to remove all duplicates regardless of order/position, combine sort -u (but sorting will change order) or use awk/perl to keep first occurrence while preserving order.\nWhen joining lines:\ntr -d '\\n' removes newlines (simple and portable). paste -sd '' - concatenates preserving order. xargs -n1 echo -n also works. Prefer grep pattern file over cat file | grep pattern unless you need to pre-process the stream; avoid the useless use of cat.\nClosing thought The challenge is an example of “small utilities, big results.” Logs are structured data — once you recognize the pattern and pick the right token (field), standard text tools will get you to the answer quickly. This is exactly the kind of problem that rewards pattern recognition and knowing which tiny tool to apply next.\n",
+  "wordCount" : "1089",
+  "inLanguage": "en",
+  "datePublished": "2025-10-18T14:19:19+07:00",
+  "dateModified": "2025-10-18T14:19:19+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/picoctf-writeup-527/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PicoCTF Writeup #527
+    </h1>
+    <div class="post-meta"><span title='2025-10-18 14:19:19 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-writeup-527.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Challenge: <a href="https://play.picoctf.org/practice/challenge/527">Log Hunt</a></p>
+<p>Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (<code>grep</code>, <code>awk</code>, <code>uniq</code>, <code>head</code>, <code>tr</code>) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only <em>what</em> to run, but <em>why</em> each step works.</p>
+<h2 id="setup-and-file-inspection">Setup and file inspection<a hidden class="anchor" aria-hidden="true" href="#setup-and-file-inspection">#</a></h2>
+<p>Download the provided file:</p>
+<pre tabindex="0"><code>https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log
+</code></pre><p>Open a terminal and inspect the file with some basics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#7f848e"># show the file on stdout (quick look)</span>
+</span></span><span style="display:flex;"><span>cat server.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># count lines to get a sense of file size / structure</span>
+</span></span><span style="display:flex;"><span>wc -l server.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># open interactively if you want to browse / search manually</span>
+</span></span><span style="display:flex;"><span>vim server.log
+</span></span></code></pre></div><p><strong>Why these commands?</strong></p>
+<ul>
+<li><code>cat file</code> streams the entire file to stdout. Good for quick checks or piping into other tools.</li>
+<li><code>wc -l file</code> prints the number of lines, which helps estimate scale (useful for deciding whether to script or manual inspect).</li>
+<li><code>vim file</code> (or <code>less</code>) is for interactive exploration — search, jump to line numbers, etc.</li>
+</ul>
+<h2 id="pattern-search-grep-for-likely-candidates">Pattern search: grep for likely candidates<a hidden class="anchor" aria-hidden="true" href="#pattern-search-grep-for-likely-candidates">#</a></h2>
+<p>We’re looking for a flag; common picoCTF flags often contain the string <code>picoCTF</code>. Use <code>grep</code> to find lines that mention that substring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#7f848e"># case-insensitive search, show line numbers</span>
+</span></span><span style="display:flex;"><span>cat server.log | grep -i -n pico
+</span></span></code></pre></div><ul>
+<li><code>grep -i</code> : case-insensitive match.</li>
+<li><code>-n</code> : prefix each matching line with its line number (handy for references).</li>
+<li>Piping <code>cat</code> into <code>grep</code> is functionally equivalent to <code>grep -i -n pico server.log</code>. Either is fine; the pipe form is explicit about &ldquo;streaming the file into the next tool&rdquo;.</li>
+</ul>
+<p>Output (excerpted):</p>
+<pre tabindex="0"><code>1:[1990-08-09 10:00:10] INFO FLAGPART: picoCTF{us3_
+728:[1990-08-09 11:04:27] INFO FLAGPART: picoCTF{us3_
+729:[1990-08-09 11:04:29] INFO FLAGPART: picoCTF{us3_
+...
+1546:[1990-08-09 12:19:32] INFO FLAGPART: picoCTF{us3_
+</code></pre><p>So: the log contains entries that include <code>FLAGPART</code> and fragments that look like parts of a flag. There are duplicates — typical in logs that repeat events.</p>
+<h2 id="narrow-the-matches-by-keyword">Narrow the matches by keyword<a hidden class="anchor" aria-hidden="true" href="#narrow-the-matches-by-keyword">#</a></h2>
+<p>Search explicitly for the <code>FLAGPART</code> tag so we don’t pull unrelated <code>pico</code> mentions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat server.log | grep -i flagpart
+</span></span></code></pre></div><p>This returns lines like:</p>
+<pre tabindex="0"><code>[1990-08-09 10:00:10] INFO FLAGPART: picoCTF{us3_
+[1990-08-09 10:02:55] INFO FLAGPART: y0urlinux_
+[1990-08-09 10:05:54] INFO FLAGPART: sk1lls_
+...
+[1990-08-09 10:10:54] INFO FLAGPART: cedfa5fb}
+</code></pre><p>Each relevant line follows the same pattern: a timestamp, a log level, a tag <code>FLAGPART:</code>, and then the fragment we care about. That regular structure lets us extract the fragment reliably.</p>
+<h2 id="extract-the-fragmenttoken-using-awk">Extract the fragment/token using awk<a hidden class="anchor" aria-hidden="true" href="#extract-the-fragmenttoken-using-awk">#</a></h2>
+<p>We only want the token after <code>FLAGPART:</code>. The log is whitespace-separated, so the fragment is the fifth whitespace-delimited field. Use <code>awk</code> to print that field:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat server.log | grep -i flagpart | awk <span style="color:#98c379">&#39;{print $5}&#39;</span>
+</span></span></code></pre></div><p>Explanation:</p>
+<ul>
+<li><code>awk</code> processes each line and <code>{print $5}</code> outputs the 5th space-separated field.</li>
+<li>Field counting in <code>awk</code> starts at <code>$1</code> for the first token.</li>
+</ul>
+<p>Output (excerpt):</p>
+<pre tabindex="0"><code>picoCTF{us3_
+y0urlinux_
+sk1lls_
+sk1lls_
+cedfa5fb}
+...
+</code></pre><p>You can see the flag is already split into ordered fragments (including underscores and the closing brace in the last fragment).</p>
+<h2 id="de-duplicate-noisy-repeats-with-uniq">De-duplicate noisy repeats with uniq<a hidden class="anchor" aria-hidden="true" href="#de-duplicate-noisy-repeats-with-uniq">#</a></h2>
+<p>Logs often contain repeated entries. <code>uniq</code> removes <em>adjacent</em> duplicate lines. Combine it with the previous pipeline:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat server.log | grep -i flagpart | awk <span style="color:#98c379">&#39;{print $5}&#39;</span> | uniq
+</span></span></code></pre></div><p>Important nuance: <code>uniq</code> only collapses <strong>consecutive</strong> duplicate lines. If the same fragment appears in separate parts of the file separated by other content, <code>uniq</code> will not remove the non-adjacent duplicates. That’s why you may still see repeated groups when you run <code>uniq</code> on the whole output — the log contains repeating blocks, not one big contiguous block of duplicates.</p>
+<p>In this case the output shows repeated groups like:</p>
+<pre tabindex="0"><code>picoCTF{us3_
+y0urlinux_
+sk1lls_
+cedfa5fb}
+picoCTF{us3_
+y0urlinux_
+sk1lls_
+cedfa5fb}
+...
+</code></pre><p>We only need one instance of each part, in order.</p>
+<h2 id="take-the-first-ordered-set-of-fragments">Take the first (ordered) set of fragments<a hidden class="anchor" aria-hidden="true" href="#take-the-first-ordered-set-of-fragments">#</a></h2>
+<p>Since the repeated pattern appears in blocks and the first block is the earliest complete set, we can take the top four unique fragments with <code>head</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat server.log | grep -i flagpart | awk <span style="color:#98c379">&#39;{print $5}&#39;</span> | uniq | head -n <span style="color:#d19a66">4</span>
+</span></span></code></pre></div><ul>
+<li><code>head -n 4</code> selects the first four lines. That gives the sequence of pieces that form the flag.</li>
+</ul>
+<p>Result:</p>
+<pre tabindex="0"><code>picoCTF{us3_
+y0urlinux_
+sk1lls_
+cedfa5fb}
+</code></pre><p>These are the pieces in order.</p>
+<h2 id="reassemble-the-pieces-into-a-single-string">Reassemble the pieces into a single string<a hidden class="anchor" aria-hidden="true" href="#reassemble-the-pieces-into-a-single-string">#</a></h2>
+<p>Now combine the lines into one continuous string. The original steps use <code>tr '\n' '\0'</code> which replaces newlines with NUL characters. NULs are invisible on the terminal, and some tools treat or display them differently. A more straightforward approach is removing newlines entirely:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat server.log | grep -i flagpart | awk <span style="color:#98c379">&#39;{print $5}&#39;</span> | uniq | head -n <span style="color:#d19a66">4</span> | tr -d <span style="color:#98c379">&#39;\n&#39;</span>
+</span></span></code></pre></div><p>Explanation of <code>tr</code> usage:</p>
+<ul>
+<li><code>tr -d '\n'</code> deletes newline characters, concatenating the lines into one string.</li>
+<li>The earlier <code>tr '\n' '\0'</code> replaces newlines with NUL bytes; that also yields a single line visually, but produces NUL bytes in the output stream which may be undesirable for further processing.</li>
+</ul>
+<p>Running the <code>tr -d '\n'</code> pipeline yields:</p>
+<pre tabindex="0"><code>picoCTF{us3_y0urlinux_sk1lls_cedfa5fb}
+</code></pre><p>That is the flag.</p>
+<p>(If you prefer a NUL-separated result for machine consumption, <code>tr '\n' '\0'</code> is acceptable — just be aware that NULs are non-printable and can confuse some tools.)</p>
+<h2 id="compact-full-pipeline">Compact full pipeline<a hidden class="anchor" aria-hidden="true" href="#compact-full-pipeline">#</a></h2>
+<p>One compact, readable pipeline that reproduces the steps:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep -i flagpart server.log <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>  | awk <span style="color:#98c379">&#39;{print $5}&#39;</span> <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>  | uniq <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>  | head -n <span style="color:#d19a66">4</span> <span style="color:#98c379">\
+</span></span></span><span style="display:flex;"><span><span style="color:#98c379"></span>  | tr -d <span style="color:#98c379">&#39;\n&#39;</span>
+</span></span></code></pre></div><p>Notes:</p>
+<ul>
+<li><code>grep -i flagpart server.log</code> is equivalent to <code>cat server.log | grep -i flagpart</code> but avoids the extra <code>cat</code>.</li>
+<li>The pipeline is composed of small tools, each doing one thing: find lines, extract the field, remove adjacent duplicates, choose the first block, and concatenate.</li>
+</ul>
+<h2 id="final-result-flag">Final result (flag)<a hidden class="anchor" aria-hidden="true" href="#final-result-flag">#</a></h2>
+<pre tabindex="0"><code>picoCTF{us3_y0urlinux_sk1lls_cedfa5fb}
+</code></pre><h2 id="postmortem--tips">Postmortem / tips<a hidden class="anchor" aria-hidden="true" href="#postmortem--tips">#</a></h2>
+<ul>
+<li>
+<p><code>awk</code> by default splits on runs of whitespace (spaces, tabs). If lines contain variable spacing or you need a different delimiter, use <code>awk -F</code> or <code>cut -d</code> accordingly.</p>
+</li>
+<li>
+<p><code>uniq</code> only collapses <strong>adjacent</strong> duplicates. If you need to remove all duplicates regardless of order/position, combine <code>sort -u</code> (but sorting will change order) or use <code>awk</code>/<code>perl</code> to keep first occurrence while preserving order.</p>
+</li>
+<li>
+<p>When joining lines:</p>
+<ul>
+<li><code>tr -d '\n'</code> removes newlines (simple and portable).</li>
+<li><code>paste -sd '' -</code> concatenates preserving order.</li>
+<li><code>xargs -n1 echo -n</code> also works.</li>
+</ul>
+</li>
+<li>
+<p>Prefer <code>grep pattern file</code> over <code>cat file | grep pattern</code> unless you need to pre-process the stream; avoid the useless use of <code>cat</code>.</p>
+</li>
+</ul>
+<h2 id="closing-thought">Closing thought<a hidden class="anchor" aria-hidden="true" href="#closing-thought">#</a></h2>
+<p>The challenge is an example of “small utilities, big results.” Logs are structured data — once you recognize the pattern and pick the right token (field), standard text tools will get you to the answer quickly. This is exactly the kind of problem that rewards pattern recognition and knowing which tiny tool to apply next.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ctf/">ctf</a></li>
+      <li><a href="/tags/forensics/">forensics</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

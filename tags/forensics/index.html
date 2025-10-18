@@ -147,6 +147,38 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #524
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Hidden in Plainsight
+Short summary: the image contains a Base64-encoded hint in its JPEG comment. That hint decodes to a string which itself is Base64-encoded — the result is the passphrase for steghide. Use steghide to extract flag.txt, then cat the file to read the flag.
+Fetch the challenge file If you haven’t downloaded the file yet, use curl or wget:
+# with curl curl -O https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg # or with wget wget https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg What this does:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-18 14:23:16 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #524" href="/posts/picoctf-writeup-524/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #527
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Log Hunt
+Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.
+Setup and file inspection Download the provided file:
+https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log Open a terminal and inspect the file with some basics:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-18 14:19:19 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #527" href="/posts/picoctf-writeup-527/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">PicoCTF Writeup #530
     </h2>
   </header>

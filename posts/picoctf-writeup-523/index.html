@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PicoCTF Writeup #523 | nullvm</title>
+<meta name="keywords" content="ctf">
+<meta name="description" content="Challenge: Flag in Flame
+This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.
+Download and initial inspection
+Start by downloading the provided file (for example, with wget or curl):
+wget https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+or
+curl -O https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+Before assuming it’s truly a text log, inspect it with a quick cat:">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/picoctf-writeup-523/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-writeup-523/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/picoctf-writeup-523/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="PicoCTF Writeup #523">
+  <meta property="og:description" content="Challenge: Flag in Flame
+This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.
+Download and initial inspection Start by downloading the provided file (for example, with wget or curl):
+wget https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt or
+curl -O https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt Before assuming it’s truly a text log, inspect it with a quick cat:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-18T14:33:57+07:00">
+    <meta property="article:modified_time" content="2025-10-18T14:33:57+07:00">
+    <meta property="article:tag" content="Ctf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PicoCTF Writeup #523">
+<meta name="twitter:description" content="Challenge: Flag in Flame
+This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.
+Download and initial inspection
+Start by downloading the provided file (for example, with wget or curl):
+wget https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+or
+curl -O https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+Before assuming it’s truly a text log, inspect it with a quick cat:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "PicoCTF Writeup #523",
+      "item": "/posts/picoctf-writeup-523/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PicoCTF Writeup #523",
+  "name": "PicoCTF Writeup #523",
+  "description": "Challenge: Flag in Flame\nThis picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.\nDownload and initial inspection Start by downloading the provided file (for example, with wget or curl):\nwget https://challenge-files.picoctf.net/c_saffron_estate/\u0026lt;filename\u0026gt;/logs.txt or\ncurl -O https://challenge-files.picoctf.net/c_saffron_estate/\u0026lt;filename\u0026gt;/logs.txt Before assuming it’s truly a text log, inspect it with a quick cat:\n",
+  "keywords": [
+    "ctf"
+  ],
+  "articleBody": "Challenge: Flag in Flame\nThis picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.\nDownload and initial inspection Start by downloading the provided file (for example, with wget or curl):\nwget https://challenge-files.picoctf.net/c_saffron_estate//logs.txt or\ncurl -O https://challenge-files.picoctf.net/c_saffron_estate//logs.txt Before assuming it’s truly a text log, inspect it with a quick cat:\ncat logs.txt You’ll see a single, long Base64-encoded line — not the usual multi-line server or system log. That’s our first clue.\nDecode the Base64 content Base64 encoding is a common way to hide or serialize binary data as plain text. Let’s decode it:\nbase64 -d logs.txt \u003e dump Explanation:\nbase64 -d (or --decode) decodes Base64-encoded text.\n\u003e dump redirects the binary output into a new file named dump.\nRedirecting is important because the output is binary data (not human-readable) — printing it directly to the terminal would produce gibberish or control characters. Identify the decoded file type Now we need to find out what this newly created dump file actually is:\nfile dump Output (abbreviated):\ndump: PNG image data, ... So the original “log file” was just Base64-encoded PNG data. Time to treat it as an image.\nCheck metadata (optional) It’s good practice to check image metadata in forensics challenges. Use exiftool:\nexiftool dump Explanation:\nexiftool prints all known metadata fields (EXIF, JFIF, comment fields, etc.). In this case, no useful information is stored in the metadata — but it’s always worth checking. Open the image Use any image viewer to inspect the file:\nxdg-open dump (Or use open dump on macOS, or double-click the file in your file manager.)\nWhen you view the image, you’ll see a line of text written directly on the image itself:\n7069636f4354467b666f72656e736963735f616e616c797369735f69735f616d617a696e675f35646161346132667d Here is the image:\nDecode the hexadecimal string That text isn’t a readable message yet — it’s hexadecimal. Each pair of hex digits represents one ASCII character. Decode it using your preferred tool. For example:\nOption 1: using xxd echo \"7069636f4354467b666f72656e736963735f616e616c797369735f69735f616d617a696e675f35646161346132667d\" | xxd -r -p Explanation:\nxxd -r -p converts a plain hex dump back to binary (or readable text when it represents ASCII). Output:\npicoCTF{forensics_analysis_is_amazing_5daa4a2f} Option 2: using a web decoder like CyberChef If you prefer a graphical tool, paste the hex string into CyberChef, select the “From Hex” operation, and it will produce the same result.\nResult Flag:\npicoCTF{forensics_analysis_is_amazing_5daa4a2f} Summary of the workflow Step Command Purpose 1 cat logs.txt Inspect file contents 2 base64 -d logs.txt \u003e dump Decode Base64 data 3 file dump Identify file type 4 exiftool dump Examine metadata (optional) 5 xdg-open dump View the image 6 echo | xxd -r -p Decode hex to ASCII text Reflection This challenge is a good reminder that:\nEncodings like Base64 or hex are simple but effective disguises for binary data. Tools such as file, exiftool, and xxd are indispensable in digital forensics work. Before reaching for complex stego tools, start with basic encodings — sometimes the “hidden” data just needs a different lens. ",
+  "wordCount" : "511",
+  "inLanguage": "en",
+  "datePublished": "2025-10-18T14:33:57+07:00",
+  "dateModified": "2025-10-18T14:33:57+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/picoctf-writeup-523/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PicoCTF Writeup #523
+    </h1>
+    <div class="post-meta"><span title='2025-10-18 14:33:57 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-writeup-523.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Challenge: <a href="https://play.picoctf.org/practice/challenge/523">Flag in Flame</a></p>
+<p>This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.</p>
+<h2 id="download-and-initial-inspection">Download and initial inspection<a hidden class="anchor" aria-hidden="true" href="#download-and-initial-inspection">#</a></h2>
+<p>Start by downloading the provided file (for example, with <code>wget</code> or <code>curl</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+</span></span></code></pre></div><p>or</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -O https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt
+</span></span></code></pre></div><p>Before assuming it’s truly a text log, inspect it with a quick <code>cat</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat logs.txt
+</span></span></code></pre></div><p>You’ll see a single, long Base64-encoded line — not the usual multi-line server or system log. That’s our first clue.</p>
+<h2 id="decode-the-base64-content">Decode the Base64 content<a hidden class="anchor" aria-hidden="true" href="#decode-the-base64-content">#</a></h2>
+<p>Base64 encoding is a common way to hide or serialize binary data as plain text. Let’s decode it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>base64 -d logs.txt &gt; dump
+</span></span></code></pre></div><p>Explanation:</p>
+<ul>
+<li>
+<p><code>base64 -d</code> (or <code>--decode</code>) decodes Base64-encoded text.</p>
+</li>
+<li>
+<p><code>&gt; dump</code> redirects the binary output into a new file named <code>dump</code>.</p>
+<ul>
+<li>Redirecting is important because the output is binary data (not human-readable) — printing it directly to the terminal would produce gibberish or control characters.</li>
+</ul>
+</li>
+</ul>
+<h2 id="identify-the-decoded-file-type">Identify the decoded file type<a hidden class="anchor" aria-hidden="true" href="#identify-the-decoded-file-type">#</a></h2>
+<p>Now we need to find out what this newly created <code>dump</code> file actually is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>file dump
+</span></span></code></pre></div><p>Output (abbreviated):</p>
+<pre tabindex="0"><code>dump: PNG image data, ...
+</code></pre><p>So the original “log file” was just Base64-encoded <strong>PNG</strong> data. Time to treat it as an image.</p>
+<h2 id="check-metadata-optional">Check metadata (optional)<a hidden class="anchor" aria-hidden="true" href="#check-metadata-optional">#</a></h2>
+<p>It’s good practice to check image metadata in forensics challenges. Use <code>exiftool</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exiftool dump
+</span></span></code></pre></div><p>Explanation:</p>
+<ul>
+<li><code>exiftool</code> prints all known metadata fields (EXIF, JFIF, comment fields, etc.).</li>
+<li>In this case, no useful information is stored in the metadata — but it’s always worth checking.</li>
+</ul>
+<h2 id="open-the-image">Open the image<a hidden class="anchor" aria-hidden="true" href="#open-the-image">#</a></h2>
+<p>Use any image viewer to inspect the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xdg-open dump
+</span></span></code></pre></div><p>(Or use <code>open dump</code> on macOS, or double-click the file in your file manager.)</p>
+<p>When you view the image, you’ll see a line of text written directly on the image itself:</p>
+<pre tabindex="0"><code>7069636f4354467b666f72656e736963735f616e616c797369735f69735f616d617a696e675f35646161346132667d
+</code></pre><p>Here is the image:</p>
+<p><img alt="Decoded Image from Logs" loading="lazy" src="https://cdn.imgchest.com/files/7c18ac1afe42.png"></p>
+<h2 id="decode-the-hexadecimal-string">Decode the hexadecimal string<a hidden class="anchor" aria-hidden="true" href="#decode-the-hexadecimal-string">#</a></h2>
+<p>That text isn’t a readable message yet — it’s hexadecimal. Each pair of hex digits represents one ASCII character. Decode it using your preferred tool. For example:</p>
+<h3 id="option-1-using-xxd">Option 1: using <code>xxd</code><a hidden class="anchor" aria-hidden="true" href="#option-1-using-xxd">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#e5c07b">echo</span> <span style="color:#98c379">&#34;7069636f4354467b666f72656e736963735f616e616c797369735f69735f616d617a696e675f35646161346132667d&#34;</span> | xxd -r -p
+</span></span></code></pre></div><p>Explanation:</p>
+<ul>
+<li><code>xxd -r -p</code> converts a plain hex dump back to binary (or readable text when it represents ASCII).</li>
+</ul>
+<p>Output:</p>
+<pre tabindex="0"><code>picoCTF{forensics_analysis_is_amazing_5daa4a2f}
+</code></pre><h3 id="option-2-using-a-web-decoder-like-cyberchef">Option 2: using a web decoder like CyberChef<a hidden class="anchor" aria-hidden="true" href="#option-2-using-a-web-decoder-like-cyberchef">#</a></h3>
+<p>If you prefer a graphical tool, paste the hex string into <a href="https://gchq.github.io/CyberChef/">CyberChef</a>, select the <strong>“From Hex”</strong> operation, and it will produce the same result.</p>
+<h2 id="result">Result<a hidden class="anchor" aria-hidden="true" href="#result">#</a></h2>
+<p>Flag:</p>
+<pre tabindex="0"><code>picoCTF{forensics_analysis_is_amazing_5daa4a2f}
+</code></pre><h2 id="summary-of-the-workflow">Summary of the workflow<a hidden class="anchor" aria-hidden="true" href="#summary-of-the-workflow">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Step</th>
+          <th>Command</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td><code>cat logs.txt</code></td>
+          <td>Inspect file contents</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td><code>base64 -d logs.txt &gt; dump</code></td>
+          <td>Decode Base64 data</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td><code>file dump</code></td>
+          <td>Identify file type</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td><code>exiftool dump</code></td>
+          <td>Examine metadata (optional)</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td><code>xdg-open dump</code></td>
+          <td>View the image</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td><code>echo &lt;hex&gt; | xxd -r -p</code></td>
+          <td>Decode hex to ASCII text</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="reflection">Reflection<a hidden class="anchor" aria-hidden="true" href="#reflection">#</a></h2>
+<p>This challenge is a good reminder that:</p>
+<ul>
+<li>Encodings like Base64 or hex are simple but effective disguises for binary data.</li>
+<li>Tools such as <code>file</code>, <code>exiftool</code>, and <code>xxd</code> are indispensable in digital forensics work.</li>
+<li>Before reaching for complex stego tools, start with basic encodings — sometimes the “hidden” data just needs a different lens.</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ctf/">ctf</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -162,6 +162,55 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #523
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Flag in Flame
+This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.
+Download and initial inspection Start by downloading the provided file (for example, with wget or curl):
+wget https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt or
+curl -O https://challenge-files.picoctf.net/c_saffron_estate/&lt;filename&gt;/logs.txt Before assuming it’s truly a text log, inspect it with a quick cat:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-18 14:33:57 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #523" href="/posts/picoctf-writeup-523/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #524
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Hidden in Plainsight
+Short summary: the image contains a Base64-encoded hint in its JPEG comment. That hint decodes to a string which itself is Base64-encoded — the result is the passphrase for steghide. Use steghide to extract flag.txt, then cat the file to read the flag.
+Fetch the challenge file If you haven’t downloaded the file yet, use curl or wget:
+# with curl curl -O https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg # or with wget wget https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg What this does:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-18 14:23:16 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #524" href="/posts/picoctf-writeup-524/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PicoCTF Writeup #527
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Challenge: Log Hunt
+Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (grep, awk, uniq, head, tr) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only what to run, but why each step works.
+Setup and file inspection Download the provided file:
+https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log Open a terminal and inspect the file with some basics:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-18 14:19:19 +0700 +07'>October 18, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to PicoCTF Writeup #527" href="/posts/picoctf-writeup-527/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">PicoCTF Writeup #530
     </h2>
   </header>
@@ -267,53 +316,6 @@ Challenge Overview The challenge description states that a company’s server wa
   </div>
   <footer class="entry-footer"><span title='2025-08-26 11:59:43 +0700 +07'>August 26, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
   <a class="entry-link" aria-label="post link to PicoCTF Writeup #475" href="/posts/picoctf-hashcrack/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">PicoCTF Writeup #482
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Hacking Profile Pictures Like It’s 2005 (picoCTF Web Exploit Writeup) So, I tried another picoCTF challenge and this one was basically:
-👨‍💻 “A developer added profile picture uploads. What could possibly go wrong?”
-If you’ve ever touched PHP (I’m sorry) you already know the answer: literally everything.
-The challenge: Standard Pizzas 🍕
-Upload Feature? More Like Upload Malware The site lets you upload an image and then proudly tells you where it lives:
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-08-20 10:06:40 +0700 +07'>August 20, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to PicoCTF Writeup #482" href="/posts/picoctf-writeup-482/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Access Import Anywhere in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>That One Silly Python Feature Hackers Love (and Devs Hate) 🐍💻 Python is an amazing language. It’s clean, elegant, and super beginner-friendly.
-…until you stumble across one of its cursed features and realize “oh no, this is how hackers get RCE.”
-Today’s silly Python feature: 👉 You can import literally anything, from anywhere.
-Wait… I Can Do That? Normally in Python, you import modules at the top like a responsible developer:
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-08-19 16:50:14 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Access Import Anywhere in Python" href="/posts/access-import-anywhere-python/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Python loves inheritance. You can make classes inherit from other classes, those classes inherit from others, and suddenly you’ve got a full-blown family tree that looks like someone spilled spaghetti on your UML diagram. And then you run into the question: when I call a method, which ancestor actually answers the call?
-That’s where MRO (Method Resolution Order) comes in. Think of it like ls for Python’s class hierarchy—it shows you the exact path Python will take when looking for a method. No more guessing which def speak() gets invoked when you’ve got five grandparents fighting for attention.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-08-19 16:30:43 +0700 +07'>August 19, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to Understanding Python’s Method Resolution Order (MRO) Without Losing Your Sanity" href="/posts/mro-python/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

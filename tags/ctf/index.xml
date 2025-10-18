@@ -6,8 +6,50 @@
     <description>Recent content in Ctf on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Oct 2025 21:47:29 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 18 Oct 2025 14:33:57 +0700</lastBuildDate>
     <atom:link href="/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PicoCTF Writeup #523</title>
+      <link>/posts/picoctf-writeup-523/</link>
+      <pubDate>Sat, 18 Oct 2025 14:33:57 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-523/</guid>
+      <description>&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/523&#34;&gt;Flag in Flame&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This picoCTF challenge demonstrates how easily data can be disguised by simple encoding. The “log file” provided is not a log at all, but a Base64-encoded PNG image that contains the flag written as hexadecimal text.&lt;/p&gt;
+&lt;h2 id=&#34;download-and-initial-inspection&#34;&gt;Download and initial inspection&lt;/h2&gt;
+&lt;p&gt;Start by downloading the provided file (for example, with &lt;code&gt;wget&lt;/code&gt; or &lt;code&gt;curl&lt;/code&gt;):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://challenge-files.picoctf.net/c_saffron_estate/&amp;lt;filename&amp;gt;/logs.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;or&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -O https://challenge-files.picoctf.net/c_saffron_estate/&amp;lt;filename&amp;gt;/logs.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Before assuming it’s truly a text log, inspect it with a quick &lt;code&gt;cat&lt;/code&gt;:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PicoCTF Writeup #524</title>
+      <link>/posts/picoctf-writeup-524/</link>
+      <pubDate>Sat, 18 Oct 2025 14:23:16 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-524/</guid>
+      <description>&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/524&#34;&gt;Hidden in Plainsight&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Short summary: the image contains a Base64-encoded hint in its JPEG comment. That hint decodes to a string which itself is Base64-encoded — the result is the passphrase for &lt;code&gt;steghide&lt;/code&gt;. Use &lt;code&gt;steghide&lt;/code&gt; to extract &lt;code&gt;flag.txt&lt;/code&gt;, then &lt;code&gt;cat&lt;/code&gt; the file to read the flag.&lt;/p&gt;
+&lt;h2 id=&#34;fetch-the-challenge-file&#34;&gt;Fetch the challenge file&lt;/h2&gt;
+&lt;p&gt;If you haven&amp;rsquo;t downloaded the file yet, use &lt;code&gt;curl&lt;/code&gt; or &lt;code&gt;wget&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;# with curl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -O https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#7f848e&#34;&gt;# or with wget&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://challenge-files.picoctf.net/c_saffron_estate/25925d893c04723f46e8d1412559b15ef58509751801aac366c65441fed3e40e/img.jpg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What this does:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PicoCTF Writeup #527</title>
+      <link>/posts/picoctf-writeup-527/</link>
+      <pubDate>Sat, 18 Oct 2025 14:19:19 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-527/</guid>
+      <description>&lt;p&gt;Challenge: &lt;a href=&#34;https://play.picoctf.org/practice/challenge/527&#34;&gt;Log Hunt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Short version: a plain text server log contained the flag split across repeated log entries. A few simple POSIX utilities (&lt;code&gt;grep&lt;/code&gt;, &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;uniq&lt;/code&gt;, &lt;code&gt;head&lt;/code&gt;, &lt;code&gt;tr&lt;/code&gt;) and a tiny bit of shell plumbing reveal the flag. Below is a clean, reproducible walk-through with explicit command explanations so you know not only &lt;em&gt;what&lt;/em&gt; to run, but &lt;em&gt;why&lt;/em&gt; each step works.&lt;/p&gt;
+&lt;h2 id=&#34;setup-and-file-inspection&#34;&gt;Setup and file inspection&lt;/h2&gt;
+&lt;p&gt;Download the provided file:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://challenge-files.picoCTF.net/c_saffron_estate/1a0b2a2a67149850cd0e6d34da005c381bbbed4c558e529fec8b3be3f8619046/server.log
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Open a terminal and inspect the file with some basics:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>PicoCTF Writeup #530</title>
       <link>/posts/picoctf-writeup-530/</link>
