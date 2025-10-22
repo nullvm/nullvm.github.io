@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>PicoCTF Writeup #519 | nullvm</title>
+<meta name="keywords" content="ctf, forensics">
+<meta name="description" content="This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.
+Challenge Setup
+
+Platform: picoCTF Practice
+Category: Forensics
+Difficulty: Beginner-Intermediate
+File: Download the provided &ldquo;file&rdquo; (no extension)
+
+Work in a fresh directory:
+mkdir picoctf-519 &amp;&amp; cd picoctf-519
+Initial File Analysis
+Run the basic file type check:
+$ file file
+file: data
+The &ldquo;data&rdquo; result indicates the file command cannot identify the format. Use hexdump for deeper inspection:">
+<meta name="author" content="Deni Andrian Prayoga">
+<link rel="canonical" href="/posts/picoctf-writeup-519/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ec03d813ea039cce70b66c029f89b0f5ee5f2e4fa806d9c6191739ac2c54bc8f.css" integrity="sha256-7APYE&#43;oDnM5wtmwCn4mw9e5fLk&#43;oBtnGGRc5rCxUvI8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="/posts/picoctf-writeup-519/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="/posts/picoctf-writeup-519/">
+  <meta property="og:site_name" content="nullvm">
+  <meta property="og:title" content="PicoCTF Writeup #519">
+  <meta property="og:description" content="This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.
+Challenge Setup Platform: picoCTF Practice Category: Forensics Difficulty: Beginner-Intermediate File: Download the provided “file” (no extension) Work in a fresh directory:
+mkdir picoctf-519 &amp;&amp; cd picoctf-519 Initial File Analysis Run the basic file type check:
+$ file file file: data The “data” result indicates the file command cannot identify the format. Use hexdump for deeper inspection:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-22T18:24:07+07:00">
+    <meta property="article:modified_time" content="2025-10-22T18:24:07+07:00">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Forensics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PicoCTF Writeup #519">
+<meta name="twitter:description" content="This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.
+Challenge Setup
+
+Platform: picoCTF Practice
+Category: Forensics
+Difficulty: Beginner-Intermediate
+File: Download the provided &ldquo;file&rdquo; (no extension)
+
+Work in a fresh directory:
+mkdir picoctf-519 &amp;&amp; cd picoctf-519
+Initial File Analysis
+Run the basic file type check:
+$ file file
+file: data
+The &ldquo;data&rdquo; result indicates the file command cannot identify the format. Use hexdump for deeper inspection:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "PicoCTF Writeup #519",
+      "item": "/posts/picoctf-writeup-519/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PicoCTF Writeup #519",
+  "name": "PicoCTF Writeup #519",
+  "description": "This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.\nChallenge Setup Platform: picoCTF Practice Category: Forensics Difficulty: Beginner-Intermediate File: Download the provided \u0026ldquo;file\u0026rdquo; (no extension) Work in a fresh directory:\nmkdir picoctf-519 \u0026amp;\u0026amp; cd picoctf-519 Initial File Analysis Run the basic file type check:\n$ file file file: data The \u0026ldquo;data\u0026rdquo; result indicates the file command cannot identify the format. Use hexdump for deeper inspection:\n",
+  "keywords": [
+    "ctf", "forensics"
+  ],
+  "articleBody": "This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.\nChallenge Setup Platform: picoCTF Practice Category: Forensics Difficulty: Beginner-Intermediate File: Download the provided “file” (no extension) Work in a fresh directory:\nmkdir picoctf-519 \u0026\u0026 cd picoctf-519 Initial File Analysis Run the basic file type check:\n$ file file file: data The “data” result indicates the file command cannot identify the format. Use hexdump for deeper inspection:\n$ hexdump -C file \u003e out.txt $ head out.txt Output:\n0000000 78 5c e0 ff 10 00 46 4a 46 49 46 00 01 00 01 00 0000010 01 00 00 00 db ff 43 00 08 00 06 06 06 07 08 05 0000020 07 07 09 07 08 09 0c 0a 0d 14 0b 0c 0c 0b 12 19 0000030 0f 13 1d 14 1f 1a 1d 1e 1c 1a 20 1c 2e 24 20 27 0000040 2c 22 1c 23 28 1c 29 37 30 2c 34 31 34 34 27 1f 0000050 3d 39 32 38 2e 3c 34 33 ff 32 00 db 01 43 09 09 0000060 0c 09 0c 0b 0d 18 18 0d 21 32 21 1c 32 32 32 32 0000070 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 * 0000090 32 32 32 32 32 32 32 32 c0 ff The JFIF string at offset 0x06 indicates a JPEG file. However, the first two bytes 78 5c do not match the standard JPEG header FF D8.\nRaw Header Inspection View the first 20 bytes with escape characters:\n$ head -c 20 file | cat -A \\x^�^�^@^FJFIF^@^A^@^A^@ Confirms the mangled header followed by valid JFIF marker.\nRename and Validate Add the JPEG extension:\n$ mv file file.jpg Test with an image viewer:\n$ feh file.jpg Result: Invalid image error.\nValidate with exiftool:\n$ exiftool file.jpg Output includes:\nFile Format : Error Warning: [minor] Corrupt Image Data Tag Header Correction with Hexedit Install hexedit if needed: sudo apt install hexedit.\nEdit the file:\n$ hexedit file.jpg Navigate to offset 0x00 Change 78 to FF Change 5C to D8 Save and exit This sets the correct JPEG header: FF D8 FF E0 ... JFIF.\nPitfall: Backup the original file first (cp file.jpg file.jpg.bak) to avoid data loss from editing errors.\nExtract the Flag Open the corrected image:\n$ feh file.jpg The image displays the flag:\npicoCTF{r3st0r1ng_th3_by73s_2326ca93}\nTools Summary Tool/Command Purpose Notes file File type identification Fails on corrupted headers hexdump -C Hexadecimal + ASCII dump Use -C for clean output head -c N | cat -A Raw bytes with escapes Ideal for header inspection exiftool Metadata analysis Detects corruption details hexedit Byte-level editing Alternative: xxd for vim users Automation Option Script the header fix:\nxxd -s 0 -l 2 -p file.jpg | sed 's/785c/ffd8/' | xxd -r -p \u003e fixed.jpg Key References JPEG File Interchange Format File Signatures ",
+  "wordCount" : "504",
+  "inLanguage": "en",
+  "datePublished": "2025-10-22T18:24:07+07:00",
+  "dateModified": "2025-10-22T18:24:07+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Deni Andrian Prayoga"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/picoctf-writeup-519/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nullvm",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="nullvm (Alt + H)">nullvm</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/posts" title="Post">
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      PicoCTF Writeup #519
+    </h1>
+    <div class="post-meta"><span title='2025-10-22 18:24:07 +0700 +07'>October 22, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Deni Andrian Prayoga&nbsp;|&nbsp;<a href="https://github.com/nullvm/nullvm.github.io-precompiled/tree/main/content/posts/picoctf-writeup-519.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> 
+  <div class="post-content"><p>This is a forensics challenge from picoCTF (challenge ID 519). The goal is to recover a corrupted image file and extract the flag. The walkthrough includes exact commands, outputs, and common pitfalls encountered during solving.</p>
+<h2 id="challenge-setup">Challenge Setup<a hidden class="anchor" aria-hidden="true" href="#challenge-setup">#</a></h2>
+<ul>
+<li><strong>Platform</strong>: <a href="https://play.picoctf.org/practice/challenge/519">picoCTF Practice</a></li>
+<li><strong>Category</strong>: Forensics</li>
+<li><strong>Difficulty</strong>: Beginner-Intermediate</li>
+<li><strong>File</strong>: Download the provided &ldquo;file&rdquo; (no extension)</li>
+</ul>
+<p>Work in a fresh directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir picoctf-519 <span style="color:#56b6c2">&amp;&amp;</span> <span style="color:#e5c07b">cd</span> picoctf-519
+</span></span></code></pre></div><h2 id="initial-file-analysis">Initial File Analysis<a hidden class="anchor" aria-hidden="true" href="#initial-file-analysis">#</a></h2>
+<p>Run the basic file type check:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file file
+</span></span><span style="display:flex;"><span>file: data
+</span></span></code></pre></div><p>The &ldquo;data&rdquo; result indicates the file command cannot identify the format. Use hexdump for deeper inspection:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hexdump -C file &gt; out.txt
+</span></span><span style="display:flex;"><span>$ head out.txt
+</span></span></code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>0000000 78 5c e0 ff 10 00 46 4a 46 49 46 00 01 00 01 00
+0000010 01 00 00 00 db ff 43 00 08 00 06 06 06 07 08 05
+0000020 07 07 09 07 08 09 0c 0a 0d 14 0b 0c 0c 0b 12 19
+0000030 0f 13 1d 14 1f 1a 1d 1e 1c 1a 20 1c 2e 24 20 27
+0000040 2c 22 1c 23 28 1c 29 37 30 2c 34 31 34 34 27 1f
+0000050 3d 39 32 38 2e 3c 34 33 ff 32 00 db 01 43 09 09
+0000060 0c 09 0c 0b 0d 18 18 0d 21 32 21 1c 32 32 32 32
+0000070 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32
+*
+0000090 32 32 32 32 32 32 32 32 c0 ff
+</code></pre><p>The <code>JFIF</code> string at offset 0x06 indicates a JPEG file. However, the first two bytes <code>78 5c</code> do not match the standard JPEG header <code>FF D8</code>.</p>
+<h2 id="raw-header-inspection">Raw Header Inspection<a hidden class="anchor" aria-hidden="true" href="#raw-header-inspection">#</a></h2>
+<p>View the first 20 bytes with escape characters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ head -c <span style="color:#d19a66">20</span> file | cat -A
+</span></span><span style="display:flex;"><span><span style="color:#98c379">\x</span>^�^�^@^FJFIF^@^A^@^A^@
+</span></span></code></pre></div><p>Confirms the mangled header followed by valid JFIF marker.</p>
+<h2 id="rename-and-validate">Rename and Validate<a hidden class="anchor" aria-hidden="true" href="#rename-and-validate">#</a></h2>
+<p>Add the JPEG extension:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mv file file.jpg
+</span></span></code></pre></div><p>Test with an image viewer:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ feh file.jpg
+</span></span></code></pre></div><p>Result: Invalid image error.</p>
+<p>Validate with exiftool:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ exiftool file.jpg
+</span></span></code></pre></div><p>Output includes:</p>
+<pre tabindex="0"><code>File Format           : Error
+Warning: [minor] Corrupt Image Data Tag
+</code></pre><h2 id="header-correction-with-hexedit">Header Correction with Hexedit<a hidden class="anchor" aria-hidden="true" href="#header-correction-with-hexedit">#</a></h2>
+<p>Install hexedit if needed: <code>sudo apt install hexedit</code>.</p>
+<p>Edit the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hexedit file.jpg
+</span></span></code></pre></div><ul>
+<li>Navigate to offset <code>0x00</code></li>
+<li>Change <code>78</code> to <code>FF</code></li>
+<li>Change <code>5C</code> to <code>D8</code></li>
+<li>Save and exit</li>
+</ul>
+<p>This sets the correct JPEG header: <code>FF D8 FF E0 ... JFIF</code>.</p>
+<p><strong>Pitfall</strong>: Backup the original file first (<code>cp file.jpg file.jpg.bak</code>) to avoid data loss from editing errors.</p>
+<h2 id="extract-the-flag">Extract the Flag<a hidden class="anchor" aria-hidden="true" href="#extract-the-flag">#</a></h2>
+<p>Open the corrected image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ feh file.jpg
+</span></span></code></pre></div><p>The image displays the flag:<br>
+<code>picoCTF{r3st0r1ng_th3_by73s_2326ca93}</code></p>
+<h2 id="tools-summary">Tools Summary<a hidden class="anchor" aria-hidden="true" href="#tools-summary">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Tool/Command</th>
+          <th>Purpose</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>file</code></td>
+          <td>File type identification</td>
+          <td>Fails on corrupted headers</td>
+      </tr>
+      <tr>
+          <td><code>hexdump -C</code></td>
+          <td>Hexadecimal + ASCII dump</td>
+          <td>Use <code>-C</code> for clean output</td>
+      </tr>
+      <tr>
+          <td><code>head -c N | cat -A</code></td>
+          <td>Raw bytes with escapes</td>
+          <td>Ideal for header inspection</td>
+      </tr>
+      <tr>
+          <td><code>exiftool</code></td>
+          <td>Metadata analysis</td>
+          <td>Detects corruption details</td>
+      </tr>
+      <tr>
+          <td><code>hexedit</code></td>
+          <td>Byte-level editing</td>
+          <td>Alternative: <code>xxd</code> for vim users</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="automation-option">Automation Option<a hidden class="anchor" aria-hidden="true" href="#automation-option">#</a></h2>
+<p>Script the header fix:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xxd -s <span style="color:#d19a66">0</span> -l <span style="color:#d19a66">2</span> -p file.jpg | sed <span style="color:#98c379">&#39;s/785c/ffd8/&#39;</span> | xxd -r -p &gt; fixed.jpg
+</span></span></code></pre></div><h2 id="key-references">Key References<a hidden class="anchor" aria-hidden="true" href="#key-references">#</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/JPEG_File_Interchange_Format">JPEG File Interchange Format</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_file_signatures">File Signatures</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="/tags/ctf/">ctf</a></li>
+      <li><a href="/tags/forensics/">forensics</a></li>
+    </ul>
+  </footer><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "deniandriancode-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="/">nullvm</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
