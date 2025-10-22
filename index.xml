@@ -6,8 +6,17 @@
     <description>Recent content on nullvm</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Oct 2025 14:33:57 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 22 Oct 2025 13:30:18 +0700</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PicoCTF Writeup #520</title>
+      <link>/posts/picoctf-writeup-520/</link>
+      <pubDate>Wed, 22 Oct 2025 13:30:18 +0700</pubDate>
+      <guid>/posts/picoctf-writeup-520/</guid>
+      <description>&lt;p&gt;Hey folks, quick writeup on this PicoCTF challenge (ID 520) that was a solid reminder of how devs leave backdoors hanging out. It&amp;rsquo;s a web thing on their playground – nothing fancy, but it shows the classic &amp;ldquo;forgot to clean up&amp;rdquo; fuckup. Spoilers: Caesar cipher + sneaky header = flag. Let&amp;rsquo;s dive in.&lt;/p&gt;
+&lt;h2 id=&#34;the-setup&#34;&gt;The Setup&lt;/h2&gt;
+&lt;p&gt;Head over to &lt;a href=&#34;https://play.picoctf.org/practice/challenge/520&#34;&gt;https://play.picoctf.org/practice/challenge/520&lt;/a&gt;, launch the instance. You&amp;rsquo;re supposed to log in with &lt;code&gt;ctf-player@picoctf.org&lt;/code&gt; and some password. I try it – boom, &amp;ldquo;invalid request.&amp;rdquo; Lame. No brute-force vibes here; it&amp;rsquo;s not that kind of challenge.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>PicoCTF Writeup #523</title>
       <link>/posts/picoctf-writeup-523/</link>
