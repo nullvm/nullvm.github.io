@@ -157,6 +157,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Vim Backup-Copy
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>While writing a custom version of the tail -f command in C, I stumbled upon an interesting behavior in the Vim/Neovim text editors. The purpose of the program is to continuously print any new data appended to the end of a file—just like tail -f, which is commonly used for watching log files.
+In my implementation, I have something like this:
+const char *filename = argv[1]; int fd = open(filename, O_RDONLY); if (fd == -1) { perror(&#34;open&#34;); return 1; } The open() function, provided by #include &lt;fcntl.h&gt;, returns a file descriptor—a small, nonnegative integer that acts as an index into the process’s table of open file descriptors.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-12 21:41:46 +0700 +07'>June 12, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
+  <a class="entry-link" aria-label="post link to Vim Backup-Copy" href="/posts/vim-backup-copy/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Generate Ranged Random Integer in Javascript
     </h2>
   </header>
@@ -308,22 +323,12 @@ int main() { int x = 5; int* ptr = &amp;x; // regular pointer to x x = 6; // *pt
   <footer class="entry-footer"><span title='2024-06-15 20:59:34 +0700 +07'>June 15, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
   <a class="entry-link" aria-label="post link to Pointer and Const in C&#43;&#43;" href="/posts/cpp-pointer-const/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p></p>
-  </div>
-  <footer class="entry-footer">0 min&nbsp;·&nbsp;Deni Andrian Prayoga</footer>
-  <a class="entry-link" aria-label="post link to " href="/posts/minecraft-play/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="/page/2/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="/page/4/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
